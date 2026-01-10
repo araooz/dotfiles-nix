@@ -1,0 +1,15 @@
+/*
+
+!.gitignore
+
+
+# 2. Permitir las carpetas específicas (la barra final es clave)
+!hypr/
+!nix/
+!nvim/
+!rofi/
+!waybar/
+
+
+# 3. (Opcional) Si dentro de esas carpetas hay archivos que SÍ quieres ignorar,
+# puedes volver a aplicar reglas específicas aquí abajo.
