@@ -10,6 +10,6 @@
 !rofi/
 !waybar/
 
-
-# 3. (Opcional) Si dentro de esas carpetas hay archivos que SÍ quieres ignorar,
-# puedes volver a aplicar reglas específicas aquí abajo.
+!nixosconfig.sh
+!token_git.txt
+nix/nix
