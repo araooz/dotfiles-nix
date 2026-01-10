@@ -1,13 +1,13 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 { config, lib, pkgs, ... }:
-
+#zen
+let
+  zen-browser = import (builtins.fetchTarball "https://github.com/youwen5/zen-browser-flake/archive/master.tar.gz") { inherit pkgs; };
+in
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
-
+    [ ./hardware-configuration.nix ];
 
 # Use the systemd-boot EFI boot loader.
   boot.loader = {
@@ -81,6 +81,8 @@
   programs.hyprland.enable = true;
   programs.git.enable = true;
 
+
+
   # You can use https://search.nixos.org/ to find more packages (and options).
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
@@ -100,6 +102,8 @@
     os-prober
     unzip
     efibootmgr
+    git
+    github-cli
 #audio y brillo
     pavucontrol
     playerctl
@@ -134,6 +138,7 @@
     vscode-langservers-extracted # (eslint)
 #jeje
     steam
+    zen-browser.default
   ];
 
 #audio
