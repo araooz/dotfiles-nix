@@ -63,9 +63,16 @@ in
       exec Hyprland
     fi
   '';
+# presunto fix para lo de hyprland que se cierran las apps apenas las abro
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1"; # Fuerza a apps de Electron (como ZapZap) a usar Wayland
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_TYPE = "wayland";
+    XDG_SESSION_DESKTOP = "Hyprland";
+  };
+
 
   users.mutableUsers = true;
-
   users.users.falo = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" "audio"];
@@ -154,10 +161,12 @@ in
 #lo de dolphin
 xdg.portal = {
   enable = true;
+  extraPortals = [ 
+    pkgs.xdg-desktop-portal-hyprland
+    pkgs.xdg-desktop-portal-gtk 
+  ];
   config.common.default = "*";
-  extraPortals = [ pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk ];
 };
-
 
 
 
