@@ -21,7 +21,7 @@ return {
             dashboard.button("n", "N  Abrir ~/.config/nvim/", ":e ~/.config/nvim/<CR>"),
             dashboard.button("h", "  Abrir ~/.config/hypr/", ":e ~/.config/hypr/<CR>"),
             dashboard.button("w", "  Abrir ~/.config/waybar/", ":e ~/.config/waybar/<CR>"),
-            dashboard.button("z", "MAMAWBO  Abrir configuration.nix", ":e ~/.config/nix/configuration.nix <CR>"),
+            dashboard.button("z", "MAMAWBO  Abrir configuration.nix", ":e ~/.config/nix/<CR>"),
             dashboard.button("q", "  Salir", ":qa<CR>"),
         }
 

@@ -111,6 +111,7 @@ in
     efibootmgr
     git
     github-cli
+    zen-browser.default
 #audio y brillo
     pavucontrol
     playerctl
@@ -134,6 +135,7 @@ in
     slurp
     imv
     wl-clipboard
+    gimp
 # lenguajes
     gcc
     gnumake
@@ -143,9 +145,10 @@ in
     nodePackages.intelephense
     typescript-language-server # (ts_ls)
     vscode-langservers-extracted # (eslint)
+    ripgrep     #para nvim telescope
+    fd          #para nvim telescope
 #jeje
     steam
-    zen-browser.default
   ];
 
 #audio
@@ -177,7 +180,9 @@ xdg.portal = {
     nerd-fonts.jetbrains-mono
     nerd-fonts.ubuntu-mono
     font-awesome
+#para instalar la fuente q permite ver los iconos del rofi powermenu debo descargarla del repo https://github.com/adi1090x/rofi/blob/master/fonts/Icomoon-Feather.ttf y pegarla en ~/.local/share/fonts/
   ];
+
 
 # modo oscuro
 #  qt.enable = true;
