@@ -19,7 +19,7 @@
     "temperature",
     "memory",
     "backlight",
-    "pulseaudio",
+    "pamixer",
     "battery"
   ],
 

@@ -147,7 +147,8 @@ in
     vscode-langservers-extracted # (eslint)
     ripgrep     #para nvim telescope
     fd          #para nvim telescope
-#jeje
+#apps
+    zoom
     steam
   ];
 
