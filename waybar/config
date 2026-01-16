@@ -1,7 +1,7 @@
 {
   "layer": "top", // Waybar at top layer
   "position": "top", // Waybar position (top|bottom|left|right)
-  "height": 47,
+  "height": 48,
   "margin": "0 0 0 0",
   //"width": 1350, // Waybar width
   // Choose the order of the modules idle_inhibitor
@@ -19,7 +19,7 @@
     "temperature",
     "memory",
     "backlight",
-    "pamixer",
+    "pulseaudio",
     "battery"
   ],
 

@@ -93,24 +93,27 @@ in
   # You can use https://search.nixos.org/ to find more packages (and options).
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    vim
-    wget
+# entorno
+    git
+    github-cli
     neovim
     kitty
-    curl
-    terminus_font
     hyprlock
     hyprpaper
-    fastfetch
     waybar
     rofi
     zapzap
+    fastfetch
+    btop
+
+    vim
+    wget
+    curl
+    terminus_font
     easyeffects
     os-prober
     unzip
     efibootmgr
-    git
-    github-cli
     zen-browser.default
 #audio y brillo
     pavucontrol
@@ -148,8 +151,10 @@ in
     ripgrep     #para nvim telescope
     fd          #para nvim telescope
 #apps
-    zoom
+    zoom-us
     steam
+    google-chrome
+    bibata-cursors
   ];
 
 #audio
@@ -171,7 +176,20 @@ xdg.portal = {
   ];
   config.common.default = "*";
 };
+#steam
+hardware.graphics = {
+  enable = true;
+  enable32Bit = true; # Muy importante para Steam
+};
 
+programs.steam = {
+  enable = true;
+  remotePlay.openFirewall = true; # Opcional: Abre puertos para Remote Play
+  dedicatedServer.openFirewall = true; # Opcional: Abre puertos para servidores
+};
+
+services.xserver.videoDrivers = [ "nvidia" ];
+hardware.nvidia.open = false; # Depende de tu modelo de tarjeta
 
 
 
