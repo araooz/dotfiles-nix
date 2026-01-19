@@ -115,6 +115,7 @@ in
     unzip
     efibootmgr
     zen-browser.default
+    wev
 #audio y brillo
     pavucontrol
     playerctl
