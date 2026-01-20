@@ -12,23 +12,23 @@ in
 # Use the systemd-boot EFI boot loader.
   boot.loader = {
     efi = {
-      canTouchEfiVariables = true; # Cambiado a false para proteger a Arch después
-  #    efiSysMountPoint = "/boot";
+      canTouchEfiVariables = true; 
+      efiSysMountPoint = "/boot";
     };
-  #  grub = {
-  #    enable = true;
-  #    device = "nodev";
-  #    efiSupport = true;
-  #    useOSProber = true;
-  #    gfxmodeEfi = "1920x1080";
-  #    theme = pkgs.fetchFromGitHub {
-  #      owner = "AllJavi";
-  #      repo = "tartarus-grub";
-  #      rev = "b116360a2a0991062a4d728cb005dfd309fbb82a";
-  #      sha256 = "sha256-/Pzr0R3zzOXUi2pAl8Lvg6aHTiwXTIrxQ1vscbEK/kU=";
-  #    } + "/tartarus";
-  #  };
-    systemd-boot.enable = true; # Ahora está DENTRO del bloque correcto
+    grub = {
+      enable = true;
+      device = "nodev";
+      efiSupport = true;
+      useOSProber = true;
+      gfxmodeEfi = "1920x1080";
+      theme = pkgs.fetchFromGitHub {
+        owner = "AllJavi";
+        repo = "tartarus-grub";
+        rev = "b116360a2a0991062a4d728cb005dfd309fbb82a";
+        sha256 = "sha256-/Pzr0R3zzOXUi2pAl8Lvg6aHTiwXTIrxQ1vscbEK/kU=";
+      } + "/tartarus";
+    };
+    systemd-boot.enable = false; 
   };
 
 
@@ -37,20 +37,6 @@ in
   time.timeZone = "America/Lima";
   i18n.defaultLocale = "es_PE.UTF-8";
   
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  #console = {
-  #  font = "ter-v32b";
-  #  keyMap = "la-latin1"; #us
-  #   useXkbConfig = true; # use xkb.options in tty.
-  #};
- 
-
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
 
   services.xserver.xkb.layout = "latam"; #us
 
@@ -69,6 +55,10 @@ in
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_TYPE = "wayland";
     XDG_SESSION_DESKTOP = "Hyprland";
+    # Fix para temas oscuros y Dolphin
+    GTK_THEME = "Adwaita:dark";
+    QT_QPA_PLATFORMTHEME = "qt6ct";
+    QT_QPA_PLATFORM = "wayland";
   };
 
 
@@ -124,7 +114,9 @@ in
     pamixer
     brightnessctl
     glib
-#dolphin
+#Dolphin
+    ranger # FCK DOLPHIN RANGER LO ES TODO (recien lo voy a probar)
+
     kdePackages.dolphin
     kdePackages.qtwayland        # Soporte nativo para Wayland
     kdePackages.qtsvg            # Para que los iconos se vean bien
@@ -156,6 +148,9 @@ in
     steam
     google-chrome
     bibata-cursors
+    discord
+    spotify
+    spicetify-cli
   ];
 
 #audio
@@ -165,6 +160,8 @@ in
       pulse.enable = true;
       jack.enable = true; 
   };
+# ventilador
+  services.thermald.enable = true;
 #bluetooth
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
@@ -204,29 +201,11 @@ hardware.nvidia.open = false; # Depende de tu modelo de tarjeta
   ];
 
 
-# modo oscuro
-#  qt.enable = true;
-#  qt.platformTheme = "qt5ct";
-
-# Esto ayuda a que las apps GTK3/4 sepan que prefieres el modo oscuro
-#  environment.sessionVariables = {
-#    GTK_THEME = "Adwaita:dark";
-#    ADW_DISABLE_PORTAL = "1";
-#    # Forzar que Qt use la configuración que acabas de guardar
-#    QT_QPA_PLATFORMTHEME = "qt6ct"; 
-#    # Opcional: Ayuda a que Dolphin se vea mejor en Wayland
-#    QT_QPA_PLATFORM = "wayland";
-#  };
 
 #para que nixos pueda ejecutar binarios externos (mason)
   programs.nix-ld.enable = true;
 
-
-
   nix.settings.auto-optimise-store = true;
-
-
-
   system.stateVersion = "25.11";
 }
 

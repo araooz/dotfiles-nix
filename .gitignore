@@ -10,7 +10,9 @@
 !rofi/
 !waybar/
 !kitty/
+!ranger/
 
 !nixosconfig.sh
 !token_git.txt
 nix/nix
+
