@@ -9,6 +9,7 @@
 !nvim/
 !rofi/
 !waybar/
+!kitty/
 
 !nixosconfig.sh
 !token_git.txt
