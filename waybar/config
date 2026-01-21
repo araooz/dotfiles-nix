@@ -169,7 +169,7 @@
   "backlight": {
     // "device": "acpi_video1",
     "format": "{icon} {percent: >3}%",
-    "format-icons": ["", ""],
+    "format-icons": ["", "", "", "", "", "", "", "", "", "", "", "", "", ""],  //["", "󰖨", ""],
     "on-scroll-up": "brightnessctl -c backlight set 1%-",
     //"on-scroll-down": "light -A 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob",
     "on-scroll-down": "brightnessctl -c backlight set +1%"
