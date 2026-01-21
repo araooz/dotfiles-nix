@@ -1,6 +1,5 @@
 return {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.8",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
         local telescope = require("telescope")
@@ -11,6 +10,9 @@ return {
             defaults = {
                 file_ignore_patterns = { "node_modules", ".git/" },
                 hidden = true,
+                --                preview = {
+                --                  treesitter = false, -- Esto evita que llame a 'ft_to_lang'
+                --            }
             }
         })
 

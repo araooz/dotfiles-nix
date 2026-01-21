@@ -5,7 +5,6 @@ return {
     opts = {
         highlight = { enable = true },
         indent = { enable = true },
-        -- Corregido 'autotage' a 'autotag'
         autotag = { enable = true },
         ensure_installed = {
             "lua",
@@ -17,6 +16,8 @@ return {
             "vimdoc",
             "markdown",
             "markdown_inline",
+            "regex",
+            "bash",
         },
         auto_install = false,
     },

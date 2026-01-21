@@ -9,13 +9,3 @@ vim.keymap.set("n", "<leader>w", ":bdelete<CR>", { desc = "Cerrar buffer actual"
 -- CTRL + a selecciona todo   CTRL + c copia
 vim.keymap.set({ "n", "v", "i" }, "<C-a>", "<Esc>ggVG", { desc = "Seleccionar todo el texto" })
 vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copiar al portapapeles del sistema" })
-
-vim.keymap.set("v", "<S-dc>", '"+y', { desc = "Copiar al portapapeles del sistema" })
-
-
-
-vim.keymap.set("n", "<S-Up>", "Vk", {})
-vim.keymap.set("n", "<S-Down>", "Vj", {})
-vim.keymap.set("n", "<S-Left>", "vh", {})
-vim.keymap.set("n", "<S-Right>", "vl", {})
-
