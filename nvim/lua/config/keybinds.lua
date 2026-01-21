@@ -9,3 +9,6 @@ vim.keymap.set("n", "<leader>w", ":bdelete<CR>", { desc = "Cerrar buffer actual"
 -- CTRL + a selecciona todo   CTRL + c copia
 vim.keymap.set({ "n", "v", "i" }, "<C-a>", "<Esc>ggVG", { desc = "Seleccionar todo el texto" })
 vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copiar al portapapeles del sistema" })
+
+-- Limpiar notificaciones de Noice y Notify
+vim.keymap.set("n", "<leader>nd", "<cmd>Noice dismiss<cr>", { desc = "Descartar notificaciones" })
