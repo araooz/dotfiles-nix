@@ -192,8 +192,7 @@ hardware.nvidia.open = false; # Depende de tu modelo de tarjeta
 #fuentes
   fonts.fontconfig.enable = true;
   fonts.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.ubuntu-mono
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "Ubuntu" "UbuntuMono" ]; })
     font-awesome
 #para instalar la fuente q permite ver los iconos del rofi powermenu debo descargarla del repo https://github.com/adi1090x/rofi/blob/master/fonts/Icomoon-Feather.ttf y pegarla en ~/.local/share/fonts/
   ];
