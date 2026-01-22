@@ -1,10 +1,13 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 { config, lib, pkgs, inputs, ... }:
-{
+let
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+    #config options
+  };
+in {
   imports =
     [ ./hardware-configuration.nix ];
-
 #flakes
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
 # Use the systemd-boot EFI boot loader.
@@ -75,9 +78,18 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   programs.firefox.enable = true;
   programs.hyprland.enable = true;
   programs.git.enable = true;
+  programs.spicetify = {
+    enable = true;
+    theme = spicePkgs.themes.comfy; # O el tema que prefieras
+    colorScheme = "cherry-blossom";
 
-
-
+    enabledExtensions = with spicePkgs.extensions; [
+      fullAppDisplay
+      shuffle
+      hidePodcasts
+      adblock
+    ];
+  };
   # You can use https://search.nixos.org/ to find more packages (and options).
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
@@ -147,8 +159,6 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     google-chrome
     bibata-cursors
     discord
-    spotify
-    spicetify-cli
   ];
 
 #audio
