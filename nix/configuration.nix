@@ -1,10 +1,6 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 { config, lib, pkgs, ... }:
-#zen
-let
-  zen-browser = import (builtins.fetchTarball "https://github.com/youwen5/zen-browser-flake/archive/master.tar.gz") { inherit pkgs; };
-in
 {
   imports =
     [ ./hardware-configuration.nix ];
@@ -106,7 +102,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     os-prober
     unzip
     efibootmgr
-    zen-browser.default
+    inputs.zen-browser.packages."${pkgs.system}".default
     wev
 #audio y brillo
     pavucontrol
