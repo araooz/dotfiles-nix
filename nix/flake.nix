@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-    zen-browser.utrl = "github:youwen5/zen-browser-flake";
+    zen-browser.url = "github:youwen5/zen-browser-flake";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
