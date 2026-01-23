@@ -74,7 +74,11 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
   programs.firefox.enable = true;
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+  };
   programs.git.enable = true;
   programs.spicetify = {
     enable = true;
@@ -173,14 +177,14 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 #lo de dolphin
-xdg.portal = {
-  enable = true;
-  extraPortals = [ 
-    pkgs.xdg-desktop-portal-hyprland
-    pkgs.xdg-desktop-portal-gtk 
-  ];
-  config.common.default = "*";
-};
+#xdg.portal = {
+#  enable = true;
+#  extraPortals = [ 
+#    pkgs.xdg-desktop-portal-hyprland
+#    pkgs.xdg-desktop-portal-gtk 
+#  ];
+#  config.common.default = "*";
+#};
 #steam
 hardware.graphics = {
   enable = true;

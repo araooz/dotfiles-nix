@@ -6,6 +6,8 @@
     zen-browser.url = "github:youwen5/zen-browser-flake";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix/24.11";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs"; # Asegura compatibilidad de paquetes
+
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
