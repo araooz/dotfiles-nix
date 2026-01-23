@@ -78,9 +78,8 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   programs.git.enable = true;
   programs.spicetify = {
     enable = true;
-    theme = spicePkgs.themes.catppuccin; # O el tema que prefieras
-    colorScheme = "nord-dark";
-
+    colorScheme = "TokyoNight";
+    theme = spicePkgs.themes.text;
     enabledExtensions = with spicePkgs.extensions; [
       fullAppDisplay  #Crea una vista de "Reproducción ahora" a pantalla completa
       shuffle         #Reemplaza el algoritmo de reproducción aleatoria de Spotify por uno realmente aleatorio
@@ -158,6 +157,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     google-chrome
     bibata-cursors
     discord
+    spicetify-cli
   ];
 
 #audio
