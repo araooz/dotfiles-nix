@@ -78,7 +78,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   programs.git.enable = true;
   programs.spicetify = {
     enable = true;
-    colorScheme = "TokyoNight";
+    colorScheme = "Rigel";
     theme = spicePkgs.themes.text;
     enabledExtensions = with spicePkgs.extensions; [
       fullAppDisplay  #Crea una vista de "Reproducción ahora" a pantalla completa
