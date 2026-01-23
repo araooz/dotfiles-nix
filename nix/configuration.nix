@@ -3,8 +3,6 @@
 { config, lib, pkgs, inputs, ... }:
 let
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-    #config options
-  };
 in {
   imports =
     [ ./hardware-configuration.nix ];
@@ -80,14 +78,15 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   programs.git.enable = true;
   programs.spicetify = {
     enable = true;
-    theme = spicePkgs.themes.comfy; # O el tema que prefieras
-    colorScheme = "cherry-blossom";
+    theme = spicePkgs.themes.catppuccin; # O el tema que prefieras
+    colorScheme = "nord-dark";
 
     enabledExtensions = with spicePkgs.extensions; [
-      fullAppDisplay
-      shuffle
-      hidePodcasts
+      fullAppDisplay  #Crea una vista de "Reproducción ahora" a pantalla completa
+      shuffle         #Reemplaza el algoritmo de reproducción aleatoria de Spotify por uno realmente aleatorio
+      hidePodcasts    
       adblock
+      keyboardShortcut
     ];
   };
   # You can use https://search.nixos.org/ to find more packages (and options).
