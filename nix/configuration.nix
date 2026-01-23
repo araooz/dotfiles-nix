@@ -43,11 +43,11 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   services.getty.autologinUser = "falo";
 
 #y ejecutar hyprland de una
-  environment.loginShellInit = ''
-    if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-      exec Hyprland
-    fi
-  '';
+  #environment.loginShellInit = ''
+  #  if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+  #    exec Hyprland
+  #  fi
+  #'';
 # presunto fix para lo de hyprland que se cierran las apps apenas las abro
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1"; # Fuerza a apps de Electron (como ZapZap) a usar Wayland
@@ -198,8 +198,7 @@ programs.steam = {
 };
 
 services.xserver.videoDrivers = [ "nvidia" ];
-hardware.nvidia.open = false; # Depende de tu modelo de tarjeta
-
+#hardware.nvidia.open = false; # Depende de tu modelo de tarjeta        ya lo uso despues
 
 
 #fuentes
@@ -209,6 +208,40 @@ hardware.nvidia.open = false; # Depende de tu modelo de tarjeta
     font-awesome
 #para instalar la fuente q permite ver los iconos del rofi powermenu debo descargarla del repo https://github.com/adi1090x/rofi/blob/master/fonts/Icomoon-Feather.ttf y pegarla en ~/.local/share/fonts/
   ];
+
+
+
+
+
+
+
+
+# 1. Forzar que el kernel use los módulos de NVIDIA correctamente                           SOLUCION DESESPERADA YA ME QUIERO IR A MI CASA PERO NICAGANDO HASTA QUE ESTE LISTO EL HYPRLAND
+  boot.kernelParams = [ "nvidia_drm.modeset=1" "nvidia_drm.fbdev=1" ];
+
+  # 2. Configuración específica de NVIDIA
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    open = false; # Cambia a true si quieres probar los drivers abiertos, pero false es más estable para la 3050
+    nvidiaSettings = true;
+    
+    # IMPORTANTE: Al ser una laptop, necesitas activar el modo híbrido (Prime)
+    prime = {
+      offload.enable = true;
+      offload.enableOffloadCmd = true;
+      # Necesitas confirmar estos IDs con 'lspci', pero suelen ser estos:
+      nvidiaBusId = "PCI:1:0:0";
+      amdgpuBusId = "PCI:6:0:0"; # Ajusta según tu hardware-configuration.nix
+    };
+  };
+
+  # 3. Variables de entorno para Hyprland
+  environment.sessionVariables = {
+  #  LIBVA_DRIVER_NAME = "nvidia";
+  #  __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+  #  GBM_BACKEND = "nvidia-drm";
+  };
 
 
 
