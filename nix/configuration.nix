@@ -43,11 +43,11 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   services.getty.autologinUser = "falo";
 
 #y ejecutar hyprland de una
-  #environment.loginShellInit = ''
-  #  if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-  #    exec Hyprland
-  #  fi
-  #'';
+  environment.loginShellInit = ''
+    if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+      exec start-hyprland
+    fi
+  '';
 # presunto fix para lo de hyprland que se cierran las apps apenas las abro
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1"; # Fuerza a apps de Electron (como ZapZap) a usar Wayland
