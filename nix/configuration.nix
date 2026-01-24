@@ -76,8 +76,8 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   programs.firefox.enable = true;
   programs.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+    package = pkgs.hyprland;
+    portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
   programs.git.enable = true;
   programs.spicetify = {
@@ -204,8 +204,8 @@ services.xserver.videoDrivers = [ "nvidia" ];
 #fuentes
   fonts.fontconfig.enable = true;
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "Ubuntu" "UbuntuMono" ]; })
-    font-awesome
+  #  (nerdfonts.override { fonts = [ "JetBrainsMono" "Ubuntu" "UbuntuMono" ]; })
+  #  font-awesome
 #para instalar la fuente q permite ver los iconos del rofi powermenu debo descargarla del repo https://github.com/adi1090x/rofi/blob/master/fonts/Icomoon-Feather.ttf y pegarla en ~/.local/share/fonts/
   ];
 

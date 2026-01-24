@@ -2,12 +2,14 @@
   description = "Falo's NixOS Flake Configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     zen-browser.url = "github:youwen5/zen-browser-flake";
+
     spicetify-nix.url = "github:Gerg-L/spicetify-nix/24.11";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs"; # Asegura compatibilidad de paquetes
 
-    hyprland.url = "github:hyprwm/Hyprland";
+#    hyprland.url = "github:hyprwm/Hyprland";
+#    hyprland.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
