@@ -176,15 +176,6 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 #bluetooth
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
-#lo de dolphin
-#xdg.portal = {
-#  enable = true;
-#  extraPortals = [ 
-#    pkgs.xdg-desktop-portal-hyprland
-#    pkgs.xdg-desktop-portal-gtk 
-#  ];
-#  config.common.default = "*";
-#};
 #steam
 hardware.graphics = {
   enable = true;
