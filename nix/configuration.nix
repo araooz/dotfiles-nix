@@ -162,6 +162,11 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     bibata-cursors
     discord
     spicetify-cli
+
+
+
+
+#testeo
   ];
 
 #audio
@@ -188,7 +193,7 @@ programs.steam = {
   dedicatedServer.openFirewall = true; # Opcional: Abre puertos para servidores
 };
 
-services.xserver.videoDrivers = [ "nvidia" ];
+services.xserver.videoDrivers = ["amdgpu" "nvidia" ];
 #hardware.nvidia.open = false; # Depende de tu modelo de tarjeta        ya lo uso despues
 
 
@@ -216,7 +221,7 @@ services.xserver.videoDrivers = [ "nvidia" ];
   # 2. Configuración específica de NVIDIA
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = false;
+    powerManagement.enable = true;
     open = false; # Cambia a true si quieres probar los drivers abiertos, pero false es más estable para la 3050
     nvidiaSettings = true;
     
@@ -225,8 +230,8 @@ services.xserver.videoDrivers = [ "nvidia" ];
       offload.enable = true;
       offload.enableOffloadCmd = true;
       # Necesitas confirmar estos IDs con 'lspci', pero suelen ser estos:
-      nvidiaBusId = "PCI:1:0:0";
       amdgpuBusId = "PCI:6:0:0"; # Ajusta según tu hardware-configuration.nix
+      nvidiaBusId = "PCI:1:0:0";
     };
   };
 
