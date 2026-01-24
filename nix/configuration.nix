@@ -204,8 +204,11 @@ services.xserver.videoDrivers = [ "nvidia" ];
 #fuentes
   fonts.fontconfig.enable = true;
   fonts.packages = with pkgs; [
-  #  (nerdfonts.override { fonts = [ "JetBrainsMono" "Ubuntu" "UbuntuMono" ]; })
-  #  font-awesome
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.ubuntu
+    nerd-fonts.ubuntu-mono
+    font-awesome
+    font-awesome
 #para instalar la fuente q permite ver los iconos del rofi powermenu debo descargarla del repo https://github.com/adi1090x/rofi/blob/master/fonts/Icomoon-Feather.ttf y pegarla en ~/.local/share/fonts/
   ];
 
@@ -234,13 +237,6 @@ services.xserver.videoDrivers = [ "nvidia" ];
       nvidiaBusId = "PCI:1:0:0";
       amdgpuBusId = "PCI:6:0:0"; # Ajusta según tu hardware-configuration.nix
     };
-  };
-
-  # 3. Variables de entorno para Hyprland
-  environment.sessionVariables = {
-  #  LIBVA_DRIVER_NAME = "nvidia";
-  #  __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-  #  GBM_BACKEND = "nvidia-drm";
   };
 
 
