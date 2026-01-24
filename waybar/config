@@ -195,7 +195,7 @@
     "format-ethernet": "  Wired",
     "format-disconnected": "⚠  Disconnected",
     // "on-click": "alacritty -e nmtui"
-    "on-click": "nm-connection-editor"
+    "on-click": "/home/falo/.config/rofi/rofi-wifi-menu.sh"
   },
   "pulseaudio": {
     "scroll-step": 1,
