@@ -193,7 +193,7 @@ programs.steam = {
   dedicatedServer.openFirewall = true; # Opcional: Abre puertos para servidores
 };
 
-services.xserver.videoDrivers = ["amdgpu" "nvidia" ];
+services.xserver.videoDrivers = ["amdgpu" ];
 #hardware.nvidia.open = false; # Depende de tu modelo de tarjeta        ya lo uso despues
 
 
@@ -216,24 +216,26 @@ services.xserver.videoDrivers = ["amdgpu" "nvidia" ];
 
 
 # 1. Forzar que el kernel use los módulos de NVIDIA correctamente                           SOLUCION DESESPERADA YA ME QUIERO IR A MI CASA PERO NICAGANDO HASTA QUE ESTE LISTO EL HYPRLAND
-  boot.kernelParams = [ "nvidia_drm.modeset=1" "nvidia_drm.fbdev=1" ];
+#  boot.kernelParams = [ "nvidia_drm.modeset=1" "nvidia_drm.fbdev=1" ];           tambien comentado para desactivarla supuestamente
 
-  # 2. Configuración específica de NVIDIA
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = true;
-    open = false; # Cambia a true si quieres probar los drivers abiertos, pero false es más estable para la 3050
-    nvidiaSettings = true;
-    
-    # IMPORTANTE: Al ser una laptop, necesitas activar el modo híbrido (Prime)
-    prime = {
-      offload.enable = true;
-      offload.enableOffloadCmd = true;
-      # Necesitas confirmar estos IDs con 'lspci', pero suelen ser estos:
-      amdgpuBusId = "PCI:6:0:0"; # Ajusta según tu hardware-configuration.nix
-      nvidiaBusId = "PCI:1:0:0";
-    };
-  };
+
+
+  # 2. Configuración específica de NVIDIA         todo comentado para desactivarla supuestamente
+#  hardware.nvidia = {
+#    modesetting.enable = true;
+#    powerManagement.enable = true;
+#    open = false; # Cambia a true si quieres probar los drivers abiertos, pero false es más estable para la 3050
+#    nvidiaSettings = true;
+#    
+#    # IMPORTANTE: Al ser una laptop, necesitas activar el modo híbrido (Prime)
+#    prime = {
+#      offload.enable = true;
+#      offload.enableOffloadCmd = true;
+#      # Necesitas confirmar estos IDs con 'lspci', pero suelen ser estos:
+#      amdgpuBusId = "PCI:6:0:0"; # Ajusta según tu hardware-configuration.nix
+#      nvidiaBusId = "PCI:1:0:0";
+#    };
+#  };
 
 
 
