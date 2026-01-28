@@ -5,7 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     zen-browser.url = "github:youwen5/zen-browser-flake";
 
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix/24.11";
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs"; # Asegura compatibilidad de paquetes
 
 #    hyprland.url = "github:hyprwm/Hyprland";

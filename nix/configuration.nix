@@ -82,11 +82,12 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   programs.git.enable = true;
   programs.spicetify = {
     enable = true;
-    colorScheme = "Rigel";
     theme = spicePkgs.themes.text;
+    colorScheme = "Rigel";
+
     enabledExtensions = with spicePkgs.extensions; [
       fullAppDisplay  #Crea una vista de "Reproducción ahora" a pantalla completa
-      shuffle         #Reemplaza el algoritmo de reproducción aleatoria de Spotify por uno realmente aleatorio
+      shuffle         #Reemplaza el algoritmo aleatorio de Spotify por uno realmente aleatorio
       hidePodcasts    
       adblock
       keyboardShortcut
@@ -161,7 +162,6 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     google-chrome
     bibata-cursors
     discord
-    spicetify-cli
 
 
 
