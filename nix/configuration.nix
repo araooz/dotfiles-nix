@@ -105,7 +105,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     hyprpaper
     waybar
     rofi
-    zapzap
+    whatsapp-electron    #ya no mas zapzap
     fastfetch
     btop
 
@@ -162,11 +162,14 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     google-chrome
     bibata-cursors
     discord
+    vscode
 
 
 
 
 #testeo
+
+
   ];
 
 #audio
@@ -175,6 +178,12 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
       alsa.enable = true;
       pulse.enable = true;
       jack.enable = true; 
+  };
+
+  services.mpd = {
+    enable = true;
+    musicDirectory = "/home/falo/musica"; 
+    user = "falo";
   };
 # ventilador
   services.thermald.enable = true;
