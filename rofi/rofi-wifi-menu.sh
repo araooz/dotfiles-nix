@@ -24,10 +24,10 @@ elif [ "$chosen_network" = "󰖩  Enable Wi-Fi" ]; then
 elif [ "$chosen_network" = "󰖪  Disable Wi-Fi" ]; then
     nmcli radio wifi off
 elif [ "$chosen_network" = "🔄  Manual Rescan" ]; then
-    # Aquí sí forzamos el escaneo y reabrimos el script recursivamente
-    notify-send "Wi-Fi" "Escaneando redes... Espere 5s"
     nmcli device wifi list --rescan yes > /dev/null
+    exec sleep 2 && /home/falo/.config/rofi/rofi-wifi-menu.sh
     exec "$0" # Se vuelve a ejecutar a sí mismo tras el escaneo
+    
 else
     # Lógica de conexión original...
     success_message="You are now connected to the Wi-Fi network \"$chosen_id\"."
