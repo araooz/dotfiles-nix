@@ -105,7 +105,10 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     hyprpaper
     waybar
     rofi
-    whatsapp-electron    #ya no mas zapzap
+
+    whatsapp-for-mac
+    zapzap
+    whatsapp-electron 
     fastfetch
     btop
 
