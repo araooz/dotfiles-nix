@@ -106,9 +106,9 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     waybar
     rofi
 
-    whatsapp-for-mac
     zapzap
     whatsapp-electron 
+
     fastfetch
     btop
 
