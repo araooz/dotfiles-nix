@@ -6,18 +6,17 @@
   //"width": 1350, // Waybar width
   // Choose the order of the modules idle_inhibitor
   "modules-left": [
-    "hyprland/workspaces",
+    "hyprland/workspaces"
     // "tray",
-    "mpris",
   ],
-  "modules-center": ["clock"],
+  "modules-center": ["clock","mpris"],
   "modules-right": [
     "bluetooth",
     "network",
     "temperature",
     "memory",
-    "backlight",
     "pulseaudio",
+    "backlight",
     "battery"
   ],
 
@@ -119,45 +118,25 @@
     "tooltip-format": "{player}\n{artist}\n{title}", 
   }, 
   "memory": {
-    "format": "{: >3}%",
+    "format": " 󰍛{: >3}%",
     "on-click": "kitty -e btop"
   },
   "temperature": {
-    // "thermal-zone": 2,
     "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
     "critical-threshold": 80,
-    // "format-critical": "{temperatureC}°C ",
-    "format": " {temperatureC}°C"
-  },
-  "backlight": {
-    // "device": "acpi_video1",
-    "format": "{icon}{percent: >3}%",
-    "format-icons": ["", "", "", "", "", "", "", "", "", "", "", "", "", ""], 
-    "on-scroll-up": "brightnessctl -c backlight set 1%-",
-    "on-scroll-down": "brightnessctl -c backlight set +1%"
-  },
-  "battery": {
-    "states": {
-      "warning": 30,
-      "critical": 15
-    },
-    "format": "{icon}{capacity: >3}%",
-    "format-icons": ["󰂎","󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"]
-    //"format-icons": ["", "", "", "", ""]
+    "format": "  {temperatureC}󰔄"
   },
   "network": {
     // "interface": "wlp2s0", // (Optional) To force the use of this interface
     "format": "⚠  Disabled",
-    "format-wifi": "", //{essid}",
-    // "format-ethernet": " {ifname}: {ipaddr}/{cidr}",
+    "format-wifi": " ", //{essid}",
     "format-ethernet": "  Wired",
     "format-disconnected": "⚠  Disconnected",
-    // "on-click": "alacritty -e nmtui"
     "on-click": "/home/falo/.config/rofi/rofi-wifi-menu.sh"
   },
   "pulseaudio": {
     "scroll-step": 1,
-    "format": "{icon} {volume: >3}%",
+    "format": " {icon}{volume: >3}% ",
     "format-bluetooth": "{icon} {volume: >3}%",
     "format-muted": " muted",
     "format-icons": {
@@ -167,7 +146,7 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": ["", ""]
+      "default": ["","󰕾",""]
     },
     "on-click": "pavucontrol",
     "on-scroll-down": "pamixer -ui 2 && pamixer --get-volume > $SWAYSOCK.wob",
@@ -185,6 +164,23 @@
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_battery_percentage}%\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
     "on-click": "blueman-manager"   
+    }
+    "backlight": {
+    // "device": "acpi_video1",
+    "format": "{icon} ", //{percent: >3}%",
+    "format-icons": ["", "", "", "", "", "", "", "", "", "", "", "", "", ""], 
+    "on-scroll-up": "brightnessctl -c backlight set 1%-",
+    "on-scroll-down": "brightnessctl -c backlight set +1%"
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
     },
+    "format": "{icon}{capacity: >3}%",
+    "format-icons": ["󰂎","󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"]
+    //"format-icons": ["", "", "", "", ""]
+  },
+,
  }
 }
