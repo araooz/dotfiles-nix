@@ -136,8 +136,8 @@
   },
   "pulseaudio": {
     "scroll-step": 1,
-    "format": " {icon}{volume: >3}% ",
-    "format-bluetooth": "{icon} {volume: >3}%",
+    "format": " {icon}{volume: >3}%",
+    "format-bluetoothi": " {icon} {volume: >3}%",
     "format-muted": " muted",
     "format-icons": {
       "headphones": "",
@@ -164,10 +164,10 @@
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_battery_percentage}%\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
     "on-click": "blueman-manager"   
-    }
+    },
     "backlight": {
     // "device": "acpi_video1",
-    "format": "{icon} ", //{percent: >3}%",
+    "format": " {icon}", //{percent: >3}%",
     "format-icons": ["", "", "", "", "", "", "", "", "", "", "", "", "", ""], 
     "on-scroll-up": "brightnessctl -c backlight set 1%-",
     "on-scroll-down": "brightnessctl -c backlight set +1%"
@@ -177,10 +177,9 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "{icon}{capacity: >3}%",
+    "format": " {icon}{capacity: >3}%",
     "format-icons": ["󰂎","󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"]
     //"format-icons": ["", "", "", "", ""]
   },
-,
  }
 }

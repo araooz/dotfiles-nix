@@ -8,11 +8,13 @@ elif [[ "$connected" =~ "disabled" ]]; then
     toggle="󰖩  Enable Wi-Fi"
 fi
 
+#wifi actual
+current="󰚀 "$(nmcli -t -f NAME con show --active | grep -v '^lo$')
 # Añadimos opción de Rescan manual
 rescan="󰑓  Manual Rescan"
 
 # Use rofi to select wifi network
-chosen_network=$(echo -e "$toggle\n$rescan\n$wifi_list" | uniq -u | rofi -dmenu -i -selected-row 1 -p "Wi-Fi SSID: " )
+chosen_network=$(echo -e "$current\n$toggle\n$rescan\n$wifi_list" | uniq -u | rofi -dmenu -i -selected-row 1 -p "Wi-Fi SSID: " )
 
 # Get name of connection
 read -r chosen_id <<< "${chosen_network:3}"
@@ -25,7 +27,7 @@ elif [ "$chosen_network" = "󰖪  Disable Wi-Fi" ]; then
     nmcli radio wifi off
 elif [ "$chosen_network" = "🔄  Manual Rescan" ]; then
     nmcli device wifi list --rescan yes > /dev/null
-    exec sleep 2 && /home/falo/.config/rofi/rofi-wifi-menu.sh
+    exec  /home/falo/.config/rofi/rofi-wifi-menu.sh
     exec "$0" # Se vuelve a ejecutar a sí mismo tras el escaneo
     
 else
