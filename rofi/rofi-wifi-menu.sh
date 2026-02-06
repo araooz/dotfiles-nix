@@ -9,7 +9,7 @@ elif [[ "$connected" =~ "disabled" ]]; then
 fi
 
 #wifi actual
-current="󰚀 "$(nmcli -t -f NAME con show --active | grep -v '^lo$')
+current=$(nmcli -t -f NAME con show --active | grep -v '^lo$')
 # Añadimos opción de Rescan manual
 rescan="󰑓  Manual Rescan"
 
