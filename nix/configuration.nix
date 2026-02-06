@@ -73,13 +73,14 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     ];
   };
 
+  programs.git.enable = true;
   programs.firefox.enable = true;
+  programs.fish.enable = true;
   programs.hyprland = {
     enable = true;
     package = pkgs.hyprland;
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
-  programs.git.enable = true;
   programs.spicetify = {
     enable = true;
     theme = spicePkgs.themes.text;
