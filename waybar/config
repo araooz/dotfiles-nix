@@ -107,7 +107,7 @@
   //     "interval": 1
   // },
   "mpris": {
-  	"format": " {player_icon} {title} - {artist}",
+  	"format": " {player_icon} {title}",// - {artist}",
   	"player-icons": {
   		"default": "▶",
   		"firefox": "",
