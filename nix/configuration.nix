@@ -50,14 +50,15 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   '';
 # presunto fix para lo de hyprland que se cierran las apps apenas las abro
   environment.sessionVariables = {
+    TERMINAL = "kitty";
+
     NIXOS_OZONE_WL = "1"; # Fuerza a apps de Electron (como ZapZap) a usar Wayland
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_TYPE = "wayland";
     XDG_SESSION_DESKTOP = "Hyprland";
-    # Fix para temas oscuros y Dolphin
+
     GTK_THEME = "Adwaita:dark";
-    QT_QPA_PLATFORMTHEME = "qt6ct";
-    QT_QPA_PLATFORM = "wayland";
+    XCURSOR_THEME = "Bibata-Modern-Classic";
   };
 
 
@@ -76,6 +77,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   programs.git.enable = true;
   programs.firefox.enable = true;
   programs.fish.enable = true;
+  programs.dconf.enable = true;
   programs.hyprland = {
     enable = true;
     package = pkgs.hyprland;
@@ -134,18 +136,17 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     pamixer
     brightnessctl
     glib
-#Dolphin
+# explorador de archivos (thunar)
     ranger # FCK DOLPHIN RANGER LO ES TODO (recien lo voy a probar)
+    xfce.thunar
+    xfce.thunar-volman
+    xfce.thunar-archive-plugin
+    xfce.tumbler # Generador de miniaturas (thumbnails)
+    ffmpegthumbnailer # Miniaturas para video
+    gvfs
 
-    kdePackages.dolphin
-    kdePackages.qtwayland        # Soporte nativo para Wayland
-    kdePackages.qtsvg            # Para que los iconos se vean bien
-    kdePackages.kio-extras       # Miniaturas y funciones extra
-    adwaita-qt                   # Tema para que apps Qt parezcan de GNOME/Modernas (opcional)
-    libsForQt5.qtstyleplugin-kvantum # Si quieres temas muy personalizados
-    libsForQt5.qt5ct
-    kdePackages.qt6ct
-    adwaita-qt6
+    papirus-icon-theme
+    gnome-themes-extra
 #imagenes y capturas
     grim
     slurp
@@ -186,16 +187,16 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
       pulse.enable = true;
       jack.enable = true; 
   };
-
-# ventilador
-  services.thermald.enable = true;
 #bluetooth
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
+# Servicios para thunar
+  services.gvfs.enable = true; # Montar discos y soporte de papelera
+  services.tumbler.enable = true; # Soporte para miniaturas
 #steam
 hardware.graphics = {
   enable = true;
-  enable32Bit = true; # Muy importante para Steam
+  enable32Bit = true;
 };
 
 programs.steam = {
@@ -205,7 +206,6 @@ programs.steam = {
 };
 
 services.xserver.videoDrivers = ["amdgpu" ];
-#hardware.nvidia.open = false; # Depende de tu modelo de tarjeta        ya lo uso despues
 
 
 #fuentes
