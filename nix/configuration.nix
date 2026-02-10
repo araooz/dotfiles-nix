@@ -83,8 +83,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   };
   programs.spicetify = {
     enable = true;
-    theme = spicePkgs.themes.text;
-    colorScheme = "Rigel";
+    theme = spicePkgs.themes.hazy;
 
     enabledExtensions = with spicePkgs.extensions; [
       fullAppDisplay  #Crea una vista de "Reproducción ahora" a pantalla completa
@@ -92,6 +91,10 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
       hidePodcasts    
       adblock
       keyboardShortcut
+    ];
+
+    enabledCustomApps = with spicePkgs.apps; [
+      marketplace
     ];
   };
   # You can use https://search.nixos.org/ to find more packages (and options).
@@ -184,11 +187,6 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
       jack.enable = true; 
   };
 
-  services.mpd = {
-    enable = true;
-    musicDirectory = "/home/falo/musica"; 
-    user = "falo";
-  };
 # ventilador
   services.thermald.enable = true;
 #bluetooth
