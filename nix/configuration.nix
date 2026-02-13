@@ -57,8 +57,10 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     XDG_SESSION_TYPE = "wayland";
     XDG_SESSION_DESKTOP = "Hyprland";
 
-    GTK_THEME = "Adwaita:dark";
-    XCURSOR_THEME = "Bibata-Modern-Classic";
+    GTK_THEME = "Breeze-Dark"; 
+    XCURSOR_THEME = "Breeze_Snow";
+    XCURSOR_SIZE = "24"; 
+    HYPRCURSOR_SIZE = "24";
   };
 
 
@@ -83,6 +85,13 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     package = pkgs.hyprland;
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
+#--
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = [ "gtk" ];
+  };
+#--
   programs.spicetify = {
     enable = true;
     theme = spicePkgs.themes.hazy;
@@ -103,39 +112,17 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
 # entorno
-    git
-    github-cli
-    neovim
-    kitty
-    hyprlock
-    hyprpaper
-    waybar
-    rofi
-
+    git github-cli neovim kitty hyprlock hyprpaper waybar rofi
     zapzap
-    whatsapp-electron 
-
-    fastfetch
-    btop
-
-    vim
-    wget
-    curl
+    fastfetch btop unzip
+    vim wget curl wev
     terminus_font
     easyeffects
-    os-prober
-    unzip
-    efibootmgr
+    os-prober efibootmgr
     inputs.zen-browser.packages."${pkgs.system}".default
-    wev
 #audio y brillo
-    pavucontrol
-    playerctl
-    blueman
-    bluez
-    pamixer
-    brightnessctl
-    glib
+    pavucontrol playerctl blueman bluez pamixer
+    brightnessctl glib
 # explorador de archivos (thunar)
     ranger # FCK DOLPHIN RANGER LO ES TODO (recien lo voy a probar)
     xfce.thunar
@@ -145,19 +132,13 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     ffmpegthumbnailer # Miniaturas para video
     gvfs
 
-    papirus-icon-theme
-    gnome-themes-extra
+    kdePackages.breeze
+    kdePackages.breeze-icons
 #imagenes y capturas
-    grim
-    slurp
-    imv
-    wl-clipboard
-    gimp
+    grim slurp imv wl-clipboard gimp
 # lenguajes
-    gcc
-    gnumake
-    python3
-    pyright
+    gcc gnumake
+    python3 pyright
     nodejs
     nodePackages.intelephense
     typescript-language-server # (ts_ls)
@@ -166,14 +147,10 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     fd          #para nvim telescope
 #apps
     zoom-us
-    steam
     google-chrome
     bibata-cursors
     discord
     vscode
-
-
-
 
 #testeo
 
@@ -215,7 +192,6 @@ services.xserver.videoDrivers = ["amdgpu" ];
     nerd-fonts.ubuntu
     nerd-fonts.ubuntu-mono
     font-awesome
-    font-awesome
 #para instalar la fuente q permite ver los iconos del rofi powermenu debo descargarla del repo https://github.com/adi1090x/rofi/blob/master/fonts/Icomoon-Feather.ttf y pegarla en ~/.local/share/fonts/
   ];
 
@@ -223,30 +199,6 @@ services.xserver.videoDrivers = ["amdgpu" ];
 
 
 
-
-
-
-# 1. Forzar que el kernel use los módulos de NVIDIA correctamente                           SOLUCION DESESPERADA YA ME QUIERO IR A MI CASA PERO NICAGANDO HASTA QUE ESTE LISTO EL HYPRLAND
-#  boot.kernelParams = [ "nvidia_drm.modeset=1" "nvidia_drm.fbdev=1" ];           tambien comentado para desactivarla supuestamente
-
-
-
-  # 2. Configuración específica de NVIDIA         todo comentado para desactivarla supuestamente
-#  hardware.nvidia = {
-#    modesetting.enable = true;
-#    powerManagement.enable = true;
-#    open = false; # Cambia a true si quieres probar los drivers abiertos, pero false es más estable para la 3050
-#    nvidiaSettings = true;
-#    
-#    # IMPORTANTE: Al ser una laptop, necesitas activar el modo híbrido (Prime)
-#    prime = {
-#      offload.enable = true;
-#      offload.enableOffloadCmd = true;
-#      # Necesitas confirmar estos IDs con 'lspci', pero suelen ser estos:
-#      amdgpuBusId = "PCI:6:0:0"; # Ajusta según tu hardware-configuration.nix
-#      nvidiaBusId = "PCI:1:0:0";
-#    };
-#  };
 
 
 
