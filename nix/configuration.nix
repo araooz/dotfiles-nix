@@ -87,13 +87,15 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     brightnessctl
     os-prober efibootmgr
 #thunar
-    xfce.thunar
-    xfce.thunar-volman
-    xfce.thunar-archive-plugin
-    xfce.tumbler # Generador de miniaturas (thumbnails)
+    thunar
+    thunar-volman
+    thunar-archive-plugin
+    tumbler # Generador de miniaturas (thumbnails)
     ffmpegthumbnailer # Miniaturas para video
 
     glib
+#testeo
+    ollama
   ];
 
 #audio
@@ -109,6 +111,14 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 # Servicios para thunar
   services.gvfs.enable = true; # Montar discos y soporte de papelera
   services.tumbler.enable = true; # Soporte para miniaturas
+#ollama
+  services.ollama = {
+    enable = true;
+    package = pkgs.ollama-rocm;
+    # cuda para la rtx y rocm para amd integrada
+  };
+
+
 #steam
 hardware.graphics = {
   enable = true;

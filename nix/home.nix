@@ -38,7 +38,11 @@
     imv wl-clipboard gimp
     grim slurp 
     easyeffects
-
+#thunar 
+    thunar
+    thunar-volman
+    thunar-archive-plugin
+    tumbler
 #explorador de archivos
     ranger
 
@@ -64,25 +68,33 @@
     kdePackages.breeze-icons
   ];
 
-  # Gestión de archivos de configuración (Dotfiles)
-  # Ejemplo: Home Manager puede crear archivos en ~/.config automáticamente
-  /*
-  xdg.configFile."kitty/kitty.conf".text = ''
-    font_family JetBrainsMono Nerd Font
-    font_size 12.0
-  '';
-  */
 
   # Configuración de programas vía Home Manager
   programs.git = {
     enable = true;
-    userName = "araooz";
-    userEmail = "araozfali@gmail.com";
+    # Usamos la estructura que Nix sugirió
+    settings = {
+      user = {
+        name = "araooz";
+        email = "araozfali@gmail.com";
+      };
+    };
   };
 
 
 
 
+  gtk = {
+    enable = true;
+    iconTheme = {
+      name = "breeze-dark";
+      package = pkgs.kdePackages.breeze-icons;
+    };
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
+    };
+  };
 
   home.stateVersion = "25.11"; 
   programs.home-manager.enable = true;
