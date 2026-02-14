@@ -35,9 +35,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   networking.networkmanager.enable = true;
   time.timeZone = "America/Lima";
   i18n.defaultLocale = "es_PE.UTF-8";
-  
-
-  services.xserver.xkb.layout = "latam"; #us
+  services.xserver.xkb.layout = "latam";
 
 # Habilitar el login automático para el usuario falo
   services.getty.autologinUser = "falo";
@@ -49,34 +47,13 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     fi
   '';
 # presunto fix para lo de hyprland que se cierran las apps apenas las abro
-  environment.sessionVariables = {
-    TERMINAL = "kitty";
-
-    NIXOS_OZONE_WL = "1"; # Fuerza a apps de Electron (como ZapZap) a usar Wayland
-    XDG_CURRENT_DESKTOP = "Hyprland";
-    XDG_SESSION_TYPE = "wayland";
-    XDG_SESSION_DESKTOP = "Hyprland";
-
-    GTK_THEME = "Breeze-Dark"; 
-    XCURSOR_THEME = "Breeze_Snow";
-    XCURSOR_SIZE = "24"; 
-    HYPRCURSOR_SIZE = "24";
-  };
-
-
+  
   users.mutableUsers = true;
   users.users.falo = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" "audio"];
-    packages = with pkgs; [
-      tree
-      git
-      kitty
-      neovim
-    ];
   };
 
-  programs.git.enable = true;
   programs.firefox.enable = true;
   programs.fish.enable = true;
   programs.dconf.enable = true;
@@ -85,13 +62,6 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     package = pkgs.hyprland;
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
-#--
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    config.common.default = [ "gtk" ];
-  };
-#--
   programs.spicetify = {
     enable = true;
     theme = spicePkgs.themes.hazy;
@@ -111,58 +81,27 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # You can use https://search.nixos.org/ to find more packages (and options).
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-# entorno
-    git github-cli neovim kitty hyprlock hyprpaper waybar rofi
-    zapzap
-    fastfetch btop unzip
-    vim wget curl wev
-    terminus_font
-    easyeffects
+    vim 
+    wget curl git wev
+    hyprlock hyprpaper waybar rofi
+    brightnessctl
     os-prober efibootmgr
-    inputs.zen-browser.packages."${pkgs.system}".default
-#audio y brillo
-    pavucontrol playerctl blueman bluez pamixer
-    brightnessctl glib
-# explorador de archivos (thunar)
-    ranger # FCK DOLPHIN RANGER LO ES TODO (recien lo voy a probar)
+#thunar
     xfce.thunar
     xfce.thunar-volman
     xfce.thunar-archive-plugin
     xfce.tumbler # Generador de miniaturas (thumbnails)
     ffmpegthumbnailer # Miniaturas para video
-    gvfs
 
-    kdePackages.breeze
-    kdePackages.breeze-icons
-#imagenes y capturas
-    grim slurp imv wl-clipboard gimp
-# lenguajes
-    gcc gnumake
-    python3 pyright
-    nodejs
-    nodePackages.intelephense
-    typescript-language-server # (ts_ls)
-    vscode-langservers-extracted # (eslint)
-    ripgrep     #para nvim telescope
-    fd          #para nvim telescope
-#apps
-    zoom-us
-    google-chrome
-    bibata-cursors
-    discord
-    vscode
-
-#testeo
-
-
+    glib
   ];
 
 #audio
   services.pipewire = {
     enable = true;
-      alsa.enable = true;
-      pulse.enable = true;
-      jack.enable = true; 
+    alsa.enable = true;
+    pulse.enable = true;
+    jack.enable = true; 
   };
 #bluetooth
   hardware.bluetooth.enable = true;
@@ -193,6 +132,7 @@ services.xserver.videoDrivers = ["amdgpu" ];
     nerd-fonts.ubuntu-mono
     font-awesome
 #para instalar la fuente q permite ver los iconos del rofi powermenu debo descargarla del repo https://github.com/adi1090x/rofi/blob/master/fonts/Icomoon-Feather.ttf y pegarla en ~/.local/share/fonts/
+    terminus_font
   ];
 
 
