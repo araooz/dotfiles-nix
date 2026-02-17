@@ -8,7 +8,9 @@ in {
     [ ./hardware-configuration.nix ];
 #flakes
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
-# Use the systemd-boot EFI boot loader.
+
+
+
   boot.loader = {
     efi = {
       canTouchEfiVariables = true; 
@@ -30,30 +32,31 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     systemd-boot.enable = false; 
   };
 
+#---------------------------------------------|
+  networking.hostName = "nixos-btw";         #|
+  networking.networkmanager.enable = true;   #|
+  time.timeZone = "America/Lima";            #|
+  i18n.defaultLocale = "es_PE.UTF-8";        #|
+  services.xserver.xkb.layout = "latam";     #|
+#---------------------------------------------|
 
-  networking.hostName = "nixos-btw";
-  networking.networkmanager.enable = true;
-  time.timeZone = "America/Lima";
-  i18n.defaultLocale = "es_PE.UTF-8";
-  services.xserver.xkb.layout = "latam";
-
-# Habilitar el login automático para el usuario falo
+# login automático para el usuario falo
   services.getty.autologinUser = "falo";
-
-#y ejecutar hyprland de una
+#hyprland on startup
   environment.loginShellInit = ''
     if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
       exec start-hyprland
     fi
   '';
-# presunto fix para lo de hyprland que se cierran las apps apenas las abro
-  
+
+##     USUARIO  
   users.mutableUsers = true;
   users.users.falo = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" "audio"];
   };
 
+##     PROGRAMAS
   programs.firefox.enable = true;
   programs.fish.enable = true;
   programs.dconf.enable = true;
@@ -78,9 +81,11 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
       marketplace
     ];
   };
-  # You can use https://search.nixos.org/ to find more packages (and options).
+
+#--------------------------PAQUETES--------------------------
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
+#basicos
     vim 
     wget curl git wev
     hyprlock hyprpaper waybar rofi
@@ -97,21 +102,27 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 #testeo
     ollama
   ];
+#------------------------------------------------------------
 
-#audio
+
+
+##     AUDIO
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     pulse.enable = true;
     jack.enable = true; 
   };
-#bluetooth
+
+##     BLUETOOTH
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
-# Servicios para thunar
+
+#para thunar
   services.gvfs.enable = true; # Montar discos y soporte de papelera
   services.tumbler.enable = true; # Soporte para miniaturas
-#ollama
+
+##     OLLAMA
   services.ollama = {
     enable = true;
     package = pkgs.ollama-rocm;
@@ -119,7 +130,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
 
-#steam
+##     STEAM
 hardware.graphics = {
   enable = true;
   enable32Bit = true;
@@ -134,7 +145,7 @@ programs.steam = {
 services.xserver.videoDrivers = ["amdgpu" ];
 
 
-#fuentes
+##     FUENTES
   fonts.fontconfig.enable = true;
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
@@ -155,6 +166,10 @@ services.xserver.videoDrivers = ["amdgpu" ];
 #para que nixos pueda ejecutar binarios externos (mason)
   programs.nix-ld.enable = true;
 
+
+
+
+#NO TOCAR
   nix.settings.auto-optimise-store = true;
   system.stateVersion = "25.11";
 }
