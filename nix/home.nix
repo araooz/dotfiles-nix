@@ -61,6 +61,7 @@
     google-chrome
     discord
     vscode
+    obsidian
 
 #terriblemente estetica
     bibata-cursors
