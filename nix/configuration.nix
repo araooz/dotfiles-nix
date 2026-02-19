@@ -57,7 +57,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
 ##     PROGRAMAS
-  program.git.enable = true;
+  programs.git.enable = true;
   programs.firefox.enable = true;
   programs.fish.enable = true;
   programs.dconf.enable = true;
