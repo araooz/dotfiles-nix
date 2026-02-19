@@ -53,7 +53,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   users.mutableUsers = true;
   users.users.falo = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "audio"];
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" "docker"];
   };
 
 ##     PROGRAMAS
@@ -135,15 +135,18 @@ hardware.graphics = {
   enable = true;
   enable32Bit = true;
 };
-
 programs.steam = {
   enable = true;
   remotePlay.openFirewall = true; # Opcional: Abre puertos para Remote Play
   dedicatedServer.openFirewall = true; # Opcional: Abre puertos para servidores
 };
 
+##    GRAFICA
 services.xserver.videoDrivers = ["amdgpu" ];
 
+##    DOCKER
+#virtualisation.docker.enableNvidia = true;
+virtualisation.docker.enable = true;
 
 ##     FUENTES
   fonts.fontconfig.enable = true;
