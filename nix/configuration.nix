@@ -57,6 +57,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
 ##     PROGRAMAS
+  program.git.enable = true;
   programs.firefox.enable = true;
   programs.fish.enable = true;
   programs.dconf.enable = true;
@@ -86,6 +87,8 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
 #basicos
+    git
+    github-cli
     vim 
     wget curl git wev
     hyprlock hyprpaper waybar rofi

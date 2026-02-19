@@ -24,7 +24,6 @@
     kitty
     neovim
     tree
-    github-cli
     fastfetch
     btop
     unzip
@@ -68,20 +67,6 @@
     kdePackages.breeze
     kdePackages.breeze-icons
   ];
-
-
-  # Configuración de programas vía Home Manager
-  programs.git = {
-    enable = true;
-    # Usamos la estructura que Nix sugirió
-    settings = {
-      user = {
-        name = "araooz";
-        email = "araozfali@gmail.com";
-      };
-    };
-  };
-
 
 
 
