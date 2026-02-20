@@ -94,16 +94,11 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     hyprlock hyprpaper waybar rofi
     brightnessctl
     os-prober efibootmgr
-#thunar
-    thunar
-    thunar-volman
-    thunar-archive-plugin
-    tumbler # Generador de miniaturas (thumbnails)
-    ffmpegthumbnailer # Miniaturas para video
 
     glib
 #testeo
-    ollama
+    tailscale
+    docker-compose
   ];
 #------------------------------------------------------------
 
@@ -116,6 +111,8 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     pulse.enable = true;
     jack.enable = true; 
   };
+  services.tailscale.enable = true;
+
 
 ##     BLUETOOTH
   hardware.bluetooth.enable = true;
@@ -124,13 +121,6 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 #para thunar
   services.gvfs.enable = true; # Montar discos y soporte de papelera
   services.tumbler.enable = true; # Soporte para miniaturas
-
-##     OLLAMA
-  services.ollama = {
-    enable = true;
-    package = pkgs.ollama-rocm;
-    # cuda para la rtx y rocm para amd integrada
-  };
 
 
 ##     STEAM

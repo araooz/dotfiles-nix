@@ -54,6 +54,8 @@
     vscode-langservers-extracted # (eslint)
     ripgrep     #para nvim telescope
     fd          #para nvim telescope
+    jdk21   #JDK para java
+    maven 
 
 #apps
     zoom-us
@@ -61,11 +63,15 @@
     discord
     vscode
     obsidian
+    postman
 
+    inputs.antigravity.packages."${pkgs.system}".default
 #terriblemente estetica
     bibata-cursors
     kdePackages.breeze
     kdePackages.breeze-icons
+#testeo
+    jetbrains.idea-oss
   ];
 
 
