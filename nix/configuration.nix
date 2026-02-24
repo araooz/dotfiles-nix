@@ -91,7 +91,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     github-cli
     vim 
     wget curl git wev
-    hyprlock hyprpaper waybar rofi
+    hyprlock hyprpaper rofi
     brightnessctl
     os-prober efibootmgr
 
