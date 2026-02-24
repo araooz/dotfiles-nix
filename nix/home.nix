@@ -7,15 +7,15 @@
   home.sessionVariables = {
     TERMINAL = "kitty";
 
-    NIXOS_OZONE_WL = "1"; # Fuerza a apps de Electron (como ZapZap) a usar Wayland
-    XDG_CURRENT_DESKTOP = "Hyprland";
-    XDG_SESSION_TYPE = "wayland";
-    XDG_SESSION_DESKTOP = "Hyprland";
-
-    GTK_THEME = "Adwaita-Dark"; 
-    XCURSOR_THEME = "Breeze_Snow";
-    XCURSOR_SIZE = "24"; 
-    HYPRCURSOR_SIZE = "24";
+#    NIXOS_OZONE_WL = "1"; # Fuerza a apps de Electron (como ZapZap) a usar Wayland
+#    XDG_CURRENT_DESKTOP = "Hyprland";
+#    XDG_SESSION_TYPE = "wayland";
+#    XDG_SESSION_DESKTOP = "Hyprland";
+#                                                                                           #esto comentado porq KDE ya gestiona sus cosos
+#    GTK_THEME = "Adwaita-Dark"; 
+#    XCURSOR_THEME = "Breeze_Snow";
+#    XCURSOR_SIZE = "24"; 
+#    HYPRCURSOR_SIZE = "24";
   };
 
 

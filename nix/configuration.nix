@@ -40,14 +40,15 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   services.xserver.xkb.layout = "latam";     #|
 #---------------------------------------------|
 
-# login automático para el usuario falo
-  services.getty.autologinUser = "falo";
-#hyprland on startup
-  environment.loginShellInit = ''
-    if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-      exec start-hyprland
-    fi
-  '';
+# comentado para que el SDDM maneje el login y me permita elegir el entorno que voy a arrancar
+## login automático para el usuario falo
+#  services.getty.autologinUser = "falo";
+##hyprland on startup
+#  environment.loginShellInit = ''
+#    if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+#      exec start-hyprland
+#    fi
+#  '';
 
 ##     USUARIO  
   users.mutableUsers = true;
@@ -104,6 +105,37 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 
 
+
+
+# KDE PLASMA
+#------------------------------------------------------------
+# Habilitar el servidor X11
+  services.xserver.enable = true;
+
+  # Habilitar el gestor de sesiones SDDM (recomendado para KDE)
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+
+  # Habilitar el entorno de escritorio KDE Plasma 6
+  services.desktopManager.plasma6.enable = true;
+#------------------------------------------------------------
+
+# esto me autologea en sddm a kde plasma  
+#  services.displayManager.sddm.settings = {
+#      Autologin = {
+#        Session = "plasma.desktop";
+#        User = "falo";
+#      };
+#  };
+
+
+
+
+
+
+
+
+#------------------------------------------------------------
 ##     AUDIO
   services.pipewire = {
     enable = true;
