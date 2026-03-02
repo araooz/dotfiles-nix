@@ -3,6 +3,7 @@
 {
   home.username = "falo";
   home.homeDirectory = "/home/falo";
+  home.file.".gtkrc-2.0".force = true;
 
   home.sessionVariables = {
     TERMINAL = "kitty";
@@ -59,7 +60,6 @@
 
 #apps
     zoom-us
-    google-chrome
     discord
     vscode
     obsidian
@@ -72,13 +72,8 @@
     kdePackages.breeze-icons
 #testeo
     jetbrains.idea-oss
+    jq
   ];
-
-  programs.waybar = {
-    enable = true;
-    systemd.enable = true; 
-    systemd.target = "hyprland-session.target"; 
-  };
 
 
 

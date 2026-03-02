@@ -60,7 +60,6 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 ##     PROGRAMAS
   programs.git.enable = true;
   programs.firefox.enable = true;
-  programs.fish.enable = true;
   programs.dconf.enable = true;
   programs.hyprland = {
     enable = true;
@@ -83,6 +82,12 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
       marketplace
     ];
   };
+  programs.fish = {
+  enable = true;
+  interactiveShellInit = ''
+    set -g fish_greeting
+  '';
+};
 
 #--------------------------PAQUETES--------------------------
   nixpkgs.config.allowUnfree = true;
@@ -97,6 +102,8 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     os-prober efibootmgr
 
     glib
+#me esta llegando al huevo q no se actualice correctamente
+    waybar
 #testeo
     tailscale
     docker-compose
@@ -121,14 +128,23 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 #------------------------------------------------------------
 
 # esto me autologea en sddm a kde plasma  
-#  services.displayManager.sddm.settings = {
+  services.displayManager.sddm.settings = {
+    General = {
+      Numlock = "on";
+    };
 #      Autologin = {
 #        Session = "plasma.desktop";
 #        User = "falo";
 #      };
-#  };
+  };
 
+services.xserver.displayManager.setupCommands = ''
+  ${pkgs.kbd}/bin/setleds -D +caps < /dev/console
+'';
 
+services.xserver.displayManager.sessionCommands = ''
+  ${pkgs.xorg.xmodmap}/bin/xmodmap -e "add Lock = Caps_Lock"
+'';
 
 
 
