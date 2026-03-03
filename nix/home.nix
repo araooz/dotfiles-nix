@@ -3,24 +3,22 @@
 {
   home.username = "falo";
   home.homeDirectory = "/home/falo";
-  home.file.".gtkrc-2.0".force = true;
 
   home.sessionVariables = {
     TERMINAL = "kitty";
 
-#    NIXOS_OZONE_WL = "1"; # Fuerza a apps de Electron (como ZapZap) a usar Wayland
-#    XDG_CURRENT_DESKTOP = "Hyprland";
-#    XDG_SESSION_TYPE = "wayland";
-#    XDG_SESSION_DESKTOP = "Hyprland";
-#                                                                                           #esto comentado porq KDE ya gestiona sus cosos
-#    GTK_THEME = "Adwaita-Dark"; 
-#    XCURSOR_THEME = "Breeze_Snow";
-#    XCURSOR_SIZE = "24"; 
-#    HYPRCURSOR_SIZE = "24";
+    NIXOS_OZONE_WL = "1"; # Fuerza a apps de Electron (como ZapZap) a usar Wayland
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_TYPE = "wayland";
+    XDG_SESSION_DESKTOP = "Hyprland";
+                                                                                           #esto comentado porq KDE ya gestiona sus cosos
+    GTK_THEME = "Adwaita-Dark"; 
+    XCURSOR_THEME = "Breeze_Snow";
+    XCURSOR_SIZE = "24"; 
+    HYPRCURSOR_SIZE = "24";
   };
 
 
-  # Paquetes específicos del usuario (puedes moverlos desde configuration.nix aquí)
   home.packages = with pkgs; [
     kitty
     neovim
@@ -73,21 +71,12 @@
 #testeo
     jetbrains.idea-oss
     jq
+
+
+    armagetronad
   ];
 
 
-
-  gtk = {
-    enable = true;
-    iconTheme = {
-      name = "breeze-dark";
-      package = pkgs.kdePackages.breeze-icons;
-    };
-    theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome-themes-extra;
-    };
-  };
 
   home.stateVersion = "25.11"; 
   programs.home-manager.enable = true;

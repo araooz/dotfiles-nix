@@ -40,15 +40,14 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   services.xserver.xkb.layout = "latam";     #|
 #---------------------------------------------|
 
-# comentado para que el SDDM maneje el login y me permita elegir el entorno que voy a arrancar
-## login automático para el usuario falo
-#  services.getty.autologinUser = "falo";
-##hyprland on startup
-#  environment.loginShellInit = ''
-#    if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-#      exec start-hyprland
-#    fi
-#  '';
+# login automático para el usuario falo
+  services.getty.autologinUser = "falo";
+#hyprland on startup
+  environment.loginShellInit = ''
+    if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+      exec start-hyprland
+    fi
+  '';
 
 ##     USUARIO  
   users.mutableUsers = true;
@@ -83,11 +82,11 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     ];
   };
   programs.fish = {
-  enable = true;
-  interactiveShellInit = ''
-    set -g fish_greeting
-  '';
-};
+    enable = true;
+    interactiveShellInit = ''
+      set -g fish_greeting
+    '';
+  };
 
 #--------------------------PAQUETES--------------------------
   nixpkgs.config.allowUnfree = true;
@@ -113,39 +112,13 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 
 
-
-# KDE PLASMA
-#------------------------------------------------------------
-# Habilitar el servidor X11
-  services.xserver.enable = true;
-
-  # Habilitar el gestor de sesiones SDDM (recomendado para KDE)
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-
-  # Habilitar el entorno de escritorio KDE Plasma 6
-  services.desktopManager.plasma6.enable = true;
-#------------------------------------------------------------
-
-# esto me autologea en sddm a kde plasma  
-  services.displayManager.sddm.settings = {
-    General = {
-      Numlock = "on";
-    };
-#      Autologin = {
-#        Session = "plasma.desktop";
-#        User = "falo";
-#      };
-  };
-
-services.xserver.displayManager.setupCommands = ''
-  ${pkgs.kbd}/bin/setleds -D +caps < /dev/console
-'';
-
-services.xserver.displayManager.sessionCommands = ''
-  ${pkgs.xorg.xmodmap}/bin/xmodmap -e "add Lock = Caps_Lock"
-'';
-
+#---------------------------------------
+fileSystems."/mnt/windows" = {
+  device = "/dev/disk/by-uuid/01DC7E10EB7B38D0";
+  fsType = "ntfs-3g";
+  options = [ "rw" "uid=1000" "gid=100" "fmask=0022" "dmask=0022" "nofail" ];
+};
+#---------------------------------------
 
 
 
@@ -166,7 +139,7 @@ services.xserver.displayManager.sessionCommands = ''
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
-#para thunar
+#      THUNAR
   services.gvfs.enable = true; # Montar discos y soporte de papelera
   services.tumbler.enable = true; # Soporte para miniaturas
 
