@@ -81,10 +81,6 @@ window#waybar {
     background: none;
 }
 
-#workspaces button:hover * {
-    color: @mauve;
-    background-color: @base;
-}
 
 #workspaces * {
     color: @sky;
@@ -236,13 +232,13 @@ window#waybar {
 }
 
 #temperature {
-    color: @teal;
+    color: @sky;
     /* border-bottom: 2px solid @teal; */
     border-radius: 10px 0 0 10px;
 }
 
 #temperature.critical {
-    color: @red;
+    color: @redasfuck;
     /* border-bottom: 2px solid @red; */
 }
 

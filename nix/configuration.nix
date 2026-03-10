@@ -76,22 +76,15 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     ];
   };
 
+##     PROGRAMAS
   programs.git.enable = true;
   programs.firefox.enable = true;
-  programs.fish.enable = true;
   programs.dconf.enable = true;
   programs.hyprland = {
     enable = true;
     package = pkgs.hyprland;
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
-#--
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    config.common.default = [ "gtk" ];
-  };
-#--
   programs.spicetify = {
     enable = true;
     theme = spicePkgs.themes.hazy;
@@ -108,6 +101,24 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
       marketplace
     ];
   };
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      set -g fish_greeting
+    '';
+  };
+
+
+#--
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = [ "gtk" ];
+  };
+#--
+
+
+#--------------------------PAQUETES--------------------------
   # You can use https://search.nixos.org/ to find more packages (and options).
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
@@ -151,41 +162,59 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     bibata-cursors
     discord
     vscode
+# chamba
+    tailscale
+    obsidian
+    postman
+    inputs.antigravity.packages."${pkgs.system}".default   
+    jetbrains.idea-oss
+    jq
 
-#testeo
 
+#juego
+    armagetronad
 
   ];
 
-#audio
+#------------------------------------------------------------
+##     AUDIO
   services.pipewire = {
     enable = true;
-      alsa.enable = true;
-      pulse.enable = true;
-      jack.enable = true; 
+    alsa.enable = true;
+    pulse.enable = true;
+    jack.enable = true; 
   };
-#bluetooth
+  services.tailscale.enable = true;
+
+
+##     BLUETOOTH
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
-# Servicios para thunar
+
+#      THUNAR
   services.gvfs.enable = true; # Montar discos y soporte de papelera
   services.tumbler.enable = true; # Soporte para miniaturas
-#steam
+
+
+##     STEAM
 hardware.graphics = {
   enable = true;
   enable32Bit = true;
 };
-
 programs.steam = {
   enable = true;
   remotePlay.openFirewall = true; # Opcional: Abre puertos para Remote Play
   dedicatedServer.openFirewall = true; # Opcional: Abre puertos para servidores
 };
 
+##    GRAFICA
 services.xserver.videoDrivers = ["amdgpu" ];
 
+##    DOCKER
+#virtualisation.docker.enableNvidia = true;
+virtualisation.docker.enable = true;
 
-#fuentes
+##     FUENTES
   fonts.fontconfig.enable = true;
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
@@ -193,6 +222,7 @@ services.xserver.videoDrivers = ["amdgpu" ];
     nerd-fonts.ubuntu-mono
     font-awesome
 #para instalar la fuente q permite ver los iconos del rofi powermenu debo descargarla del repo https://github.com/adi1090x/rofi/blob/master/fonts/Icomoon-Feather.ttf y pegarla en ~/.local/share/fonts/
+    terminus_font
   ];
 
 

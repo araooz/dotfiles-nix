@@ -4,12 +4,14 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     zen-browser.url = "github:youwen5/zen-browser-flake";
+    antigravity = {
+      url = "github:jacopone/antigravity-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs"; # Asegura compatibilidad de paquetes
 
-#    hyprland.url = "github:hyprwm/Hyprland";
-#    hyprland.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
@@ -17,7 +19,7 @@
       # IMPORTANTE: Este nombre debe coincidir con tu hostname (networking.hostName)
       nixos-btw = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs; }; # Esto permite pasar 'inputs' a tus módulos
+        specialArgs = { inherit inputs; }; 
         modules = [
           ./configuration.nix
           ./hardware-configuration.nix
