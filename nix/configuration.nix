@@ -8,7 +8,9 @@ in {
     [ ./hardware-configuration.nix ];
 #flakes
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
-# Use the systemd-boot EFI boot loader.
+
+
+
   boot.loader = {
     efi = {
       canTouchEfiVariables = true; 
@@ -30,50 +32,28 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     systemd-boot.enable = false; 
   };
 
+#---------------------------------------------|
+  networking.hostName = "nixos-btw";         #|
+  networking.networkmanager.enable = true;   #|
+  time.timeZone = "America/Lima";            #|
+  i18n.defaultLocale = "es_PE.UTF-8";        #|
+  services.xserver.xkb.layout = "latam";     #|
+#---------------------------------------------|
 
-  networking.hostName = "nixos-btw";
-  networking.networkmanager.enable = true;
-  time.timeZone = "America/Lima";
-  i18n.defaultLocale = "es_PE.UTF-8";
-  
-
-  services.xserver.xkb.layout = "latam"; #us
-
-# Habilitar el login automático para el usuario falo
+# login automático para el usuario falo
   services.getty.autologinUser = "falo";
-
-#y ejecutar hyprland de una
+#hyprland on startup
   environment.loginShellInit = ''
     if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
       exec start-hyprland
     fi
   '';
-# presunto fix para lo de hyprland que se cierran las apps apenas las abro
-  environment.sessionVariables = {
-    TERMINAL = "kitty";
 
-    NIXOS_OZONE_WL = "1"; # Fuerza a apps de Electron (como ZapZap) a usar Wayland
-    XDG_CURRENT_DESKTOP = "Hyprland";
-    XDG_SESSION_TYPE = "wayland";
-    XDG_SESSION_DESKTOP = "Hyprland";
-
-    GTK_THEME = "Breeze-Dark"; 
-    XCURSOR_THEME = "Breeze_Snow";
-    XCURSOR_SIZE = "24"; 
-    HYPRCURSOR_SIZE = "24";
-  };
-
-
+##     USUARIO  
   users.mutableUsers = true;
   users.users.falo = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "audio"];
-    packages = with pkgs; [
-      tree
-      git
-      kitty
-      neovim
-    ];
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" "docker"];
   };
 
 ##     PROGRAMAS
@@ -108,73 +88,30 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     '';
   };
 
-
-#--
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    config.common.default = [ "gtk" ];
-  };
-#--
-
-
 #--------------------------PAQUETES--------------------------
-  # You can use https://search.nixos.org/ to find more packages (and options).
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-# entorno
-    git github-cli neovim kitty hyprlock hyprpaper waybar rofi
-    zapzap
-    fastfetch btop unzip
-    vim wget curl wev
-    terminus_font
-    easyeffects
+#basicos
+    git
+    github-cli
+    vim 
+    wget curl git wev
+    hyprlock hyprpaper rofi
+    brightnessctl
     os-prober efibootmgr
-    inputs.zen-browser.packages."${pkgs.system}".default
-#audio y brillo
-    pavucontrol playerctl blueman bluez pamixer
-    brightnessctl glib
-# explorador de archivos (thunar)
-    ranger # FCK DOLPHIN RANGER LO ES TODO (recien lo voy a probar)
-    xfce.thunar
-    xfce.thunar-volman
-    xfce.thunar-archive-plugin
-    xfce.tumbler # Generador de miniaturas (thumbnails)
-    ffmpegthumbnailer # Miniaturas para video
-    gvfs
 
-    kdePackages.breeze
-    kdePackages.breeze-icons
-#imagenes y capturas
-    grim slurp imv wl-clipboard gimp
-# lenguajes
-    gcc gnumake
-    python3 pyright
-    nodejs
-    nodePackages.intelephense
-    typescript-language-server # (ts_ls)
-    vscode-langservers-extracted # (eslint)
-    ripgrep     #para nvim telescope
-    fd          #para nvim telescope
-#apps
-    zoom-us
-    google-chrome
-    bibata-cursors
-    discord
-    vscode
-# chamba
+    glib
+#me esta llegando al huevo q no se actualice correctamente
+    waybar
+#testeo
     tailscale
-    obsidian
-    postman
-    inputs.antigravity.packages."${pkgs.system}".default   
-    jetbrains.idea-oss
-    jq
-
+    docker-compose
+  ];
+#------------------------------------------------------------
 
 #juego
     armagetronad
 
-  ];
 
 #------------------------------------------------------------
 ##     AUDIO
@@ -235,6 +172,10 @@ virtualisation.docker.enable = true;
 #para que nixos pueda ejecutar binarios externos (mason)
   programs.nix-ld.enable = true;
 
+
+
+
+#NO TOCAR
   nix.settings.auto-optimise-store = true;
   system.stateVersion = "25.11";
 }
