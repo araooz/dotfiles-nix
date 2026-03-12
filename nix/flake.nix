@@ -30,7 +30,7 @@
       # IMPORTANTE: Este nombre debe coincidir con tu hostname (networking.hostName)
       nixos-btw = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs; }; # Esto permite pasar 'inputs' a tus módulos
+        specialArgs = { inherit inputs; }; 
         modules = [
           ./configuration.nix
           ./hardware-configuration.nix

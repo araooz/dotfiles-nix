@@ -109,19 +109,8 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   ];
 #------------------------------------------------------------
 
-
-
-
-#---------------------------------------
-fileSystems."/mnt/windows" = {
-  device = "/dev/disk/by-uuid/01DC7E10EB7B38D0";
-  fsType = "ntfs-3g";
-  options = [ "rw" "uid=1000" "gid=100" "fmask=0022" "dmask=0022" "nofail" ];
-};
-#---------------------------------------
-
-
-
+#juego
+    armagetronad
 
 
 #------------------------------------------------------------
