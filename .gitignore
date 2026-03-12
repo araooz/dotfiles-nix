@@ -3,16 +3,15 @@
 !.gitignore
 
 
-# 2. Permitir las carpetas específicas (la barra final es clave)
+!font.sh
 !hypr/
+!Icomoon-Feather.ttf
+!kitty/
 !nix/
 !nvim/
+!ranger/
 !rofi/
 !waybar/
-!kitty/
-!ranger/
 
-!nixosconfig.sh
-!token_git.txt
 nix/nix
 
