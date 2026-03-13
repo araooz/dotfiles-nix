@@ -106,12 +106,14 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 #testeo
     tailscale
     docker-compose
+#juego
+    armagetronad
   ];
 #------------------------------------------------------------
 
-#juego
-    armagetronad
-
+  environment.shellAliases = {
+    nix-switch = "sudo nixos-rebuild switch --flake /home/falo/.config/nix";
+  };
 
 #------------------------------------------------------------
 ##     AUDIO
