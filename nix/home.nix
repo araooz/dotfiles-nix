@@ -63,7 +63,10 @@
     obsidian
     postman
 
-    inputs.antigravity.packages."${pkgs.system}".default
+    antigravity-fhs
+    affine
+
+    #inputs.antigravity.packages."${pkgs.system}".default
 #terriblemente estetica
     bibata-cursors
     kdePackages.breeze

@@ -13,7 +13,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   boot.loader = {
     efi = {
-      canTouchEfiVariables = true; 
+      canTouchEfiVariables = false; 
       efiSysMountPoint = "/boot";
     };
     grub = {
@@ -21,6 +21,10 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
       device = "nodev";
       efiSupport = true;
       useOSProber = true;
+
+      efiInstallAsRemovable = true;
+      copyKernels = true;
+
       gfxmodeEfi = "1920x1080";
       theme = pkgs.fetchFromGitHub {
         owner = "AllJavi";
