@@ -83,6 +83,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
     enabledCustomApps = with spicePkgs.apps; [
       marketplace
+      ncsVisualizer
     ];
   };
   programs.fish = {
