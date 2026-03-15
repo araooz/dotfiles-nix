@@ -95,7 +95,7 @@ window#waybar {
 
 
 #workspaces button.active {
-    background-color: @mauve;      /* Color del workspace activo */
+    background-color: @sky;      /* Color del workspace activo */
     color: @base;                  /* Texto/icono */
     border-radius: 50%;
     padding: 4px 8px 4px 0px;  /* padding simétrico */
