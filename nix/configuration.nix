@@ -14,7 +14,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   boot.loader = {
     efi = {
       canTouchEfiVariables = false; 
-      efiSysMountPoint = "/boot";
+      efiSysMountPoint = "/grub";
     };
     grub = {
       enable = true;
@@ -83,6 +83,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
     enabledCustomApps = with spicePkgs.apps; [
       marketplace
+      ncsVisualizer
     ];
   };
   programs.fish = {

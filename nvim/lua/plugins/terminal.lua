@@ -27,9 +27,9 @@ return {
             },
         })
 
-        -- Colores estilo Tokyonight
-        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1a1b26" })
-        vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#7aa2f7", bg = "#1a1b26" })
+        -- Colores estilo rojo
+        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#140b0c" })
+        vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ff5c7a", bg = "#140b0c" })
 
         vim.keymap.set("n", "<C-|>", ":ToggleTerm<CR>", { desc = "Toggle terminal" })
     end,
