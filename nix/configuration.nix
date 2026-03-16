@@ -151,6 +151,13 @@ programs.steam = {
   dedicatedServer.openFirewall = true; # Opcional: Abre puertos para servidores
 };
 
+
+fileSystems."/mnt/windows" = {
+  device = "/dev/disk/by-uuid/01DC7E10EB7B38D0";
+  fsType = "ntfs-3g";
+  options = [ "rw" "uid=1000" "gid=100" "umask=0022" "nofail" ];
+};
+
 ##    GRAFICA
 services.xserver.videoDrivers = ["amdgpu" ];
 
