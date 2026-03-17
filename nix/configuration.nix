@@ -117,7 +117,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 #------------------------------------------------------------
 
   environment.shellAliases = {
-    nix-switch = "sudo nixos-rebuild switch --flake /home/falo/.config/nix";
+    nixwasa = "sudo nixos-rebuild switch --flake /home/falo/.config/nix";
   };
 
 #------------------------------------------------------------
