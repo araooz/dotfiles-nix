@@ -149,6 +149,7 @@ programs.steam = {
   enable = true;
   remotePlay.openFirewall = true; # Opcional: Abre puertos para Remote Play
   dedicatedServer.openFirewall = true; # Opcional: Abre puertos para servidores
+  localNetworkGameTransfers.openFirewall = true;
 };
 
 
@@ -156,6 +157,14 @@ fileSystems."/mnt/windows" = {
   device = "/dev/disk/by-uuid/01DC7E10EB7B38D0";
   fsType = "ntfs-3g";
   options = [ "rw" "uid=1000" "gid=100" "umask=0022" "nofail" ];
+};
+
+
+# Además, abre estos puertos UDP específicos que usa L4D2
+networking.firewall = {
+  enable = true;
+  allowedUDPPorts = [ 27015 27016 27031 27036 ];
+  allowedTCPPorts = [ 27036 27037 ];
 };
 
 ##    GRAFICA

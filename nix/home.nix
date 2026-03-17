@@ -33,9 +33,13 @@
 #multimedia
     blueman bluez 
     pavucontrol playerctl pamixer
-    imv wl-clipboard gimp
+    imv gimp
     grim slurp 
     easyeffects
+#portapapeles
+    wl-clipboard 
+    wofi
+    cliphist
 #thunar 
     thunar
     thunar-volman
@@ -64,15 +68,14 @@
     postman
 
     antigravity-fhs
+    jetbrains.idea
     affine
 
-    #inputs.antigravity.packages."${pkgs.system}".default
 #terriblemente estetica
     bibata-cursors
     kdePackages.breeze
     kdePackages.breeze-icons
 #testeo
-    jetbrains.idea-oss
     jq
 
 
