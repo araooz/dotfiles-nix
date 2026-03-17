@@ -67,7 +67,6 @@
     obsidian
     postman
 
-    antigravity-fhs
     jetbrains.idea
     affine
 
