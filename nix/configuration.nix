@@ -14,7 +14,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   boot.loader = {
     efi = {
       canTouchEfiVariables = false; 
-      efiSysMountPoint = "/grub";
+      efiSysMountPoint = "/boot";
     };
     grub = {
       enable = true;
@@ -113,11 +113,12 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     docker-compose
 #juego
     armagetronad
+    ntfs3g
   ];
 #------------------------------------------------------------
 
   environment.shellAliases = {
-    nix-switch = "sudo nixos-rebuild switch --flake /home/falo/.config/nix";
+    nixwasa = "sudo nixos-rebuild switch --flake /home/falo/.config/nix";
   };
 
 #------------------------------------------------------------
@@ -147,9 +148,20 @@ hardware.graphics = {
 };
 programs.steam = {
   enable = true;
-  remotePlay.openFirewall = true; # Opcional: Abre puertos para Remote Play
-  dedicatedServer.openFirewall = true; # Opcional: Abre puertos para servidores
+  remotePlay.openFirewall = true; 
+  dedicatedServer.openFirewall = true; 
 };
+
+# montar windows---
+fileSystems."/mnt/juegos" = {
+  device = "/dev/disk/by-uuid/94903F95903F7D34"; 
+  fsType = "ntfs-3g";
+  options = [ "rw" "uid=1000" "gid=100" "umask=0022" "nofail" ];
+};
+boot.supportedFilesystems = [ "ntfs" ];
+#-------------------
+
+
 
 ##    GRAFICA
 services.xserver.videoDrivers = ["amdgpu" ];
