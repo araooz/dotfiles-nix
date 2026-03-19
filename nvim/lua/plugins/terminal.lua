@@ -7,7 +7,7 @@ return {
 
         require("toggleterm").setup({
             size = 200,
-            open_mapping = [[<C-ñ>]],
+            open_mapping = [[<C-;>]],
             shell = "fish",
             hide_numbers = true,
             shade_terminals = true,
