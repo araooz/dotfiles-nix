@@ -72,7 +72,7 @@
     kdePackages.breeze
     kdePackages.breeze-icons
 #testeo
-    jetbrains.idea-oss
+    jetbrains.idea
     jq
 
 
