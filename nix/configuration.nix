@@ -69,6 +69,11 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     package = pkgs.hyprland;
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = [ "gtk" ]; 
+  };
   programs.spicetify = {
     enable = true;
     theme = spicePkgs.themes.hazy;

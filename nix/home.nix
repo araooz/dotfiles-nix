@@ -8,14 +8,10 @@
     TERMINAL = "kitty";
 
     NIXOS_OZONE_WL = "1"; # Fuerza a apps de Electron (como ZapZap) a usar Wayland
+    GTK_USE_PORTAL = 1;
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_TYPE = "wayland";
     XDG_SESSION_DESKTOP = "Hyprland";
-                                                                                           #esto comentado porq KDE ya gestiona sus cosos
-    GTK_THEME = "Adwaita-Dark"; 
-    XCURSOR_THEME = "Breeze_Snow";
-    XCURSOR_SIZE = "24"; 
-    HYPRCURSOR_SIZE = "24";
   };
 
 
@@ -47,6 +43,7 @@
     tumbler
 #explorador de archivos
     ranger
+    yazi
 
 #desarrollo
     gcc gnumake
@@ -64,6 +61,7 @@
     zoom-us
     discord
     vscode
+    antigravity-fhs
     obsidian
     postman
 
@@ -72,8 +70,6 @@
 
 #terriblemente estetica
     bibata-cursors
-    kdePackages.breeze
-    kdePackages.breeze-icons
 #testeo
     jq
 
@@ -82,6 +78,36 @@
   ];
 
 
+#-----------------------
+home.pointerCursor = {
+    gtk.enable = true;
+    # x11.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 16;
+  };
+
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      package = pkgs.flat-remix-gtk;
+      name = "Flat-Remix-GTK-Grey-Darkest";
+    };
+    # Te sugiero usar los iconos de Flat Remix para que combinen con el tema
+    iconTheme = {
+      package = pkgs.flat-remix-icon-theme;
+      name = "Flat-Remix-Blue-Dark";
+    };
+  };
+
+#-----------------------
 
   home.stateVersion = "25.11"; 
   programs.home-manager.enable = true;
