@@ -14,7 +14,7 @@
     XDG_SESSION_DESKTOP = "Hyprland";
   };
 
-
+# PROGRAMAS
   home.packages = with pkgs; [
     kitty
     neovim
@@ -49,6 +49,7 @@
     gcc gnumake
     python3 pyright
     nodejs
+    pnpm
     nodePackages.intelephense
     typescript-language-server # (ts_ls)
     vscode-langservers-extracted # (eslint)
@@ -70,11 +71,10 @@
 
 #terriblemente estetica
     bibata-cursors
+#juego
+    armagetronad
 #testeo
     jq
-
-
-    armagetronad
   ];
 
 
@@ -106,9 +106,30 @@ home.pointerCursor = {
       name = "Flat-Remix-Blue-Dark";
     };
   };
+#-----------------------
+# Configuración de aplicaciones por defecto
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "image/jpeg" = [ "imv.desktop" ];
+      "image/png" = [ "imv.desktop" ];
+      "image/gif" = [ "imv.desktop" ];
+      "image/webp" = [ "imv.desktop" ];
+      "image/bmp" = [ "imv.desktop" ];
+      "image/tiff" = [ "imv.desktop" ];
+      "image/svg+xml" = [ "imv.desktop" ];
+    };
+  };
+#-----------------------
+#BRILLO
+  services.swayosd.enable = true;
+
+
+
+
+
 
 #-----------------------
-
   home.stateVersion = "25.11"; 
   programs.home-manager.enable = true;
 }
