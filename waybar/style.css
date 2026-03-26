@@ -180,7 +180,7 @@ window#waybar {
     color: #bf616a;
     border-radius: 100px;
     background-color: @black;
-    padding: 4px 8px 4px 0px;  /* padding simétrico */
+    padding: 4px 16px 4px 16px;  /* padding simétrico */
     /* border-bottom: 2px solid #bf616a; */
 }
 
