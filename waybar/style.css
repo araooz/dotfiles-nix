@@ -250,5 +250,10 @@ window#waybar {
     margin-right: 10px;
 }
 
-
-
+#mpris {
+    color: @sky;
+    border-radius: 100px;
+    background-color: @black;
+    padding: 4px 8px 4px 0px;  
+    margin: 4px 4px;
+}
