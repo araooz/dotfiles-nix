@@ -57,7 +57,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   users.mutableUsers = true;
   users.users.falo = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" "docker" "input"];
+    extraGroups = [ "wheel" "networkmanager" "bluetooth" "video" "audio" "docker" "input"];
   };
 
 ##     PROGRAMAS

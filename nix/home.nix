@@ -50,13 +50,15 @@
     python3 pyright
     nodejs
     pnpm
-    nodePackages.intelephense
+    intelephense
     typescript-language-server # (ts_ls)
     vscode-langservers-extracted # (eslint)
     ripgrep     #para nvim telescope
     fd          #para nvim telescope
     jdk21   #JDK para java
     maven 
+    graphviz-nox  # dots para compi
+
 
 #apps
     zoom-us
