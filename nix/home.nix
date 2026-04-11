@@ -22,6 +22,7 @@
     fastfetch
     btop
     unzip
+    zip
     
 
     inputs.zen-browser.packages."${pkgs.system}".default
@@ -44,6 +45,13 @@
 #explorador de archivos
     ranger
     yazi
+# office
+  libreoffice-fresh
+  hunspell
+  hunspellDicts.es_ES 
+  # Fuentes de Microsoft (crucial para que los .docx no se deformen)
+  corefonts 
+  vista-fonts
 
 #desarrollo
     gcc gnumake
@@ -64,7 +72,8 @@
     zoom-us
     discord
     vscode
-    antigravity-fhs
+    inputs.antigravity.packages.${pkgs.system}.default
+    code-cursor
     obsidian
     postman
 

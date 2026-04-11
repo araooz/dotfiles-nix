@@ -8,7 +8,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  
+    antigravity = {
+      url = "github:jacopone/antigravity-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs"; # Asegura compatibilidad de paquetes
@@ -30,6 +33,7 @@
         modules = [
           ./configuration.nix
           ./hardware-configuration.nix
+          
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
