@@ -57,22 +57,28 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   users.mutableUsers = true;
   users.users.falo = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" "docker"];
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" "input" "docker"];
   };
 
 ##     PROGRAMAS
   programs.git.enable = true;
   programs.firefox.enable = true;
   programs.dconf.enable = true;
+# hyprland
   programs.hyprland = {
     enable = true;
     package = pkgs.hyprland;
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = [ "gtk" ]; 
+  };
+# spicetify
   programs.spicetify = {
     enable = true;
     theme = spicePkgs.themes.hazy;
-
     enabledExtensions = with spicePkgs.extensions; [
       fullAppDisplay  #Crea una vista de "Reproducción ahora" a pantalla completa
       shuffle         #Reemplaza el algoritmo aleatorio de Spotify por uno realmente aleatorio
@@ -80,12 +86,12 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
       adblock
       keyboardShortcut
     ];
-
     enabledCustomApps = with spicePkgs.apps; [
       marketplace
       ncsVisualizer
     ];
   };
+# fish
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
@@ -130,6 +136,8 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     jack.enable = true; 
   };
   services.tailscale.enable = true;
+#brillo
+  services.udev.packages = [ pkgs.swayosd ];
 
 
 ##     BLUETOOTH
@@ -139,7 +147,10 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 #      THUNAR
   services.gvfs.enable = true; # Montar discos y soporte de papelera
   services.tumbler.enable = true; # Soporte para miniaturas
-
+# YAZI
+  environment.variables = {
+    EDITOR = "nvim"; # O "nano", "code", "emacs", etc.
+  };
 
 ##     STEAM
 hardware.graphics = {
