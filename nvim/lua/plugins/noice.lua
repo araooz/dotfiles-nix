@@ -21,6 +21,13 @@ return {
     },
     dependencies = {
         "MunifTanjim/nui.nvim",
-        "rcarriga/nvim-notify",
+        {
+            "rcarriga/nvim-notify",
+            opts = {
+                -- Como usas Vague con transparente, forzamos el color de fondo aquí
+                -- Puedes usar "#141415" que es el que tienes en colors.lua
+                background_colour = "#141415",
+            },
+        },
     }
 }

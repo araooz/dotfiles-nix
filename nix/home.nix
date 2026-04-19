@@ -47,10 +47,14 @@
 
 #desarrollo
     gcc gnumake
-    python3 pyright
+    (python3.withPackages (ps: with ps; [
+      numpy
+      matplotlib
+    ]))
+    pyright 
     nodejs
     pnpm
-    nodePackages.intelephense
+    intelephense
     typescript-language-server # (ts_ls)
     vscode-langservers-extracted # (eslint)
     ripgrep     #para nvim telescope
@@ -94,6 +98,7 @@ home.pointerCursor = {
     };
   };
 
+  gtk.gtk4.theme = config.gtk.theme;
   gtk = {
     enable = true;
     theme = {

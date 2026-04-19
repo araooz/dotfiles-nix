@@ -43,6 +43,7 @@
 /* Tokyonight palette for Waybar */
 
 @define-color base   #1a1b26;
+@define-color black  #000000;
 @define-color mantle #1f2335;
 @define-color crust  #24283b;
 

@@ -120,6 +120,8 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 #juego
     armagetronad
     ntfs3g
+#G502
+    piper
   ];
 #------------------------------------------------------------
 
@@ -172,7 +174,8 @@ fileSystems."/mnt/juegos" = {
 boot.supportedFilesystems = [ "ntfs" ];
 #-------------------
 
-
+## PIPER para el G502
+services.ratbagd.enable = true;
 
 ##    GRAFICA
 services.xserver.videoDrivers = ["amdgpu" ];
