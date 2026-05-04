@@ -66,7 +66,7 @@
     zoom-us
     discord
     vscode-fhs
-    antigravity-fhs
+    inputs.antigravity.packages.${pkgs.system}.default
     obsidian
     postman
 
