@@ -57,6 +57,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   users.mutableUsers = true;
   users.users.falo = {
     isNormalUser = true;
+    shell = pkgs.fish;
     extraGroups = [ "wheel" "networkmanager" "bluetooth" "video" "audio" "docker" "input"];
   };
 
@@ -96,6 +97,10 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     enable = true;
     interactiveShellInit = ''
       set -g fish_greeting
+
+  #intercambiar lo que hacen TAB y -> 
+      bind \t accept-autosuggestion
+      bind \e\[C complete
     '';
   };
 
@@ -155,6 +160,9 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 hardware.graphics = {
   enable = true;
   enable32Bit = true;
+  extraPackages = with pkgs; [
+    rocmPackages.clr.icd
+  ];
 };
 programs.steam = {
   enable = true;

@@ -16,46 +16,36 @@
 
 # PROGRAMAS
   home.packages = with pkgs; [
+# bare minimum
     kitty
-    neovim
     tree
     fastfetch
     btop
-    unzip
-    zip
-    
-
     inputs.zen-browser.packages."${pkgs.system}".default
-    zapzap
 #multimedia
     blueman bluez 
     pavucontrol playerctl pamixer
     imv gimp
     grim slurp 
     easyeffects
+    mpv
 #portapapeles
     wl-clipboard 
-    wofi
+    #wofi
     cliphist
 #thunar 
     thunar
     thunar-volman
     thunar-archive-plugin
     tumbler
-#explorador de archivos
-    ranger
-    yazi
-# office
-  libreoffice-fresh
-  hunspell
-  hunspellDicts.es_ES 
-  # Fuentes de Microsoft (crucial para que los .docx no se deformen)
-  corefonts 
-  vista-fonts
-
-#desarrollo
+# lenguajes, dependencias y esas weas
     gcc gnumake
-    python3 pyright
+    (python3.withPackages (ps: with ps; [
+      matplotlib
+      numpy
+      # Puedes agregar más aquí, como pandas o scikit-learn
+    ]))
+    pyright
     nodejs
     pnpm
     intelephense
@@ -66,28 +56,85 @@
     jdk21   #JDK para java
     maven 
     graphviz-nox  # dots para compi
+    jq
 
-
-#apps
-    zoom-us
-    discord
-    vscode
+#code
+    vscode-fhs
     inputs.antigravity.packages.${pkgs.system}.default
     code-cursor
-    obsidian
     postman
 
     jetbrains.idea
-    affine
-
+    jetbrains.clion
+    jetbrains.webstorm
+# utilidades
+    unzip
+    zip
+#apps
+    localsend
+    zoom-us
+    discord
+    obsidian
+    affine  
+    zapzap
+    onlyoffice-desktopeditors
+    davinci-resolve
 #terriblemente estetica
     bibata-cursors
 #juego
     armagetronad
 #testeo
-    jq
+
   ];
 
+# ------------------------------ YAZI
+programs.yazi = {
+  enable = true;
+  settings = {
+    opener = {
+      zen = [
+        { run = ''zen-browser "$@"''; block = false; desc = "Zen Browser"; }
+      ];
+    };
+    open = {
+      prepend_rules = [
+        { name = "*.pdf"; use = "zen"; }
+      ];
+    };
+  };
+};
+# -------------------------------- NEOVIM
+programs.neovim = {
+  enable = true;
+  extraLuaConfig = ''
+    require("config.options")
+    require("config.keybinds")
+    require("config.lazy")
+
+    vim.cmd([[
+      cnoreabbrev W  w
+      cnoreabbrev Q  q
+      cnoreabbrev Wq wq
+      cnoreabbrev WQ wq
+      cnoreabbrev Qa qa
+    ]])
+  '';
+};
+# ----------para davinci-resolve y que se guarden en una carpeta especifica
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = false;    #para que no me cree las putas carpetas tipo windows en el ~/ 
+
+    # Redirigimos TODO a tu carpeta centralizada
+    desktop = "${config.home.homeDirectory}/cosasquenoquieroqueocupensupropiacarpeta/Desktop";
+    documents = "${config.home.homeDirectory}/cosasquenoquieroqueocupensupropiacarpeta/Documents";
+    download = "${config.home.homeDirectory}/downloads";
+    music = "${config.home.homeDirectory}/cosasquenoquieroqueocupensupropiacarpeta/Music";
+    pictures = "${config.home.homeDirectory}/cosasquenoquieroqueocupensupropiacarpeta/Pictures";
+    publicShare = "${config.home.homeDirectory}/cosasquenoquieroqueocupensupropiacarpeta/Public";
+    templates = "${config.home.homeDirectory}/cosasquenoquieroqueocupensupropiacarpeta/Templates";
+    videos = "${config.home.homeDirectory}/cosasquenoquieroqueocupensupropiacarpeta/Videos";
+  };
 
 #-----------------------
 home.pointerCursor = {
@@ -98,6 +145,7 @@ home.pointerCursor = {
     size = 16;
   };
 
+  gtk.gtk4.theme = config.gtk.theme;
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
@@ -111,7 +159,6 @@ home.pointerCursor = {
       package = pkgs.flat-remix-gtk;
       name = "Flat-Remix-GTK-Grey-Darkest";
     };
-    # Te sugiero usar los iconos de Flat Remix para que combinen con el tema
     iconTheme = {
       package = pkgs.flat-remix-icon-theme;
       name = "Flat-Remix-Blue-Dark";
@@ -129,6 +176,11 @@ home.pointerCursor = {
       "image/bmp" = [ "imv.desktop" ];
       "image/tiff" = [ "imv.desktop" ];
       "image/svg+xml" = [ "imv.desktop" ];
+      "application/pdf" = [ "zen.desktop" ];
+      "video/mp4" = [ "mpv.desktop" ];
+      "video/quicktime" = [ "mpv.desktop" ]; # para archivos .mov
+      "video/x-matroska" = [ "mpv.desktop" ]; # para archivos .mkv
+      "video/webm" = [ "mpv.desktop" ];
     };
   };
 #-----------------------
