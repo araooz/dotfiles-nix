@@ -17,7 +17,6 @@
 # PROGRAMAS
   home.packages = with pkgs; [
 # bare minimum
-    kitty
     tree
     fastfetch
     btop
@@ -64,9 +63,8 @@
     code-cursor
     postman
 
-    jetbrains.idea
-    jetbrains.clion
-    jetbrains.webstorm
+    #jetbrains.idea
+    #jetbrains.webstorm
 # utilidades
     unzip
     zip
@@ -106,7 +104,9 @@ programs.yazi = {
 # -------------------------------- NEOVIM
 programs.neovim = {
   enable = true;
-  extraLuaConfig = ''
+  withRuby = false;   
+  withPython3 = false;
+  initLua = ''
     require("config.options")
     require("config.keybinds")
     require("config.lazy")
@@ -123,6 +123,7 @@ programs.neovim = {
 # ----------para davinci-resolve y que se guarden en una carpeta especifica
   xdg.userDirs = {
     enable = true;
+    setSessionVariables = true;
     createDirectories = false;    #para que no me cree las putas carpetas tipo windows en el ~/ 
 
     # Redirigimos TODO a tu carpeta centralizada
@@ -186,7 +187,28 @@ home.pointerCursor = {
 #-----------------------
 #BRILLO
   services.swayosd.enable = true;
+# STARSHIP
+ programs.starship = {
+  enable = true;
+  enableFishIntegration = true;
+  settings = {
+    add_newline = false;
+    # line_break.disabled = true;
+  };
+};
 
+
+  # KITTY
+  programs.kitty = {
+    enable = true;
+    settings = {
+      confirm_os_window_close = 0;
+      background_opacity = "0.8";
+      shell = "bash";
+    };
+  };
+  programs.zsh.enable = true;
+  programs.bash.enable = true;
 
 
 

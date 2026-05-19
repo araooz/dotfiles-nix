@@ -57,7 +57,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   users.mutableUsers = true;
   users.users.falo = {
     isNormalUser = true;
-    shell = pkgs.fish;
+    #shell = pkgs.fish;
     extraGroups = [ "wheel" "networkmanager" "bluetooth" "video" "audio" "docker" "input"];
   };
 
