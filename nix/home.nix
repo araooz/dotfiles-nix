@@ -85,7 +85,37 @@
 
   ];
 
-# ------------------------------ YAZI
+## ----------------- TERMINAL -----------------------------
+# STARSHIP
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true; # <-- Añade esto para que se muestre en Zsh
+    settings = {
+    add_newline = false;
+    };
+  };
+# KITTY
+  programs.kitty = {
+    enable = true;
+    settings = {
+      confirm_os_window_close = 0;
+      background_opacity = "0.8";
+      shell = "zsh";
+    };
+  };
+  # En tu home.nix:
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion = {
+      enable = true;
+    };
+    initContent = ''
+      #bindkey '^I' autosuggest-accept
+    '';
+  };
+  programs.bash.enable = true;
+# YAZI
 programs.yazi = {
   enable = true;
   settings = {
@@ -101,6 +131,8 @@ programs.yazi = {
     };
   };
 };
+## -----------------          -----------------------------
+
 # -------------------------------- NEOVIM
 programs.neovim = {
   enable = true;
@@ -187,28 +219,6 @@ home.pointerCursor = {
 #-----------------------
 #BRILLO
   services.swayosd.enable = true;
-# STARSHIP
- programs.starship = {
-  enable = true;
-  enableFishIntegration = true;
-  settings = {
-    add_newline = false;
-    # line_break.disabled = true;
-  };
-};
-
-
-  # KITTY
-  programs.kitty = {
-    enable = true;
-    settings = {
-      confirm_os_window_close = 0;
-      background_opacity = "0.8";
-      shell = "bash";
-    };
-  };
-  programs.zsh.enable = true;
-  programs.bash.enable = true;
 
 
 

@@ -57,7 +57,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   users.mutableUsers = true;
   users.users.falo = {
     isNormalUser = true;
-    #shell = pkgs.fish;
+    shell = pkgs.zsh;
     extraGroups = [ "wheel" "networkmanager" "bluetooth" "video" "audio" "docker" "input"];
   };
 
@@ -65,6 +65,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   programs.git.enable = true;
   programs.firefox.enable = true;
   programs.dconf.enable = true;
+  programs.zsh.enable = true;
 # hyrprland
   programs.hyprland = {
     enable = true;
@@ -170,6 +171,7 @@ programs.steam = {
   dedicatedServer.openFirewall = true; # Opcional: Abre puertos para servidores
   localNetworkGameTransfers.openFirewall = true;
 };
+
 
 
 fileSystems."/mnt/windows" = {
