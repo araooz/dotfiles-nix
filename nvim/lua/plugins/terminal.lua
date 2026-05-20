@@ -8,7 +8,7 @@ return {
         require("toggleterm").setup({
             size = 200,
             open_mapping = [[<C-ñ>]],
-            shell = "bash",
+            shell = "zsh",
             hide_numbers = true,
             shade_terminals = true,
             shading_factor = 2,
