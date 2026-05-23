@@ -77,6 +77,7 @@
     zapzap
     onlyoffice-desktopeditors
     davinci-resolve
+    google-chrome
 #terriblemente estetica
     bibata-cursors
 #juego
@@ -210,13 +211,23 @@ home.pointerCursor = {
       "image/tiff" = [ "imv.desktop" ];
       "image/svg+xml" = [ "imv.desktop" ];
       "application/pdf" = [ "zen.desktop" ];
+      "text/html" = [ "zen.desktop" ];
       "video/mp4" = [ "mpv.desktop" ];
       "video/quicktime" = [ "mpv.desktop" ]; # para archivos .mov
       "video/x-matroska" = [ "mpv.desktop" ]; # para archivos .mkv
       "video/webm" = [ "mpv.desktop" ];
+      "text/txt" = [ "nvim.desktop" ];
     };
   };
-#-----------------------
+#-------------------- NEOVIM DESKTOP OVERRIDE
+  xdg.desktopEntries.nvim = {
+    name = "Neovim";
+    genericName = "Text Editor";
+    exec = "kitty -e nvim %F"; 
+    terminal = false; 
+    categories = [ "Utility" "TextEditor" ];
+    mimeType = [ "text/plain" "text/txt" ];
+  };
 #BRILLO
   services.swayosd.enable = true;
 
