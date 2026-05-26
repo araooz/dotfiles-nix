@@ -12,6 +12,8 @@
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_TYPE = "wayland";
     XDG_SESSION_DESKTOP = "Hyprland";
+    
+    DEFAULT_BROWSER = "${inputs.zen-browser.packages."${pkgs.system}".default}/bin/zen";
   };
 
 # PROGRAMAS
@@ -59,7 +61,7 @@
 
 #code
     vscode-fhs
-    inputs.antigravity.packages.${pkgs.system}.default
+    #inputs.antigravity.packages.${pkgs.system}.default
     code-cursor
     postman
 
@@ -119,6 +121,7 @@
 # YAZI
 programs.yazi = {
   enable = true;
+  shellWrapperName = "y";
   settings = {
     opener = {
       zen = [
@@ -137,8 +140,12 @@ programs.yazi = {
 # -------------------------------- NEOVIM
 programs.neovim = {
   enable = true;
+  defaultEditor = true;
   withRuby = false;   
   withPython3 = false;
+  plugins = with pkgs.vimPlugins; [
+    nvim-treesitter.withAllGrammars
+  ];
   initLua = ''
     require("config.options")
     require("config.keybinds")
@@ -210,13 +217,16 @@ home.pointerCursor = {
       "image/bmp" = [ "imv.desktop" ];
       "image/tiff" = [ "imv.desktop" ];
       "image/svg+xml" = [ "imv.desktop" ];
-      "application/pdf" = [ "zen.desktop" ];
-      "text/html" = [ "zen.desktop" ];
       "video/mp4" = [ "mpv.desktop" ];
       "video/quicktime" = [ "mpv.desktop" ]; # para archivos .mov
       "video/x-matroska" = [ "mpv.desktop" ]; # para archivos .mkv
       "video/webm" = [ "mpv.desktop" ];
       "text/txt" = [ "nvim.desktop" ];
+      "text/html" = [ "zen.desktop" ];
+      "application/pdf" = [ "zen.desktop" ];
+      "x-scheme-handler/http" = [ "zen.desktop" ];
+      "x-scheme-handler/https" = [ "zen.desktop" ];
+      "x-scheme-handler/about" = [ "zen.desktop" ];
     };
   };
 #-------------------- NEOVIM DESKTOP OVERRIDE
