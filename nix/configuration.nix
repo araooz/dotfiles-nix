@@ -112,8 +112,8 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     git
     github-cli
     vim 
-    wget curl git wev
-    hyprlock hyprpaper rofi
+    wget curl 
+    hyprlock hyprpaper rofi wev
     brightnessctl
     os-prober efibootmgr
 
@@ -124,7 +124,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     tailscale
     docker-compose
 #juego
-    armagetronad
+
   ];
 #------------------------------------------------------------
 
