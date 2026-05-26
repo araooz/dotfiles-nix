@@ -1,6 +1,6 @@
 vim.opt.number = true
 vim.opt.cursorline = true
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 
 --identacion
 vim.opt.expandtab = true
