@@ -85,6 +85,7 @@
 #juego
     armagetronad
 #testeo
+    antigravity
 
   ];
 
@@ -125,12 +126,12 @@ programs.yazi = {
   settings = {
     opener = {
       zen = [
-        { run = ''zen-browser "$@"''; block = false; desc = "Zen Browser"; }
+        { run = ''zen "$@"''; block = false; desc = "Zen Browser"; }
       ];
     };
     open = {
       prepend_rules = [
-        { name = "*.pdf"; use = "zen"; }
+        { url = "*.pdf"; use = "zen"; }
       ];
     };
   };
@@ -145,6 +146,7 @@ programs.neovim = {
   withPython3 = false;
   plugins = with pkgs.vimPlugins; [
     nvim-treesitter.withAllGrammars
+    indent-blankline-nvim
   ];
   initLua = ''
     require("config.options")
