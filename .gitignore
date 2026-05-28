@@ -8,10 +8,10 @@
 !Icomoon-Feather.ttf
 !nix/
 !nvim/
-!ranger/
 !rofi/
 !waybar/
 
 nix/nix
 nix/hardware-configuration.nix
-
+kitty/
+ranger/
