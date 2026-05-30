@@ -30,6 +30,7 @@
     grim slurp 
     easyeffects
     mpv
+    drawing
 #portapapeles
     wl-clipboard 
     #wofi
