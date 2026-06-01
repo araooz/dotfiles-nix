@@ -45,6 +45,10 @@
     (python3.withPackages (ps: with ps; [
       matplotlib
       numpy
+      fastapi
+      uvicorn
+      python-multipart
+      httpx
       # Puedes agregar más aquí, como pandas o scikit-learn
     ]))
     pyright
