@@ -49,6 +49,7 @@
       uvicorn
       python-multipart
       httpx
+      scikit-learn
       # Puedes agregar más aquí, como pandas o scikit-learn
     ]))
     pyright
@@ -67,6 +68,7 @@
 #code
     vscode-fhs
     #inputs.antigravity.packages.${pkgs.system}.default
+    antigravity
     code-cursor
     postman
 
@@ -90,7 +92,6 @@
 #juego
     armagetronad
 #testeo
-    antigravity
 
   ];
 
