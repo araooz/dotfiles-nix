@@ -122,6 +122,16 @@
     };
     initContent = ''
       #bindkey '^I' autosuggest-accept
+      cppa() {
+        if [ -z "$1" ]; then
+          echo "Error: Falta el archivo. q vas a compilar ps xdd"
+          return 1
+        fi
+
+        local nombre="''${1%.cpp}"
+        mkdir -p output
+        g++ "$1" -o "output/$nombre.out" && "./output/$nombre.out"
+      }
     '';
   };
   programs.bash.enable = true;
