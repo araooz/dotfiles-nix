@@ -73,6 +73,7 @@
     postman
 
     #jetbrains.idea
+    jetbrains.clion
     #jetbrains.webstorm
 # utilidades
     unzip
