@@ -133,6 +133,8 @@
         mkdir -p output
         g++ "$1" -o "output/$nombre.out" && "./output/$nombre.out"
       }
+      bindkey '^[^?' backward-kill-word
+
     '';
   };
   programs.bash.enable = true;
