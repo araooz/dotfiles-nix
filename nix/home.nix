@@ -87,6 +87,7 @@
     zapzap
     onlyoffice-desktopeditors
     davinci-resolve
+    obs-studio
     google-chrome
 #terriblemente estetica
     bibata-cursors
