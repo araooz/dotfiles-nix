@@ -41,7 +41,11 @@
     thunar-archive-plugin
     tumbler
 # lenguajes, dependencias y esas weas
-    gcc gnumake
+    (pkgs.lib.hiPrio gcc)
+    gnumake
+    clang
+    rustc          # Añadido para compilar con rust
+    cargo          # Gestor de paquetes/entorno de Rust
     (python3.withPackages (ps: with ps; [
       matplotlib
       numpy
@@ -94,6 +98,7 @@
 #juego
     armagetronad
 #testeo
+    sony-headphones-client
 
   ];
 
