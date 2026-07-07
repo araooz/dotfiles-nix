@@ -99,6 +99,7 @@
     armagetronad
 #testeo
     sony-headphones-client
+    testdisk
 
   ];
 
