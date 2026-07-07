@@ -173,7 +173,7 @@ programs.steam = {
   dedicatedServer.openFirewall = true; # Opcional: Abre puertos para servidores
   localNetworkGameTransfers.openFirewall = true;
 };
-
+hardware.steam-hardware.enable = true;
 
 
 fileSystems."/mnt/windows" = {
