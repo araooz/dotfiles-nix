@@ -23,7 +23,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
       useOSProber = true;
 
       efiInstallAsRemovable = true;
-      copyKernels = true;
+      copyKernels = false;
 
       gfxmodeEfi = "1920x1080";
       theme = pkgs.fetchFromGitHub {
