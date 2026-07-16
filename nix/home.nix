@@ -1,6 +1,10 @@
 { config, pkgs, inputs,  ... }:
 
 {
+  imports = [ inputs.ags.homeManagerModules.default ];
+   
+
+
   home.username = "falo";
   home.homeDirectory = "/home/falo";
 
@@ -101,6 +105,25 @@
     sony-headphones-client
     testdisk
 
+#------------------------- AGS ------------------------------_
+    # Dependencias de AGS (Opcionales y utilidades)
+    sptlrx
+    cava
+    brotab
+    matugen
+    
+    # Dependencias de Interfaz exigidas por el repositorio
+    adw-gtk3
+    morewaita-icon-theme
+    cascadia-code
+
+    # Dependencias de terminal solicitadas
+    eza
+    bat
+    zsh-syntax-highlighting
+    
+    # Dependencia de bloqueo de sesión (ags lockscreen)
+    gtk-session-lock
   ];
 
 ## ----------------- TERMINAL -----------------------------
@@ -125,9 +148,8 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    autosuggestion = {
-      enable = true;
-    };
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
     initContent = ''
       #bindkey '^I' autosuggest-accept
       cppa() {
@@ -188,6 +210,18 @@ programs.neovim = {
     ]])
   '';
 };
+
+# ------------------------ AGS -------------------
+programs.ags = {
+    enable = true;
+    extraPackages = with pkgs; [
+      libgtop
+      dart-sass
+      webkitgtk_4_1
+      vte
+    ];
+  };
+
 # ----------para davinci-resolve y que se guarden en una carpeta especifica
   xdg.userDirs = {
     enable = true;
@@ -226,12 +260,12 @@ home.pointerCursor = {
   gtk = {
     enable = true;
     theme = {
-      package = pkgs.flat-remix-gtk;
-      name = "Flat-Remix-GTK-Grey-Darkest";
+      package = pkgs.adw-gtk3;
+      name = "adw-gtk3-dark"; 
     };
     iconTheme = {
-      package = pkgs.flat-remix-icon-theme;
-      name = "Flat-Remix-Blue-Dark";
+      package = pkgs.morewaita-icon-theme;
+      name = "MoreWaita";
     };
   };
 #-----------------------
