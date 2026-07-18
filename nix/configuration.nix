@@ -13,17 +13,17 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   boot.loader = {
     efi = {
-      canTouchEfiVariables = false; 
+      canTouchEfiVariables = true; 
       efiSysMountPoint = "/boot";
     };
     grub = {
       enable = true;
       device = "nodev";
       efiSupport = true;
-      useOSProber = true;
 
-      efiInstallAsRemovable = true;
-      copyKernels = false;
+      useOSProber =             false;
+      efiInstallAsRemovable =   false;
+      copyKernels =             false;
 
       gfxmodeEfi = "1920x1080";
       theme = pkgs.fetchFromGitHub {
@@ -174,13 +174,6 @@ programs.steam = {
   localNetworkGameTransfers.openFirewall = true;
 };
 hardware.steam-hardware.enable = true;
-
-
-fileSystems."/mnt/windows" = {
-  device = "/dev/disk/by-uuid/01DC7E10EB7B38D0";
-  fsType = "ntfs-3g";
-  options = [ "rw" "uid=1000" "gid=100" "umask=0022" "nofail" ];
-};
 
 
 # Además, abre estos puertos UDP específicos que usa L4D2
