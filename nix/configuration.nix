@@ -26,12 +26,26 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
       copyKernels =             false;
 
       gfxmodeEfi = "1920x1080";
-      theme = pkgs.fetchFromGitHub {
-        owner = "AllJavi";
-        repo = "tartarus-grub";
-        rev = "b116360a2a0991062a4d728cb005dfd309fbb82a";
-        sha256 = "sha256-/Pzr0R3zzOXUi2pAl8Lvg6aHTiwXTIrxQ1vscbEK/kU=";
-      } + "/tartarus";
+
+      theme = pkgs.stdenv.mkDerivation {
+        pname = "marathon-grub-theme";
+        version = "main";
+  
+        src = pkgs.fetchFromGitHub {
+          owner = "Woysful";
+          repo = "Marathon-Grub-Themes";
+          rev = "main"; # Rama objetivo
+          hash = "sha256-WcPuFoyIESUwSmOa6wK6+3p7O13l+eziHU4jIEIY9Pw="; 
+        };
+  
+        installPhase = ''
+          mkdir -p $out
+          cp -r Marathon-NewCascadia/* $out/
+          
+          # NixOS requiere obligatoriamente que el archivo se llame "theme.txt"
+          mv $out/theme_900p-1080p.txt $out/theme.txt
+        '';
+    };
     };
     systemd-boot.enable = false; 
   };
