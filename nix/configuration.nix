@@ -13,25 +13,39 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   boot.loader = {
     efi = {
-      canTouchEfiVariables = false; 
+      canTouchEfiVariables = true; 
       efiSysMountPoint = "/boot";
     };
     grub = {
       enable = true;
       device = "nodev";
       efiSupport = true;
-      useOSProber = true;
 
-      efiInstallAsRemovable = true;
-      copyKernels = false;
+      useOSProber =             false;
+      efiInstallAsRemovable =   false;
+      copyKernels =             false;
 
       gfxmodeEfi = "1920x1080";
-      theme = pkgs.fetchFromGitHub {
-        owner = "AllJavi";
-        repo = "tartarus-grub";
-        rev = "b116360a2a0991062a4d728cb005dfd309fbb82a";
-        sha256 = "sha256-/Pzr0R3zzOXUi2pAl8Lvg6aHTiwXTIrxQ1vscbEK/kU=";
-      } + "/tartarus";
+
+      theme = pkgs.stdenv.mkDerivation {
+        pname = "marathon-grub-theme";
+        version = "main";
+  
+        src = pkgs.fetchFromGitHub {
+          owner = "Woysful";
+          repo = "Marathon-Grub-Themes";
+          rev = "main"; # Rama objetivo
+          hash = "sha256-WcPuFoyIESUwSmOa6wK6+3p7O13l+eziHU4jIEIY9Pw="; 
+        };
+  
+        installPhase = ''
+          mkdir -p $out
+          cp -r Marathon-NewCascadia/* $out/
+          
+          # NixOS requiere obligatoriamente que el archivo se llame "theme.txt"
+          mv $out/theme_900p-1080p.txt $out/theme.txt
+        '';
+    };
     };
     systemd-boot.enable = false; 
   };
@@ -174,13 +188,6 @@ programs.steam = {
   localNetworkGameTransfers.openFirewall = true;
 };
 hardware.steam-hardware.enable = true;
-
-
-fileSystems."/mnt/windows" = {
-  device = "/dev/disk/by-uuid/01DC7E10EB7B38D0";
-  fsType = "ntfs-3g";
-  options = [ "rw" "uid=1000" "gid=100" "umask=0022" "nofail" ];
-};
 
 
 # Además, abre estos puertos UDP específicos que usa L4D2
