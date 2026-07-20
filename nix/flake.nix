@@ -16,15 +16,11 @@
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs"; # Asegura compatibilidad de paquetes
 
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 #    hyprland.url = "github:hyprwm/Hyprland";
 #    hyprland.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations = {
       # IMPORTANTE: Este nombre debe coincidir con tu hostname (networking.hostName)
       nixos-btw = nixpkgs.lib.nixosSystem {
@@ -43,7 +39,6 @@
             home-manager.users.falo = import ./home.nix;
           }
           inputs.spicetify-nix.nixosModules.default
-          stylix.nixosModules.stylix
         ];
       };
     };
