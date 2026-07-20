@@ -10,6 +10,7 @@
 !nvim/
 !rofi/
 !waybar/
+!scripts/
 
 nix/nix
 nvim/init.lua
