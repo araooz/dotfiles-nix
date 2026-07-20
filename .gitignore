@@ -12,7 +12,6 @@
 !waybar/
 
 nix/nix
-nix/hardware-configuration.nix
 nvim/init.lua
 kitty/
 ranger/
