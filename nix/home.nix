@@ -68,6 +68,8 @@
     maven 
     graphviz-nox  # dots para compi
     jq
+    watchman
+    android-studio
 
 #code
     vscode-fhs
@@ -78,7 +80,7 @@
 
     #jetbrains.idea
     jetbrains.clion
-    #jetbrains.webstorm
+    jetbrains.webstorm
 # utilidades
     unzip
     zip
