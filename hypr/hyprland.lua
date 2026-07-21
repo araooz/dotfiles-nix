@@ -202,8 +202,8 @@ hl.config({
 -- https://wiki.hypr.land/Configuring/Basics/Variables/#input
 hl.config({
     input = {
-        kb_layout          = "latam",
-        kb_variant         = "",
+        kb_layout          = "us", ---latam
+        kb_variant         = "altgr-intl",
         kb_model           = "",
         kb_options         = "",
         kb_rules           = "",
