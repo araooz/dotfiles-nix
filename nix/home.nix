@@ -75,7 +75,6 @@
     vscode-fhs
     #inputs.antigravity.packages.${pkgs.system}.default
     antigravity
-    code-cursor
     postman
 
     #jetbrains.idea
