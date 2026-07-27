@@ -194,7 +194,7 @@ hardware.steam-hardware.enable = true;
 networking.firewall = {
   enable = true;
   allowedUDPPorts = [ 27015 27016 27031 27036 ];
-  allowedTCPPorts = [ 27036 27037 ];
+  allowedTCPPorts = [ 8081 27036 27037 ];
 };
 
 ##    GRAFICA
