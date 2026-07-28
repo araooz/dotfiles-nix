@@ -117,21 +117,48 @@ window#waybar {
     margin: 6px 6px;
 }
 
+#bluetooth,
+#network,
+#temperature,
+#memory,
 #battery {
     color: @sky;
-    border-radius: 100px;
-    margin-right: 10px;
     background-color: @black;
     padding: 4px 8px 4px 0px;
-    margin: 4px 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+#bluetooth {
+    border-radius: 100px 0 0 100px;
+    margin-left: 4px;
+    margin-right: 0;
+}
+
+#network {
+    border-radius: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#temperature {
+    border-radius: 0;
+    margin-right: 0;
+}
+
+#memory {
+    border-radius: 0;
+    margin-right: 0;
+}
+
+#battery {
+    border-radius: 0 100px 100px 0;
+    margin-left: 0;
+    margin-right: 4px;
 }
 
 #battery.charging {
     color: @green;
-    border-radius: 100px;
-    background-color: @black;
-    padding: 4px 8px 4px 0px;
-    margin: 4px 4px;
 }
 
 @keyframes blink {
@@ -142,50 +169,20 @@ window#waybar {
 
 #battery.critical:not(.charging) {
     color: @redasfuck;
-    border-radius: 100px;
 
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate; 
-    background-color: @black;
-    padding: 4px 8px 4px 0px;
-    margin: 4px 4px;
-}
-
-#memory {
-    color: @sky;
-    border-radius: 100px;
-    background-color: @black;
-    padding: 4px 8px 4px 0px;  
-    margin: 4px 4px;
 }
 
 #network.disabled {
     color: #bf616a;
-    border-radius: 100px;
-    background-color: @black;
-    padding: 4px 8px 4px 0px; 
-    margin: 4px 4px;
-}
-
-#network {
-    color: @sky;
-
-    border-radius: 100px;
-    margin-right: 5px;
-    background-color: @black;
-    padding: 4px 8px 4px 0px; 
-    margin: 4px 4px;
 }
 
 #network.disconnected {
     color: #bf616a;
-    border-radius: 100px;
-    background-color: @black;
-    padding: 4px 16px 4px 16px; 
-    margin: 4px 4px;
 }
 
 #pulseaudio {
@@ -204,20 +201,8 @@ window#waybar {
     margin: 4px 4px;
 }
 
-#temperature {
-    color: @sky;
-    border-radius: 100px;
-
-    background-color: @black;
-    padding: 4px 8px 4px 0px;
-    margin: 4px 4px;
-}
-
 #temperature.critical {
     color: @redasfuck;
-    border-radius: 100px;
-    background-color: @black;
-    padding: 4px 8px 4px 0px;  /* padding simétrico */
     /* border-bottom: 2px solid @red; */
 }
 

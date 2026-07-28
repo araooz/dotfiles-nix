@@ -119,19 +119,19 @@
     "tooltip-format": "{player}\n{artist}\n{title}", 
   }, 
   "memory": {
-    "format": " 󰍛{: >3}%",
+    "format": " 󰍛{: >3}% ",
     "on-click": "kitty -e btop"
   },
   "temperature": {
     "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
     "critical-threshold": 80,
-    "format": "  {temperatureC}󰔄"
+    "format": "  {temperatureC}󰔄 "
   },
   "network": {
     // "interface": "wlp2s0", // (Optional) To force the use of this interface
     "format": "⚠  Disabled",
     "format-wifi": " ", //{essid}",
-    "format-ethernet": "  Wired",
+    "format-ethernet": "󰈀 Wired",
     "format-disconnected": "⚠ Disconnected",
     "on-click": "/home/falo/.config/rofi/rofi-wifi-menu.sh",
     "tooltip-format": "{ifname} via {gwaddr} ",
@@ -157,9 +157,9 @@
     "on-scroll-up": "pamixer -ud 2 && pamixer --get-volume > $SWAYSOCK.wob"
   },
   "bluetooth": {
-    "format": "  ",
-    "format-connected": "  ",
-    "format-connected-battery": "  ",
+    "format": "  ",
+    "format-connected": "  ",
+    "format-connected-battery": "  ",
     // Estas dos líneas siguientes hacen la magia de ocultarlo:
     "format-device-preference": [ "device1", "device2" ], // Opcional
     "format-disabled": "", 
