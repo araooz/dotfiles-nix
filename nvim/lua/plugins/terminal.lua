@@ -8,7 +8,6 @@ return {
         require("toggleterm").setup({
             size = 200,
             open_mapping = [[<C-;>]],
-            [[<C-ñ>]],
             shell = "zsh",
             hide_numbers = true,
             shade_terminals = true,
@@ -20,10 +19,10 @@ return {
                 border = "curved",
                 width = term_width,
                 height = term_height,
-                winblend = 10,
+                winblend = 0,
                 highlights = {
                     border = "FloatBorder",
-                    background = "Normal",
+                    background = "NormalFloat",
                 },
             },
         })
