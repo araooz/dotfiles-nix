@@ -126,11 +126,9 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    autosuggestion = {
-      enable = true;
-    };
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
     initContent = ''
-      #bindkey '^I' autosuggest-accept
       cppa() {
         if [ -z "$1" ]; then
           echo "Error: Falta el archivo. q vas a compilar ps xdd"
@@ -143,6 +141,11 @@
       }
       bindkey '^[^?' backward-kill-word
 
+      autoload -Uz select-word-style
+      select-word-style shell
+
+      bindkey '^[[1;5D' backward-word
+      bindkey '^[[1;5C' forward-word
     '';
   };
   programs.bash.enable = true;
