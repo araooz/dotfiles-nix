@@ -375,7 +375,13 @@ hl.window_rule({
 -- hl.window_rule({ match = { class = "thunar" }, float = true })
 
 -- bluetooth
-hl.window_rule({ match = { class = ".blueman-manager-wrapped" }, float = true })
+hl.window_rule({
+    match = { class = "blueman-manager" },
+    float = true,
+    size = { 800, 400 },
+    move = { 1100, 630 }
+
+})
 
 -- imagenes
 hl.window_rule({
