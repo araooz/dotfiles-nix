@@ -96,14 +96,13 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     enable = true;
     theme = spicePkgs.themes.hazy;
     enabledExtensions = with spicePkgs.extensions; [
-      fullAppDisplay  #Crea una vista de "Reproducción ahora" a pantalla completa
       shuffle         #Reemplaza el algoritmo aleatorio de Spotify por uno realmente aleatorio
       hidePodcasts    
       adblock
       keyboardShortcut
     ];
     enabledCustomApps = with spicePkgs.apps; [
-      marketplace
+      #marketplace
       ncsVisualizer
     ];
   };
