@@ -31,6 +31,6 @@ return {
         vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1a1b26" })
         vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#7aa2f7", bg = "#1a1b26" })
 
-        vim.keymap.set("n", "<C-|>", ":ToggleTerm<CR>", { desc = "Toggle terminal" })
+        vim.keymap.set("n", "<C-;>", ":ToggleTerm<CR>", { desc = "Toggle terminal" })
     end,
 }
