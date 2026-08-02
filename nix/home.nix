@@ -33,14 +33,13 @@
     drawing
 #portapapeles
     wl-clipboard 
-    #wofi
     cliphist
 #thunar 
     thunar
     thunar-volman
     thunar-archive-plugin
     tumbler
-# lenguajes, dependencias y esas weas
+# dev 
     (pkgs.lib.hiPrio gcc)
     gnumake
     clang
@@ -70,25 +69,23 @@
     jq
     watchman
     android-studio
-
 #code
     vscode-fhs
-    #inputs.antigravity.packages.${pkgs.system}.default
     antigravity
     postman
-
     #jetbrains.idea
     jetbrains.clion
     jetbrains.webstorm
 # utilidades
     unzip
     zip
+    testdisk
+    calc 
 #apps
     localsend
     zoom-us
     discord
     obsidian
-    affine  
     zapzap
     onlyoffice-desktopeditors
     davinci-resolve
@@ -96,11 +93,10 @@
     google-chrome
 #terriblemente estetica
     bibata-cursors
+    cava
 #juego
     armagetronad
 #testeo
-    sony-headphones-client
-    testdisk
 
   ];
 
