@@ -1,5 +1,4 @@
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
+# ----------------- configuration.nix ----------------- #
 { config, lib, pkgs, inputs, ... }:
 let
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
@@ -145,6 +144,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     nixwasa = "sudo nixos-rebuild switch --flake /home/falo/.config/nix";
     carajoquieroespacio = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations old && nix-env --delete-generations old && sudo nix-collect-garbage -d && nix-store --optimize";
     gs = "git status";
+    files = "cat /home/falo/.config/nix/configuration.nix && cat /home/falo/.config/nix/home.nix";
   };
 
 #------------------------------------------------------------
@@ -164,7 +164,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
-#      THUNAR
+##       FILES
   services.gvfs.enable = true; # Montar discos y soporte de papelera
   services.tumbler.enable = true; # Soporte para miniaturas
 # YAZI
