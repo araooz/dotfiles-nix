@@ -25,6 +25,7 @@
     inputs.zen-browser.packages."${pkgs.system}".default
 #multimedia
     blueman bluez 
+    bluetui
     pavucontrol playerctl pamixer
     imv gimp
     grim slurp 
@@ -91,6 +92,7 @@
     davinci-resolve
     obs-studio
     google-chrome
+    codex
 #terriblemente estetica
     bibata-cursors
     cava
