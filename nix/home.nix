@@ -1,3 +1,4 @@
+# ----------------- home.nix ----------------- #
 { config, pkgs, inputs,  ... }:
 
 {
@@ -280,3 +281,8 @@ home.pointerCursor = {
   home.stateVersion = "25.11"; 
   programs.home-manager.enable = true;
 }
+
+
+
+
+
