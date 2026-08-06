@@ -144,6 +144,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     nixwasa = "sudo nixos-rebuild switch --flake /home/falo/.config/nix";
     carajoquieroespacio = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations old && nix-env --delete-generations old && sudo nix-collect-garbage -d && nix-store --optimize";
     gs = "git status";
+    gd = "git diff HEAD .";
     files = "cat /home/falo/.config/nix/configuration.nix && cat /home/falo/.config/nix/home.nix";
   };
 
