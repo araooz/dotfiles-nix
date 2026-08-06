@@ -2,9 +2,8 @@
 -- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 local window_rule = hl.window_rule
 
--- browser, whatsapp
+-- browser
 window_rule({ match = { class = "zen" }, workspace = "1" })
-window_rule({ match = { class = "ZapZap" }, workspace = "20" })
 -- steam, spotify, discord
 window_rule({ match = { class = "steam" }, workspace = "10" })
 window_rule({ match = { class = "Spotify" }, workspace = "17" })
@@ -26,6 +25,14 @@ window_rule({
     size   = { 1600, 900 },
 })
 -- varios
+window_rule({
+    name        = "whatsapp",
+    match       = { class = "ZapZap" },
+    workspace   = "20",
+    border_size = 0,
+    pseudo      = true,
+    rounding    = 20,
+})
 window_rule({
     name      = "menu_wifi",
     match     = { class = "nmtui-float" },
@@ -53,12 +60,15 @@ window_rule({
     pin         = true,
 })
 window_rule({
-    name      = "fileManager",
-    match     = { class = "thunar" },
-    workspace = "19",
-    float     = true,
-    center    = true,
-    size      = { 1000, 800 },
+    name        = "fileManager",
+    match       = { class = "thunar" },
+    workspace   = "19",
+    float       = false,
+    pseudo      = true,
+    center      = true,
+    size        = { 1000, 800 },
+    border_size = 0,
+    rounding    = 20,
 })
 window_rule({
     name  = "bluetooth",
