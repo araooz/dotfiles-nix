@@ -31,6 +31,7 @@ window_rule({
     workspace   = "20",
     border_size = 0,
     pseudo      = true,
+    size        = { 1750, 1000 },
     rounding    = 20,
 })
 window_rule({
