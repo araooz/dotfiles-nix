@@ -71,9 +71,11 @@ window_rule({
     rounding    = 20,
 })
 window_rule({
-    name  = "bluetooth",
-    match = { class = "bluetui" },
-    float = true,
-    size  = { 800, 400 },
-    move  = { 1100, 630 },
+    name        = "bluetooth",
+    match       = { class = "bluetui" },
+    float       = true,
+    size        = { 800, 400 },
+    move        = { 1100, 630 },
+    border_size = 0,
+    rounding    = 20
 })
