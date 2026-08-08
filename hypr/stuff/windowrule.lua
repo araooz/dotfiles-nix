@@ -35,12 +35,15 @@ window_rule({
     rounding    = 20,
 })
 window_rule({
-    name      = "menu_wifi",
-    match     = { class = "nmtui-float" },
-    float     = true,
-    center    = true,
-    size      = { 525, 375 },
-    animation = "popin",
+    name        = "wifi",
+    match       = { class = "wifi" }, --{ class = "nmtui-float" },
+    float       = true,
+    center      = true,
+    size        = { 525, 375 },
+    animation   = "popin",
+    border_size = 0,
+    rounding    = 20,
+
 })
 window_rule({
     name      = "gtk",
@@ -58,7 +61,6 @@ window_rule({
     size        = { 600, 375 },
     animation   = "popin",
     border_size = 0,
-    pin         = true,
 })
 window_rule({
     name        = "fileManager",
@@ -76,7 +78,15 @@ window_rule({
     match       = { class = "bluetui" },
     float       = true,
     size        = { 800, 400 },
-    move        = { 1100, 630 },
+    move        = { 855, 619 },
     border_size = 0,
     rounding    = 20
+})
+window_rule({
+    match = {
+        class = "^ZapZap$",
+        title = "^Open$",
+    },
+    size = "800 400",
+    center = true,
 })
