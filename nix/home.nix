@@ -27,6 +27,7 @@
 #multimedia
     blueman bluez 
     bluetui
+    wifitui
     pavucontrol playerctl pamixer
     imv gimp
     grim slurp 
@@ -218,25 +219,30 @@ home.pointerCursor = {
     size = 16;
   };
 
-  gtk.gtk4.theme = config.gtk.theme;
+gtk.gtk4.theme = config.gtk.theme;
 
-  dconf.settings = {
+dconf.settings = {
     "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
+        color-scheme = "prefer-dark";
     };
-  };
+};
 
-  gtk = {
+
+gtk = {
     enable = true;
     theme = {
-      package = pkgs.flat-remix-gtk;
-      name = "Flat-Remix-GTK-Grey-Darkest";
+        package = pkgs.graphite-gtk-theme.override {
+          themeVariants = [ "default" ];
+          colorVariants = [ "dark" ];
+          tweaks = [ "black" ];
+        };
+        name = "Graphite-Dark";
     };
     iconTheme = {
-      package = pkgs.flat-remix-icon-theme;
-      name = "Flat-Remix-Blue-Dark";
+        package = pkgs.papirus-icon-theme;
+        name = "Papirus-Dark";
     };
-  };
+};
 #-----------------------
 # Configuración de aplicaciones por defecto
   xdg.mimeApps = {
