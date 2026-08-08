@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
+vim.keymap.set("n", "<C-e>", vim.cmd.Ex)
 --vim.keymap.set("n", "<C-e>", ":NvimTreeFindFileToggle<CR>", { desc = "Abrir/cerrar nvim-tree en el archivo actual" })
-vim.keymap.set("n", "<C-e>", ":NvimTreeFocus<CR>", { desc = " nvim-tree" })
+vim.keymap.set("n", "<leader>e", ":NvimTreeFocus<CR>", { desc = " nvim-tree" })
 
 -- Cerrar pestaña actual
 vim.keymap.set("n", "<leader>w", ":bdelete<CR>", { desc = "Cerrar buffer actual" })
