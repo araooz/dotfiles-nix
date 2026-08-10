@@ -27,7 +27,7 @@ window_rule({
 -- varios
 window_rule({
     name        = "whatsapp",
-    match       = { class = "ZapZap" },
+    match       = { class = "com.rtosta.zapzap" },
     workspace   = "20",
     border_size = 0,
     pseudo      = true,
