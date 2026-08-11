@@ -21,6 +21,8 @@
   home.packages = with pkgs; [
 # bare minimum
     tree
+    pstree
+    kitty
     fastfetch
     btop
     inputs.zen-browser.packages."${pkgs.system}".default
@@ -83,6 +85,7 @@
     calc 
     wifitui
     gitu
+    lsd
 #apps
     localsend
     zoom-us
@@ -100,6 +103,7 @@
 #juego
     armagetronad
 #testeo
+    sioyek
 
   ];
 
@@ -112,16 +116,7 @@
     add_newline = false;
     };
   };
-# KITTY
-  programs.kitty = {
-    enable = true;
-    settings = {
-      confirm_os_window_close = 0;
-      background_opacity = "0.6";
-      shell = "zsh";
-    };
-  };
-  # En tu home.nix:
+  # ZSH
   programs.zsh = {
     enable = true;
     enableCompletion = true;

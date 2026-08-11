@@ -142,6 +142,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     gs = "git status";
     gd = "git diff HEAD .";
     files = "cat /home/falo/.config/nix/configuration.nix && cat /home/falo/.config/nix/home.nix";
+    lsd = "lsd --tree --depth=1";
   };
 
 #------------------------------------------------------------
