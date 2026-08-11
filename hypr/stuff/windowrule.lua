@@ -3,7 +3,12 @@
 local window_rule = hl.window_rule
 
 -- browser
-window_rule({ match = { class = "zen" }, workspace = "1" })
+window_rule({
+    name        = "browser",
+    match       = { class = "zen" },
+    border_size = 0,
+    rounding    = 20,
+})
 -- steam, spotify, discord
 window_rule({ match = { class = "steam" }, workspace = "10" })
 window_rule({ match = { class = "Spotify" }, workspace = "17" })
@@ -43,7 +48,6 @@ window_rule({
     animation   = "popin",
     border_size = 0,
     rounding    = 20,
-
 })
 window_rule({
     name      = "gtk",
@@ -64,7 +68,7 @@ window_rule({
 })
 window_rule({
     name        = "fileManager",
-    match       = { class = "thunar" },
+    match       = { class = "Thunar" },
     workspace   = "19",
     float       = false,
     pseudo      = true,
