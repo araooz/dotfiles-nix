@@ -8,6 +8,13 @@ in {
 #flakes
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+# Garbage collection automático
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+
 
 
   boot.loader = {
@@ -105,23 +112,12 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
       ncsVisualizer
     ];
   };
-# fish
-  programs.fish = {
-    enable = true;
-    interactiveShellInit = ''
-      set -g fish_greeting
 
-  #intercambiar lo que hacen TAB y -> 
-      bind \t accept-autosuggestion
-      bind \e\[C complete
-    '';
-  };
 
 #--------------------------PAQUETES--------------------------
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
 #basicos
-    git
     github-cli
     vim 
     wget curl 
@@ -168,10 +164,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 ##       FILES
   services.gvfs.enable = true; # Montar discos y soporte de papelera
   services.tumbler.enable = true; # Soporte para miniaturas
-# YAZI
-  environment.variables = {
-    EDITOR = "nvim"; # O "nano", "code", "emacs", etc.
-  };
+
 
 ##     STEAM
 hardware.graphics = {

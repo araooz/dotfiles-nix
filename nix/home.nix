@@ -25,7 +25,6 @@
     btop
     inputs.zen-browser.packages."${pkgs.system}".default
 #multimedia
-    blueman bluez 
     bluetui
     pavucontrol playerctl pamixer
     imv gimp
@@ -40,7 +39,6 @@
     thunar
     thunar-volman
     thunar-archive-plugin
-    tumbler
 # dev 
     (pkgs.lib.hiPrio gcc)
     gnumake
