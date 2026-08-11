@@ -27,7 +27,6 @@
 #multimedia
     blueman bluez 
     bluetui
-    wifitui
     pavucontrol playerctl pamixer
     imv gimp
     grim slurp 
@@ -84,6 +83,8 @@
     zip
     testdisk
     calc 
+    wifitui
+    gitu
 #apps
     localsend
     zoom-us
