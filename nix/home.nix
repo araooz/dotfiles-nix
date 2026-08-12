@@ -225,12 +225,12 @@ dconf.settings = {
 gtk = {
     enable = true;
     theme = {
-        package = pkgs.graphite-gtk-theme.override {
+        package = pkgs.colloid-gtk-theme.override {
           themeVariants = [ "default" ];
           colorVariants = [ "dark" ];
           tweaks = [ "black" ];
         };
-        name = "Graphite-Dark";
+        name = "Colloid-Dark";
     };
     iconTheme = {
         package = pkgs.papirus-icon-theme;
