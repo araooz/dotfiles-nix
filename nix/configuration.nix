@@ -192,7 +192,7 @@ networking.firewall = {
 };
 
 ##    GRAFICA
-services.xserver.videoDrivers = ["amdgpu" ];
+services.xserver.videoDrivers = [ "amdgpu" ];
 
 ##    DOCKER
 #virtualisation.docker.enableNvidia = true;
