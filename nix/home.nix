@@ -86,6 +86,7 @@
     wifitui
     gitu
     lsd
+    gdb
 #apps
     localsend
     zoom-us
