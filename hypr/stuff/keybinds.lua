@@ -28,7 +28,7 @@ bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
 bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
 bind(mainMod .. " + h", hl.dsp.focus({ direction = "right" }))
 bind(mainMod .. " + j", hl.dsp.focus({ direction = "up" }))
-bind(mainMod .. " + F11", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
+bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
 
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
 for i = 1, 10 do
@@ -45,7 +45,7 @@ bind(mainMod .. " + SHIFT + D", hl.dsp.window.move({ workspace = 18 }))
 bind(mainMod .. " + SHIFT + E", hl.dsp.window.move({ workspace = 19 }))
 bind(mainMod .. " + SHIFT + W", hl.dsp.window.move({ workspace = 20 }))
 -- Example special workspace (scratchpad)
-bind(mainMod .. "+ Z", hl.dsp.workspace.toggle_special("magic"))
+bind("F1", hl.dsp.workspace.toggle_special("magic"))
 
 
 ---------------------------------------------- TRACKPAD ----------------------------------------------------
@@ -79,9 +79,11 @@ bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("swayosd-client --output-volume rai
 bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("swayosd-client --output-volume lower"),
     { locked = true, repeating = true })
 -- Multimedia
-bind("F9", hl.dsp.exec_cmd("swayosd-client --playerctl play-pause"), { locked = true })
-bind("F8", hl.dsp.exec_cmd("swayosd-client --playerctl prev"), { locked = true })
 bind("F10", hl.dsp.exec_cmd("swayosd-client --playerctl next"), { locked = true })
+bind("F9", hl.dsp.exec_cmd("swayosd-client --playerctl play-pause"), { locked = true })
+bind("XF86AudioPrev", hl.dsp.exec_cmd("swayosd-client --playerctl prev"), { locked = true })
+bind("XF86AudioPlay", hl.dsp.exec_cmd("swayosd-client --playerctl play-pause"), { locked = true })
+bind("XF86AudioNext", hl.dsp.exec_cmd("swayosd-client --playerctl next"), { locked = true })
 
 ----------------------------------------- VARIOS -----------------------------------------------------
 -- cap de pantalla
@@ -92,7 +94,7 @@ bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd("kitty -e btop"))
 -- bloqueo de pantalla
 bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 -- menu de apagado
-bind(" F1", hl.dsp.exec_cmd("/home/falo/.config/rofi/powermenu/type-2/powermenu.sh"))
+bind(mainMod .. "+ F1", hl.dsp.exec_cmd("/home/falo/.config/rofi/powermenu/type-2/powermenu.sh"))
 -- bluetooth
 bind(mainMod .. " + B", hl.dsp.exec_cmd("kitty --class \"bluetui\" -e bluetui"))
 -- nmtui bindeado y flotante
