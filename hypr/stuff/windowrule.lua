@@ -11,7 +11,15 @@ window_rule({
 })
 -- steam, spotify, discord
 window_rule({ match = { class = "steam" }, workspace = "10" })
-window_rule({ match = { class = "Spotify" }, workspace = "17" })
+window_rule({
+    name        = "spotify",
+    match       = { class = "Spotify" },
+    border_size = 0,
+    pseudo      = true,
+    size        = { 1750, 1000 },
+    rounding    = 20,
+})
+--window_rule({ match = { class = "Spotify" }, workspace = "17" })
 window_rule({ match = { class = "discord" }, workspace = "18" })
 
 -- multimetida
@@ -68,7 +76,7 @@ window_rule({
 })
 window_rule({
     name        = "fileManager",
-    match       = { class = "Thunar" },
+    match       = { class = "thunar" },
     workspace   = "19",
     float       = false,
     pseudo      = true,
@@ -87,10 +95,13 @@ window_rule({
     rounding    = 20
 })
 window_rule({
-    match = {
-        class = "^ZapZap$",
-        title = "^Open$",
+    match     = {
+        class = "antigravity-ide",
+        title = "Open File",
     },
-    size = "800 400",
-    center = true,
+    float     = true,
+    move      = { 9, 55 },
+    size      = { 700, 500 },
+    animation = "popin",
+
 })
