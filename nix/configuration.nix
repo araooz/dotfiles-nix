@@ -124,13 +124,11 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     hyprlock hyprpaper rofi wev
     brightnessctl
     os-prober efibootmgr
-
-    glib
 #me esta llegando al huevo q no se actualice correctamente
     waybar
 #testeo
-    tailscale
-    docker-compose
+    #tailscale                no los utilizo
+    #docker-compose             ni creo hacerlo este ciclo
 #juego
 
   ];
@@ -188,7 +186,7 @@ hardware.steam-hardware.enable = true;
 networking.firewall = {
   enable = true;
   allowedUDPPorts = [ 27015 27016 27031 27036 ];
-  allowedTCPPorts = [ 5173 8080 8081 27036 27037 ];
+  allowedTCPPorts = [ 5000 5173 8080 8081 27036 27037 ];
 };
 
 ##    GRAFICA

@@ -44,6 +44,7 @@
 # dev 
     (pkgs.lib.hiPrio gcc)
     gnumake
+    glib
     cmake
     clang
     rustc          # Añadido para compilar con rust
