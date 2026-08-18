@@ -51,7 +51,7 @@ window_rule({
     name        = "abrir en whatsapp",
     match       = {
         class = "com.rtosta.zapzap",
-        title = "Open",
+        title = "negative:^ZapZap$",
     },
     workspace   = "20",
     border_size = 0,
@@ -118,4 +118,16 @@ window_rule({
     move      = { 9, 55 },
     size      = { 700, 500 },
     animation = "popin",
+})
+window_rule({
+    name      = "popups de zoom",
+    match     = {
+        class = "zoom",
+        title = "negative:^Reunión$",
+    },
+
+    float     = true,
+    no_anim   = true,
+    no_shadow = true,
+    decorate  = false,
 })
