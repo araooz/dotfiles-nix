@@ -157,7 +157,7 @@
     "on-scroll-up": "pamixer -ud 2 && pamixer --get-volume > $SWAYSOCK.wob"
   },
   "bluetooth": {
-    "format": "  ",
+    "format": "  º",
     "format-connected": "  ",
     "format-connected-battery": "  ",
     // Estas dos líneas siguientes hacen la magia de ocultarlo:

@@ -48,6 +48,20 @@ window_rule({
     rounding    = 20,
 })
 window_rule({
+    name        = "abrir en whatsapp",
+    match       = {
+        class = "com.rtosta.zapzap",
+        title = "Open",
+    },
+    workspace   = "20",
+    border_size = 0,
+    rounding    = 20,
+    float       = true,
+    move        = { 9, 55 },
+    size        = { 700, 500 },
+    animation   = "popin",
+})
+window_rule({
     name        = "wifi",
     match       = { class = "wifi" }, --{ class = "nmtui-float" },
     float       = true,
@@ -95,6 +109,7 @@ window_rule({
     rounding    = 20
 })
 window_rule({
+    name      = "abrir en antigravity",
     match     = {
         class = "antigravity-ide",
         title = "Open File",
@@ -103,5 +118,4 @@ window_rule({
     move      = { 9, 55 },
     size      = { 700, 500 },
     animation = "popin",
-
 })

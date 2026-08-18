@@ -124,7 +124,7 @@ window#waybar {
 #battery {
     color: @sky;
     background-color: @black;
-    padding: 4px 8px 4px 0px;
+    padding: 4px 20px 4px 0px;
     margin-top: 4px;
     margin-bottom: 4px;
 }

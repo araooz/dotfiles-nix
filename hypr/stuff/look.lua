@@ -5,8 +5,8 @@
 hl.config({
     general = {
         gaps_in          = 4,
-        gaps_out         = 4,
-        border_size      = 2,
+        gaps_out         = 20,
+        border_size      = 0,
 
         col              = {
             -- rgba(bbbb0088) #rgba(880808ee) rgba(080899ee) 45deg
@@ -24,8 +24,8 @@ hl.config({
     },
 
     decoration = {
-        rounding         = 5,
-        rounding_power   = 5,
+        rounding         = 20,
+        rounding_power   = 2,
 
         -- Change transparency of focused and unfocused windows
         active_opacity   = 1.0,
