@@ -5,7 +5,7 @@
 @import "machiatto.css";
 
 * {
-    color: @sky;
+    color: @mauve;
     border: 0;
     padding: 0 0;
     font-family: UbuntuMono Nerd Font Propo;
@@ -42,7 +42,7 @@ window#waybar {
 
 
 #workspaces * {
-    color: @sky;
+    color: @mauve;
 }
 
 #workspaces {
@@ -102,7 +102,7 @@ window#waybar {
 
 
 #clock {
-    color: @sky;
+    color: @mauve;
     border-radius: 100px;
     margin: 8px 10px;
     background-color: @black;
@@ -110,7 +110,7 @@ window#waybar {
 }
 
 #backlight {
-    color: @sky;
+    color: @mauve;
     background-color: @black;
     border-radius: 50%;
     padding: 4px 8px 4px 1px;  
@@ -122,7 +122,7 @@ window#waybar {
 #temperature,
 #memory,
 #battery {
-    color: @sky;
+    color: @mauve;
     background-color: @black;
     padding: 4px 20px 4px 0px;
     margin-top: 4px;
@@ -163,7 +163,7 @@ window#waybar {
 
 @keyframes blink {
     to {
-        color: @sky;
+        color: @mauve;
     }
 }
 
@@ -186,7 +186,7 @@ window#waybar {
 }
 
 #pulseaudio {
-    color: @sky;
+    color: @mauve;
     border-radius: 100px;
     background-color: @black;
     padding: 4px 8px 4px 0px;  
@@ -236,7 +236,7 @@ window#waybar {
 }
 
 #mpris {
-    color: @sky;
+    color: @mauve;
     border-radius: 100px;
     background-color: @black;
     padding: 4px 8px 4px 0px;  
