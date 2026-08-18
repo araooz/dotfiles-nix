@@ -44,6 +44,7 @@
 # dev 
     (pkgs.lib.hiPrio gcc)
     gnumake
+    cmake
     clang
     rustc          # Añadido para compilar con rust
     cargo          # Gestor de paquetes/entorno de Rust
