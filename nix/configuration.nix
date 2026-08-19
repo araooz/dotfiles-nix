@@ -127,8 +127,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 #me esta llegando al huevo q no se actualice correctamente
     waybar
 #testeo
-    #tailscale                no los utilizo
-    #docker-compose             ni creo hacerlo este ciclo
+    #docker-compose             no lo utilizo ni creo hacerlo este ciclo
 #juego
 
   ];
@@ -151,7 +150,6 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     pulse.enable = true;
     jack.enable = true; 
   };
-  services.tailscale.enable = true;
 #brillo
   services.udev.packages = [ pkgs.swayosd ];
 
@@ -194,7 +192,7 @@ services.xserver.videoDrivers = [ "amdgpu" ];
 
 ##    DOCKER
 #virtualisation.docker.enableNvidia = true;
-virtualisation.docker.enable = true;
+#virtualisation.docker.enable = true;
 
 ##     FUENTES
   fonts.fontconfig.enable = true;
