@@ -7,43 +7,20 @@
 * {
     color: @mauve;
     border: 0;
-    padding: 0 0;
+    padding: 0;
     font-family: UbuntuMono Nerd Font Propo;
-    /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
-    /* font-family: "Hack Nerd Font"; */
     font-size: 18px;
     font-weight: bold;
-    /* padding-bottom:4px;
-     padding-top: 4px; */
 }
 
 window#waybar {
-    border: 0px solid rgba(0, 0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.0);
+    border: 0;
+    background-color: transparent;
 }
 
-#workspaces button {
-    color: @base;
-    border-radius: 50%;
-    background-color: @black;
-    padding: 4px 8px 4px 0px;  /* padding simétrico */
-    margin: 0px 0px;
-}
-
-#workspaces button:hover {
-    color: @mauve;
-    box-shadow: none;
-    /* Remove predefined box-shadow */
-    text-shadow: none;
-    /* Remove predefined text-shadow */
-    border: 0px;
-    background: none;
-}
-
-
-#workspaces * {
-    color: @mauve;
-}
+/* -----------------------------------------------------------------------------
+ * Workspaces (Left)
+ * -------------------------------------------------------------------------- */
 
 #workspaces {
     border-style: solid;
@@ -52,73 +29,65 @@ window#waybar {
     margin: 8px 0px 8px 8px;
 }
 
+#workspaces * {
+    color: @mauve;
+}
+
+#workspaces button {
+    color: @black;
+    border-radius: 50%;
+    background-color: @black;
+    padding: 4px 8px 4px 0px;
+    margin: 0px;
+}
+
+#workspaces button:hover {
+    color: @mauve;
+    box-shadow: none;
+    text-shadow: none;
+    border: 0px;
+    background: none;
+}
 
 #workspaces button.active {
-    background-color: @mauve; 
-    color: @base;                
+    background-color: @mauve;
+    color: @black;
     border-radius: 50%;
-    padding: 4px 8px 4px 0px;  
+    padding: 4px 8px 4px 0px;
     margin: 0 10px;
 }
 
 #workspaces button.active * {
-    color: @base;    
+    color: @black;
 }
 
-
-
-
-
-
-
-#mode {
-    color: #ebcb8b;
-}
-
-#clock,
-#custom-swap,
-#battery,
-#cpu,
-#memory,
-#idle_inhibitor,
-#temperature,
-#custom-keyboard-layout,
-#backlight,
-#network,
-#pulseaudio,
-#mode,
-#tray,
-#custom-power,
-#custom-pacman,
 /* -----------------------------------------------------------------------------
-  * Module styles
-  * -------------------------------------------------------------------------- */
-
-#mode {
-    border-radius: 10px;
-    color: @mauve;
-    margin-right: 5px;
-}
-
+ * Center Modules
+ * -------------------------------------------------------------------------- */
 
 #clock {
     color: @mauve;
     border-radius: 100px;
     margin: 8px 10px;
     background-color: @black;
-    padding: 4px 8px 4px 10px; 
+    padding: 4px 8px 4px 10px;
 }
 
-#backlight {
+#mpris {
     color: @mauve;
+    border-radius: 100px;
     background-color: @black;
-    border-radius: 50%;
-    padding: 4px 8px 4px 1px;  
-    margin: 6px 6px;
+    padding: 4px 8px 4px 0px;
+    margin: 4px 4px;
 }
+
+/* -----------------------------------------------------------------------------
+ * Right Modules (Grouped Capsule)
+ * -------------------------------------------------------------------------- */
 
 #bluetooth,
 #network,
+#pulseaudio,
 #temperature,
 #memory,
 #battery {
@@ -135,19 +104,12 @@ window#waybar {
     margin-right: 0;
 }
 
-#network {
-    border-radius: 0;
-    margin-left: 0;
-    margin-right: 0;
-}
-
-#temperature {
-    border-radius: 0;
-    margin-right: 0;
-}
-
+#network,
+#pulseaudio,
+#temperature,
 #memory {
     border-radius: 0;
+    margin-left: 0;
     margin-right: 0;
 }
 
@@ -155,6 +117,23 @@ window#waybar {
     border-radius: 0 100px 100px 0;
     margin-left: 0;
     margin-right: 4px;
+}
+
+/* -----------------------------------------------------------------------------
+ * Module States & Statuses
+ * -------------------------------------------------------------------------- */
+
+#pulseaudio.muted {
+    color: @surface2;
+}
+
+#network.disabled,
+#network.disconnected {
+    color: @redasfuck;
+}
+
+#temperature.critical {
+    color: @redasfuck;
 }
 
 #battery.charging {
@@ -169,76 +148,15 @@ window#waybar {
 
 #battery.critical:not(.charging) {
     color: @redasfuck;
-
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
-    animation-direction: alternate; 
+    animation-direction: alternate;
 }
 
-#network.disabled {
-    color: #bf616a;
-}
-
-#network.disconnected {
-    color: #bf616a;
-}
-
-#pulseaudio {
+#mode {
     color: @mauve;
-    border-radius: 100px;
-    background-color: @black;
-    padding: 4px 8px 4px 0px;  
-    margin: 4px 4px;
-}
-
-#pulseaudio.muted {
-    color: @surface2;
-    border-radius: 100px;
-    background-color: @black;
-    padding: 4px 9px 4px 9px; /* arriba derecha, abajo izquierda */ 
-    margin: 4px 4px;
-}
-
-#temperature.critical {
-    color: @redasfuck;
-    /* border-bottom: 2px solid @red; */
-}
-
-#idle_inhibitor {
-    background-color: #ebcb8b;
-    color: @base;
-}
-
-#tray {
-    /* background-color: @base; */
-    margin: 8px 10px;
-    border-radius: 100px;
-    background-color: @black;
-    padding: 4px 8px 4px 10px;  /* padding simétrico */
-}
-
-#window {
-    border-style: hidden;
-    margin-left: 10px;
-    /* margin-top:1px;  
-     padding: 8px 1rem; */
-    margin-right: 10px;
-    color: #eceff4;
-}
-
-#custom-keyboard-layout {
-    color: @peach;
-    /* border-bottom: 2px solid @peach; */
-    border-radius: 0 10px 10px 0;
-    margin-right: 10px;
-}
-
-#mpris {
-    color: @mauve;
-    border-radius: 100px;
-    background-color: @black;
-    padding: 4px 8px 4px 0px;  
-    margin: 4px 4px;
+    border-radius: 10px;
+    margin-right: 5px;
 }
