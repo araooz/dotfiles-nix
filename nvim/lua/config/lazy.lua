@@ -21,6 +21,8 @@ require("lazy").setup({
 
 		-- UI
 		{ import = "lazyvim.plugins.extras.ui.alpha" },
+		-- En lua/config/lazy.lua dentro de spec = { ... }
+		{ import = "lazyvim.plugins.extras.editor.grug-far" },
 
 		-- 2. Import Language Extras (This sets up LSP, Formatting, Debugging)
 		{ import = "lazyvim.plugins.extras.lang.clangd" }, -- C / C++
