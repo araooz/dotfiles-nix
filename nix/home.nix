@@ -173,11 +173,8 @@ programs.neovim = {
   withPython3 = false;
   plugins = with pkgs.vimPlugins; [
     nvim-treesitter.withAllGrammars
-    indent-blankline-nvim
   ];
   initLua = ''
-    require("config.options")
-    require("config.keybinds")
     require("config.lazy")
 
     vim.cmd([[

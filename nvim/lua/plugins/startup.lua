@@ -13,16 +13,14 @@ return {
 		}
 
 		dashboard.section.buttons.val = {
-            dashboard.button("e", "  Nuevo archivo", ":ene <BAR> startinsert <CR>"),
-            dashboard.button("c", "  Abrir ~/.config/", ":e ~/.config/<CR>"),
-            dashboard.button("n", "N  Abrir ~/.config/nvim/", ":e ~/.config/nvim/<CR>"),
-            dashboard.button("h", "  Abrir ~/.config/hypr/", ":e ~/.config/hypr/<CR>"),
-            dashboard.button("w", "  Abrir ~/.config/waybar/", ":e ~/.config/waybar/<CR>"),
-            dashboard.button("z", "MAMAWBO  Abrir configuration.nix", ":e ~/.config/nix/<CR>"),
-            dashboard.button("q", "  Salir", ":qa<CR>"),
- 		}
-
-		dashboard.section.footer.val = "Configurado por gpt"
+			dashboard.button("e", "  Nuevo archivo", ":ene <BAR> startinsert <CR>"),
+			dashboard.button("c", "  Abrir ~/.config/", ":cd ~/.config/ <BAR> e .<CR>"),
+			dashboard.button("n", "  Abrir ~/.config/nvim/", ":cd ~/.config/nvim/ <BAR> e .<CR>"),
+			dashboard.button("h", "  Abrir ~/.config/hypr/", ":cd ~/.config/hypr/ <BAR> e .<CR>"),
+			dashboard.button("w", "  Abrir ~/.config/waybar/", ":cd ~/.config/waybar/ <BAR> e .<CR>"),
+			dashboard.button("z", "  Abrir home.nix", ":cd ~/.config/nix/ <BAR> e home.nix<CR>"),
+			dashboard.button("q", "  Salir", ":qa<CR>"),
+		}
 
 		return dashboard
 	end,

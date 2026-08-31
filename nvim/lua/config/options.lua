@@ -1,3 +1,6 @@
+-- LazyVim: respetar siempre el directorio actual (no auto-detectar raíz del proyecto)
+vim.g.root_spec = { "cwd" }
+
 vim.opt.number = true
 vim.opt.cursorline = true
 vim.opt.relativenumber = false
