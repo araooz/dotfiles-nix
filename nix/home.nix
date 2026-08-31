@@ -89,6 +89,7 @@
     gitu
     lsd
     gdb
+    ripdrag     # drag and drop desde terminal (usado por yazi)
 #apps
     localsend
     zoom-us
@@ -150,6 +151,9 @@
 programs.yazi = {
   enable = true;
   shellWrapperName = "y";
+  plugins = {
+    drag = pkgs.yaziPlugins.drag;
+  };
   settings = {
     opener = {
       zen = [
@@ -161,6 +165,15 @@ programs.yazi = {
         { url = "*.pdf"; use = "zen"; }
       ];
     };
+  };
+  keymap = {
+    mgr.prepend_keymap = [
+      {
+        on = [ "<C-d>" ];
+        run = "plugin drag";
+        desc = "Drag and drop";
+      }
+    ];
   };
 };
 ## -----------------          -----------------------------
