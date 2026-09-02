@@ -2,8 +2,16 @@
 ---- AUTOSTART ----
 -------------------
 hl.on("hyprland.start", function()
-    -- Script para reiniciar portales y evitar cierres de apps
-    hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+    -- Exportar variables de entorno necesarias para portales XDG y OBS screencapture
+    hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE QT_QPA_PLATFORM")
+    hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE QT_QPA_PLATFORM")
+
+    -- Activar graphical-session.target via NixOS fake target (los portales XDG dependen de esto)
+    hl.exec_cmd("systemctl --user start nixos-fake-graphical-session.target")
+
+    -- Reiniciar portales XDG para que arranquen correctamente con la sesión gráfica
+    hl.exec_cmd("systemctl --user restart xdg-desktop-portal-hyprland xdg-desktop-portal-gtk xdg-desktop-portal")
+
     hl.exec_cmd("systemctl --user restart pipewire pipewire-pulse wireplumber")
 
     hl.exec_cmd("waybar")

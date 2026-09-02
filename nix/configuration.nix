@@ -95,7 +95,14 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    config.common.default = [ "gtk" ]; 
+    config = {
+      common.default = [ "gtk" ];
+      hyprland = {
+        default = [ "gtk" "hyprland" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "hyprland" ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
+      };
+    };
   };
 # spicetify  
   programs.spicetify = {

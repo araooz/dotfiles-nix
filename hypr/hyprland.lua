@@ -42,6 +42,7 @@ hl.config({
 })
 
 hl.permission("/usr/(bin|local/bin)/grim", "screencopy", "allow")
+hl.permission("/nix/store/.*obs.*", "screencopy", "allow")
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/
 hl.config({
