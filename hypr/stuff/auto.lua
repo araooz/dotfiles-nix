@@ -3,8 +3,8 @@
 -------------------
 hl.on("hyprland.start", function()
     -- Exportar variables de entorno necesarias para portales XDG y OBS screencapture
-    hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE QT_QPA_PLATFORM")
-    hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE QT_QPA_PLATFORM")
+    hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE")
+    hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE")
 
     -- Activar graphical-session.target via NixOS fake target (los portales XDG dependen de esto)
     hl.exec_cmd("systemctl --user start nixos-fake-graphical-session.target")
@@ -23,9 +23,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("wl-paste --type text --watch cliphist store")
     hl.exec_cmd("wl-paste --type image --watch cliphist store")
     hl.exec_cmd("rm ~/.cache/cliphist/db") -- para que se reinicie el historial cada q prendo
-
-    -- brillo
-    hl.exec_cmd("swayosd-server")
 
     -- Comando para forzar el cursor al iniciar
     hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 24")
