@@ -47,6 +47,7 @@
     glib
     cmake
     clang
+	clang-tools
     rustc          # Añadido para compilar con rust
     cargo          # Gestor de paquetes/entorno de Rust
     (python3.withPackages (ps: with ps; [
