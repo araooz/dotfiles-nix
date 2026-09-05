@@ -78,7 +78,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   users.users.falo = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" "networkmanager" "bluetooth" "video" "audio" "docker" "input"];
+    extraGroups = [ "wheel" "networkmanager" "bluetooth" "video" "audio" "docker" "input" "libvirtd" ];
   };
 
 ##     PROGRAMAS
@@ -133,10 +133,9 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     os-prober efibootmgr
 #me esta llegando al huevo q no se actualice correctamente
     waybar
-#testeo
     #docker-compose             no lo utilizo ni creo hacerlo este ciclo
-#juego
-
+#virtualisacion
+    dnsmasq
   ];
 #------------------------------------------------------------
 
@@ -200,6 +199,19 @@ services.xserver.videoDrivers = [ "amdgpu" ];
 ##    DOCKER
 #virtualisation.docker.enableNvidia = true;
 #virtualisation.docker.enable = true;
+
+##    VIRTUALIZACION
+  virtualisation.libvirtd = {
+    enable = true;
+
+    qemu = {
+ virsh net-list --all     package = pkgs.qemu_kvm;
+    };
+  };
+
+  programs.virt-manager.enable = true;
+  networking.firewall.trustedInterfaces = [ "virbr0" ];
+
 
 ##     FUENTES
   fonts.fontconfig.enable = true;
