@@ -16,7 +16,12 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	spec = {
-		{ "goolord/alpha-nvim", opts = function() return require("alpha.themes.dashboard") end },
+		{
+			"goolord/alpha-nvim",
+			opts = function()
+				return require("alpha.themes.dashboard")
+			end,
+		},
 		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
 
 		-- UI
@@ -24,6 +29,7 @@ require("lazy").setup({
 
 		-- 2. Import Language Extras (This sets up LSP, Formatting, Debugging)
 		{ import = "lazyvim.plugins.extras.lang.clangd" }, -- C / C++
+		{ import = "lazyvim.plugins.extras.lang.cmake" }, -- C / C++
 		{ import = "lazyvim.plugins.extras.lang.python" }, -- Python
 		{ import = "lazyvim.plugins.extras.lang.rust" }, -- Rust
 		{ import = "lazyvim.plugins.extras.lang.typescript" }, -- TS / JS
