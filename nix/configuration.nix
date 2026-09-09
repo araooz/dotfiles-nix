@@ -205,7 +205,7 @@ services.xserver.videoDrivers = [ "amdgpu" ];
     enable = true;
 
     qemu = {
- virsh net-list --all     package = pkgs.qemu_kvm;
+      package = pkgs.qemu_kvm;
     };
   };
 
