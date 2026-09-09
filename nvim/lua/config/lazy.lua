@@ -27,6 +27,9 @@ require("lazy").setup({
 		-- UI
 		{ import = "lazyvim.plugins.extras.ui.alpha" },
 
+		-- Picker (fzf-lua en vez de Telescope — arregla el bug del cursor en live_grep)
+		{ import = "lazyvim.plugins.extras.editor.fzf" },
+
 		-- 2. Import Language Extras (This sets up LSP, Formatting, Debugging)
 		{ import = "lazyvim.plugins.extras.lang.clangd" }, -- C / C++
 		{ import = "lazyvim.plugins.extras.lang.cmake" }, -- C / C++
