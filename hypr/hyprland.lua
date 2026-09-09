@@ -20,6 +20,12 @@ hl.monitor({
 	position = "auto",
 	scale = 1,
 })
+hl.monitor({
+	output = "HDMI-A-1",
+	mode = "1920x1080@60",
+	position = "auto",
+	scale = 1,
+})
 
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----
@@ -63,6 +69,13 @@ hl.config({
 	misc = {
 		force_default_wallpaper = -1, -- Set to 0 or 1 to disable the anime mascot wallpapers
 		disable_hyprland_logo = true, -- If true disables the random hyprland logo / anime girl background. :(
+	},
+})
+
+-- https://wiki.hypr.land/Configuring/Basics/Variables/#cursor
+hl.config({
+	cursor = {
+		no_hardware_cursors = true, -- Forzar software cursors para evitar que el cursor desaparezca en el segundo monitor
 	},
 })
 
