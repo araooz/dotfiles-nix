@@ -68,6 +68,7 @@
     vscode-langservers-extracted # (eslint)
     ripgrep     #para nvim telescope
     fd          #para nvim telescope
+    fzf         #para nvim fzf-lua (picker)
     jdk21   #JDK para java
     maven 
     graphviz-nox  # dots para compi
@@ -160,9 +161,13 @@ programs.yazi = {
       zen = [
         { run = ''zen "$@"''; block = false; desc = "Zen Browser"; }
       ];
+      obsidian = [
+        { run = ''obsidian "obsidian://open?path=$1"''; block = false; desc = "Obsidian"; }
+      ];
     };
     open = {
       prepend_rules = [
+        { url = "*.md"; use = "obsidian"; }
         { url = "*.pdf"; use = "zen"; }
       ];
     };
