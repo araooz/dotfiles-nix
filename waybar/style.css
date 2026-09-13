@@ -160,3 +160,25 @@ window#waybar {
     border-radius: 10px;
     margin-right: 5px;
 }
+
+/* -----------------------------------------------------------------------------
+ * Tooltip (Calendar, etc.)
+ * -------------------------------------------------------------------------- */
+
+tooltip {
+    background-color: @black;
+    border: 2px solid @surface0;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+tooltip label {
+    color: @text;
+    font-family: UbuntuMono Nerd Font Mono;
+    font-size: 17px;
+    letter-spacing: 1px;
+}
+
+#clock tooltip {
+    padding: 16px 20px;
+}
