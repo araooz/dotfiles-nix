@@ -166,19 +166,23 @@ window#waybar {
  * -------------------------------------------------------------------------- */
 
 tooltip {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+}
+
+tooltip * {
     background-color: @black;
     border: 2px solid @surface0;
     border-radius: 12px;
     padding: 10px;
-}
-
-tooltip label {
     color: @text;
     font-family: UbuntuMono Nerd Font Mono;
     font-size: 17px;
     letter-spacing: 1px;
 }
 
-#clock tooltip {
+#clock tooltip * {
     padding: 16px 20px;
 }
