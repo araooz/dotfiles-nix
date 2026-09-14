@@ -17,7 +17,6 @@
     "memory",
     "battery"
   ],
-
   "hyprland/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
@@ -33,7 +32,6 @@
       "8": "",
       "9": "󱢣",
       "10": "",
-
       "17": "",
       "18": "",
       "19": "",
@@ -98,39 +96,57 @@
     "tooltip-format-wifi": "SSID: {essid} ({signalStrength}%)",
     "tooltip-format-ethernet": "IP: {ipaddr} | Wi-Fi: {essid}",
   },
-//  "pulseaudio": {
-//    "scroll-step": 1,
-//    "format": " {icon}{volume: >3}%",
-//    "format-bluetooth": " {icon} {volume: >3}%",
-//    "format-muted": " muted",
-//    "format-icons": {
-//      "headphones": "",
-//      "handsfree": "",
-//      "headset": "",
-//      "phone": "",
-//      "portable": "",
-//      "car": "",
-//      "default": ["", "󰕾", ""]
-//    },
-//    "on-click": "pavucontrol",
-//    "on-scroll-down": "pamixer -ui 2 && pamixer --get-volume > $SWAYSOCK.wob",
-//    "on-scroll-up": "pamixer -ud 2 && pamixer --get-volume > $SWAYSOCK.wob"
-//  },
+  //  "pulseaudio": {
+  //    "scroll-step": 1,
+  //    "format": " {icon}{volume: >3}%",
+  //    "format-bluetooth": " {icon} {volume: >3}%",
+  //    "format-muted": " muted",
+  //    "format-icons": {
+  //      "headphones": "",
+  //      "handsfree": "",
+  //      "headset": "",
+  //      "phone": "",
+  //      "portable": "",
+  //      "car": "",
+  //      "default": ["", "󰕾", ""]
+  //    },
+  //    "on-click": "pavucontrol",
+  //    "on-scroll-down": "pamixer -ui 2 && pamixer --get-volume > $SWAYSOCK.wob",
+  //    "on-scroll-up": "pamixer -ud 2 && pamixer --get-volume > $SWAYSOCK.wob"
+  //  },
   "bluetooth": {
     "format": "  º",
     "format-connected": "  ",
     "format-connected-battery": "  ",
-    "format-device-preference": ["device1", "device2"],
+    "format-device-preference": [
+      "device1",
+      "device2"
+    ],
     "format-disabled": "",
-    "format-off": "",
+    "format-off": "  󰂲",
     "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_battery_percentage}%\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
     "on-click": "blueman-manager"
   },
-    "backlight": {
+  "backlight": {
     "format": " {icon}", //{percent: >3}%",
-    "format-icons": ["", "", "", "", "", "", "", "", "", "", "", "", "", ""], 
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
     "on-scroll-up": "brightnessctl -c backlight set 1%-",
     "on-scroll-down": "brightnessctl -c backlight set +1%"
   },
@@ -140,7 +156,19 @@
       "critical": 15
     },
     "format": " {icon}{capacity: >3}%",
-    "format-icons": ["󰂎","󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"]
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ]
   },
-  }
+}
 }
