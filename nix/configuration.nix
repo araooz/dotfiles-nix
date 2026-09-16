@@ -162,7 +162,24 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 ##     BLUETOOTH
   hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = false;  # No encender BT automáticamente al iniciar/resumir
   services.blueman.enable = true;
+
+  # Guardar y restaurar el estado del Bluetooth al suspender/resumir
+  systemd.services.bluetooth-suspend = {
+    description = "Guardar estado de Bluetooth antes de suspender y restaurarlo al resumir";
+    before = [ "sleep.target" ];
+    wantedBy = [ "sleep.target" ];
+    unitConfig = {
+      StopWhenUnneeded = true;
+    };
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${pkgs.bash}/bin/bash -c '${pkgs.util-linux}/bin/rfkill list bluetooth | ${pkgs.gnugrep}/bin/grep -q \"Soft blocked: yes\" && echo blocked > /tmp/bt-state || echo unblocked > /tmp/bt-state'";
+      ExecStop  = "${pkgs.bash}/bin/bash -c 'if [ \"$(cat /tmp/bt-state 2>/dev/null)\" = \"unblocked\" ]; then ${pkgs.util-linux}/bin/rfkill unblock bluetooth; else ${pkgs.util-linux}/bin/rfkill block bluetooth; fi'";
+    };
+  };
 
 ##       FILES
   services.gvfs.enable = true; # Montar discos y soporte de papelera
