@@ -108,9 +108,10 @@
     cava
 #juego
     armagetronad
+    mangohud          # Overlay de FPS, frametime, GPU/CPU usage
 #testeo
     sioyek
-
+    nchat
   ];
 
 ## ----------------- TERMINAL -----------------------------

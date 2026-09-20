@@ -210,8 +210,40 @@ networking.firewall = {
   allowedTCPPorts = [ 5000 5173 8080 8081 27036 27037 ];
 };
 
-##    GRAFICA
-services.xserver.videoDrivers = [ "amdgpu" ];
+##    GRAFICA (NVIDIA propietario + PRIME offload)
+services.xserver.videoDrivers = [ "nvidia" "amdgpu" ];
+
+hardware.nvidia = {
+  modesetting.enable = true;
+  powerManagement.enable = true;         # Suspend/resume sin glitches
+  powerManagement.finegrained = true;    # Apaga la GPU cuando no se usa (ahorra batería)
+  open = false;                          # Driver propietario cerrado (mejor rendimiento)
+  nvidiaSettings = false;                # No necesitamos nvidia-settings en Wayland
+
+  prime = {
+    offload = {
+      enable = true;
+      enableOffloadCmd = true;           # Habilita el comando `nvidia-offload`
+    };
+    amdgpuBusId = "PCI:6:0:0";           # Vega integrada (06:00.0)
+    nvidiaBusId = "PCI:1:0:0";           # RTX 3050 (01:00.0)
+  };
+};
+
+##    GAMEMODE (optimiza CPU governor, nice, scheduler al jugar)
+programs.gamemode = {
+  enable = true;
+  settings = {
+    general = {
+      softrealtime = "auto";
+      renice = 10;
+    };
+    gpu = {
+      apply_gpu_optimisations = "accept-responsibility";
+      gpu_device = 1;
+    };
+  };
+};
 
 ##    DOCKER
 #virtualisation.docker.enableNvidia = true;
@@ -253,6 +285,12 @@ services.xserver.videoDrivers = [ "amdgpu" ];
 
 
 
+
+##    KERNEL GAMING OPTIMIZATIONS
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 10;                  # Menos swap = menos stuttering en juegos
+    "vm.max_map_count" = 2147483642;       # Requerido por CS2 y muchos juegos
+  };
 
 #NO TOCAR
   nix.settings.auto-optimise-store = true;
