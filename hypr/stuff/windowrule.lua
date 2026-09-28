@@ -18,6 +18,7 @@ window_rule({
 	pseudo = true,
 	size = { 1750, 1000 },
 	rounding = 20,
+	workspace = "17",
 })
 --window_rule({ match = { class = "Spotify" }, workspace = "17" })
 window_rule({ match = { class = "discord" }, workspace = "18" })
