@@ -77,7 +77,7 @@
     android-studio
 #code
     vscode-fhs
-    antigravity
+    antigravity-ide
     postman
     #jetbrains.idea
     jetbrains.clion
@@ -164,12 +164,6 @@ programs.yazi = {
       ];
       obsidian = [
         { run = ''obsidian "obsidian://open?path=$1"''; block = false; desc = "Obsidian"; }
-      ];
-    };
-    open = {
-      prepend_rules = [
-        { url = "*.md"; use = "obsidian"; }
-        { url = "*.pdf"; use = "zen"; }
       ];
     };
   };
