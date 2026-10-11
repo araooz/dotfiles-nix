@@ -1,4 +1,14 @@
 return {
+	-- Permitir JSON con algunas líneas largas sin perder el resaltado.
+	{
+		"folke/snacks.nvim",
+		opts = {
+			bigfile = {
+				line_length = 10000,
+			},
+		},
+	},
+
 	-- Rainbow Delimiters: Colorea llaves y paréntesis anidados
 	{
 		"HiPhish/rainbow-delimiters.nvim",

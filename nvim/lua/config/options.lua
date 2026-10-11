@@ -5,6 +5,9 @@ vim.opt.number = true
 vim.opt.cursorline = true
 vim.opt.relativenumber = false
 
+-- Dar margen al resaltado por regex cuando un JSON contiene cadenas largas (KiB).
+vim.opt.maxmempattern = 20000
+
 --identacion
 vim.opt.expandtab = false
 vim.opt.shiftwidth = 4
