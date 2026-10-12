@@ -78,10 +78,11 @@
 #code
     vscode-fhs
     antigravity-ide
-    postman
+    #postman
     #jetbrains.idea
+    #jetbrains.webstorm
     jetbrains.clion
-    jetbrains.webstorm
+    codex
 # utilidades
     unzip
     zip
@@ -92,6 +93,7 @@
     lsd
     gdb
     ripdrag     # drag and drop desde terminal (usado por yazi)
+	valgrind
 #apps
     localsend
     zoom-us
@@ -102,16 +104,15 @@
     davinci-resolve
     obs-studio
     google-chrome
-    codex
+    sioyek
 #terriblemente estetica
     bibata-cursors
     cava
 #juego
     armagetronad
     mangohud          # Overlay de FPS, frametime, GPU/CPU usage
+    prismlauncher
 #testeo
-    sioyek
-    nchat
   ];
 
 ## ----------------- TERMINAL -----------------------------
