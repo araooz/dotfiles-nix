@@ -19,6 +19,7 @@ return {
 			dashboard.button("h", "  Abrir ~/.config/hypr/", ":cd ~/.config/hypr/ <BAR> e .<CR>"),
 			dashboard.button("w", "  Abrir ~/.config/waybar/", ":cd ~/.config/waybar/ <BAR> e .<CR>"),
 			dashboard.button("z", "  Abrir home.nix", ":cd ~/.config/nix/ <BAR> e home.nix<CR>"),
+			dashboard.button("x", "  Abrir ~/repos/qkuentas/", ":cd ~/repos/qkuentas/ <BAR> e app.md<CR>"),
 			dashboard.button("q", "  Salir", ":qa<CR>"),
 		}
 
