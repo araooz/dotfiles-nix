@@ -83,6 +83,7 @@
     #jetbrains.webstorm
     jetbrains.clion
     codex
+    claude-code
 # utilidades
     unzip
     zip
@@ -94,6 +95,7 @@
     gdb
     ripdrag     # drag and drop desde terminal (usado por yazi)
 	valgrind
+	markitdown
 #apps
     localsend
     zoom-us

@@ -133,7 +133,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     os-prober efibootmgr
 #me esta llegando al huevo q no se actualice correctamente
     waybar
-    #docker-compose             no lo utilizo ni creo hacerlo este ciclo
+    docker-compose             #no lo utilizo ni creo hacerlo este ciclo
 #virtualisacion
     dnsmasq
   ];
@@ -246,8 +246,8 @@ programs.gamemode = {
 };
 
 ##    DOCKER
-#virtualisation.docker.enableNvidia = true;
-#virtualisation.docker.enable = true;
+virtualisation.docker.enableNvidia = true;
+virtualisation.docker.enable = true;
 
 ##    VIRTUALIZACION
   virtualisation.libvirtd = {
