@@ -207,7 +207,7 @@ hardware.steam-hardware.enable = true;
 networking.firewall = {
   enable = true;
   allowedUDPPorts = [ 27015 27016 27031 27036 ];
-  allowedTCPPorts = [ 5000 5173 8080 8081 27036 27037 ];
+  allowedTCPPorts = [ 5000 5173 8080 8081 8082 27036 27037 ];
 };
 
 ##    GRAFICA (NVIDIA propietario + PRIME offload)
