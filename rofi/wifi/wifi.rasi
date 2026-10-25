@@ -1,0 +1,52 @@
+/* Wi-Fi: mismo estilo que el launcher y el portapapeles */
+@import "~/.config/rofi/launchers/type-1/style-5.rasi"
+
+configuration {
+    show-icons:     false;
+}
+window {
+    width:          460px;
+}
+mainbox {
+    padding:        14px;
+    spacing:        10px;
+    children:       [ "inputbar", "message", "listview" ];
+}
+inputbar {
+    padding:        6px 10px;
+    border-radius:  10px;
+    background-color: @alternate-background;
+    children:       [ "textbox-prompt-colon", "entry" ];
+}
+textbox-prompt-colon {
+    str:            "󰖩";
+    text-color:     @selected;
+}
+entry {
+    placeholder:    "Buscar red...";
+}
+listview {
+    lines:          9;
+    spacing:        3px;
+    scrollbar:      false;
+}
+element {
+    padding:        7px 10px;
+    border-radius:  8px;
+}
+element-text {
+    markup:         true;
+}
+textbox {
+    padding:        8px 12px;
+}
+/* red conectada: morado del tema en vez del rojo de "urgent" */
+element normal.active,
+element alternate.active {
+    background-color: transparent;
+    text-color:       @selected;
+}
+element selected.active {
+    background-color: @selected;
+    text-color:       @background;
+}

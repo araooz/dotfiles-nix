@@ -140,14 +140,8 @@ bind(mainMod .. "+ F1", hl.dsp.exec_cmd("/home/falo/.config/rofi/powermenu/type-
 bind(mainMod .. " + B", hl.dsp.exec_cmd('kitty --class "bluetui" -e bluetui'))
 -- nmtui bindeado y flotante
 bind("SUPER + SHIFT + Q", hl.dsp.exec_cmd('kitty --class "kitty-flotante"'))
--- nmtui bindeado y flotante
---bind(mainMod .. " + A", hl.dsp.exec_cmd("kitty --class wifi -e wifitui"))
-bind(
-	mainMod .. " + A",
-	hl.dsp.exec_cmd(
-		"env NEWT_COLORS='root=default,default;window=default,default;border=default,default;textbox=default,default;button=black,white;actbutton=white,black;listbox=default,default;actlistbox=default,default;actsellistbox=black,blue;sellistbox=black,white' kitty --class \"wifi\" -o window_padding_width=0 -e nmtui connect"
-	)
-)
+-- menu wifi (rofi)
+bind(mainMod .. " + A", hl.dsp.exec_cmd("/home/falo/.config/rofi/wifi/wifi.sh"))
 
 -- Atajo de teclado para abrir el historial del portapapeles
 bind("SUPER + SHIFT + C", hl.dsp.exec_cmd("/home/falo/.config/rofi/clipboard/clipboard.sh"))
