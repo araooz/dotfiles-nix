@@ -27,6 +27,7 @@
     kitty
     fastfetch
     libnotify   # notify-send
+    quickshell  # panel lateral (wifi + notificaciones)
     btop
     inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
 #multimedia
@@ -158,32 +159,6 @@
     '';
   };
   programs.bash.enable = true;
-# NOTIFICACIONES (estilo en theme.nix)
-  services.swaync = {
-    enable = true;
-    settings = {
-      positionX = "right";
-      positionY = "top";
-      layer = "overlay";
-      control-center-layer = "top";
-      control-center-margin-top = 10;
-      control-center-margin-bottom = 10;
-      control-center-margin-right = 10;
-      control-center-width = 420;
-      notification-window-width = 400;
-      timeout = 6;
-      timeout-low = 3;
-      timeout-critical = 0; # las criticas se quedan hasta cerrarlas
-      fit-to-screen = true;
-      hide-on-clear = true;
-      image-visibility = "when-available";
-      widgets = [ "title" "dnd" "notifications" ];
-      widget-config = {
-        title = { text = "Notificaciones"; clear-all-button = true; button-text = "Limpiar"; };
-        dnd = { text = "No molestar"; };
-      };
-    };
-  };
 
 # YAZI
 programs.yazi = {

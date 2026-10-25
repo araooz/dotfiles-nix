@@ -15,6 +15,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("systemctl --user restart pipewire pipewire-pulse wireplumber")
 
 	hl.exec_cmd("waybar")
+	hl.exec_cmd("qs") -- panel lateral (wifi + notificaciones), ~/.config/quickshell
 	hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("zapzap")
 	hl.exec_cmd("zen")

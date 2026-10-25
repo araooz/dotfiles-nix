@@ -12,6 +12,7 @@
 !rofi/
 !waybar/
 !scripts/
+!quickshell/
 
 nix/nix
 nvim/init.lua
@@ -23,3 +24,4 @@ kitty/theme.conf
 rofi/theme.rasi
 waybar/theme.css
 nvim/lua/theme_colors.lua
+quickshell/Colors.qml

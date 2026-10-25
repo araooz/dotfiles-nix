@@ -140,8 +140,8 @@ bind(mainMod .. "+ F1", hl.dsp.exec_cmd("/home/falo/.config/rofi/powermenu/type-
 bind(mainMod .. " + B", hl.dsp.exec_cmd('kitty --class "bluetui" -e bluetui'))
 -- nmtui bindeado y flotante
 bind("SUPER + SHIFT + Q", hl.dsp.exec_cmd('kitty --class "kitty-flotante"'))
--- menu wifi (rofi)
-bind(mainMod .. " + A", hl.dsp.exec_cmd("/home/falo/.config/rofi/wifi/wifi.sh"))
+-- panel lateral: wifi + notificaciones (quickshell)
+bind(mainMod .. " + A", hl.dsp.exec_cmd("qs ipc call panel toggle"))
 
 -- Atajo de teclado para abrir el historial del portapapeles
 bind("SUPER + SHIFT + C", hl.dsp.exec_cmd("/home/falo/.config/rofi/clipboard/clipboard.sh"))

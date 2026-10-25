@@ -92,7 +92,7 @@
     "format-wifi": " ", //{essid}",
     "format-ethernet": " 󰈀 Wired",
     "format-disconnected": " Disconnected",
-    "on-click": "/home/falo/.config/rofi/wifi/wifi.sh",
+    "on-click": "qs ipc call panel toggle",
     "tooltip-format": "{ifname} via {gwaddr} ",
     "tooltip-format-wifi": "SSID: {essid} ({signalStrength}%)",
     "tooltip-format-ethernet": "IP: {ipaddr} | Wi-Fi: {essid}",
@@ -165,9 +165,12 @@
       "dnd-inhibited-notification": "󰂛"
     },
     "return-type": "json",
-    "exec": "swaync-client -swb",
-    "on-click": "swaync-client -t -sw",
-    "on-click-right": "swaync-client -d -sw",
+    // quickshell escribe el estado y avisa con la señal 8
+    "exec": "cat $XDG_RUNTIME_DIR/qs-notifs.json 2>/dev/null || echo '{\"alt\":\"none\"}'",
+    "interval": "once",
+    "signal": 8,
+    "on-click": "qs ipc call panel toggle",
+    "on-click-right": "qs ipc call notifs toggleDnd",
     "escape": true
   },
   "battery": {

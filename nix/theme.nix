@@ -7,7 +7,7 @@
 #   rofi/theme.rasi         (launcher, powermenu, wifi, portapapeles)
 #   waybar/theme.css
 #   nvim/lua/theme_colors.lua
-#   swaync/style.css        (notificaciones)
+#   quickshell/Colors.qml   (panel wifi + notificaciones)
 #   starship.toml           (colores del prompt)
 # Estos archivos son symlinks al nix store: NO los edites a mano.
 { config, pkgs, lib, ... }:
@@ -218,90 +218,27 @@ in
     java   = { format = "[$symbol$version]($style) "; style = "muted"; symbol = " "; };
   };
 
-  # ---------------- notificaciones (swaync) ----------------
-  services.swaync.style = ''
-    * {
-        font-family: "${font.name}";
-        font-size: 14px;
+  # ---------------- panel lateral (quickshell) ----------------
+  xdg.configFile."quickshell/Colors.qml".text = ''
+    pragma Singleton
+
+    import QtQuick
+    import Quickshell
+
+    // generado por nix/theme.nix
+    Singleton {
+    	readonly property string font: "${font.name}"
+    	readonly property color bg: "#${c.bg}"
+    	readonly property color bgAlt: "#${c.bgAlt}"
+    	readonly property color surface: "#${c.surface}"
+    	readonly property color overlay: "#${c.overlay}"
+    	readonly property color muted: "#${c.muted}"
+    	readonly property color fg: "#${c.fg}"
+    	readonly property color accent: "#${c.accent}"
+    	readonly property color accentDim: "#${c.accentDim}"
+    	readonly property color red: "#${c.red}"
+    	readonly property color green: "#${c.green}"
+    	readonly property color yellow: "#${c.yellow}"
     }
-
-    /* tarjeta de cada notificacion */
-    .notification-row { outline: none; }
-    .notification-row:focus, .notification-row:hover { background: transparent; }
-
-    .notification {
-        background: #${c.bg};
-        border: 2px solid alpha(#${c.accent}, 0.5);
-        border-radius: 20px;
-        margin: 6px 0;
-        padding: 0;
-        box-shadow: none;
-    }
-    .notification.critical { border-color: #${c.red}; }
-
-    .notification-content { padding: 10px 14px; }
-    .notification-default-action { border-radius: 20px; }
-    .notification-default-action:hover { background: #${c.surface}; }
-
-    .summary   { color: #${c.accent}; font-weight: bold; }
-    .time      { color: #${c.muted}; }
-    .body      { color: #${c.fg}; }
-    .image     { border-radius: 12px; margin-right: 10px; }
-
-    .close-button {
-        background: #${c.surface};
-        color: #${c.fg};
-        border-radius: 100px;
-        margin: 8px;
-        min-width: 22px;
-        min-height: 22px;
-    }
-    .close-button:hover { background: #${c.red}; color: #${c.bg}; }
-
-    .notification-action {
-        background: #${c.surface};
-        color: #${c.fg};
-        border: none;
-        border-radius: 100px;
-        margin: 4px;
-    }
-    .notification-action:hover { background: #${c.accent}; color: #${c.bg}; }
-
-    /* panel lateral (historial) */
-    .control-center {
-        background: alpha(#${c.bg}, 0.9);
-        border: 2px solid alpha(#${c.accent}, 0.5);
-        border-radius: 20px;
-    }
-    .control-center-list { background: transparent; }
-
-    .widget-title {
-        color: #${c.accent};
-        font-size: 18px;
-        font-weight: bold;
-        margin: 10px;
-    }
-    .widget-title > button {
-        background: #${c.surface};
-        color: #${c.fg};
-        border: none;
-        border-radius: 100px;
-        padding: 4px 12px;
-    }
-    .widget-title > button:hover { background: #${c.red}; color: #${c.bg}; }
-
-    .widget-dnd { color: #${c.fg}; margin: 10px; }
-    .widget-dnd > switch {
-        background: #${c.surface};
-        border-radius: 100px;
-        border: none;
-    }
-    .widget-dnd > switch:checked { background: #${c.accent}; }
-    .widget-dnd > switch slider {
-        background: #${c.fg};
-        border-radius: 100px;
-    }
-
-    .widget-label > label { color: #${c.muted}; }
   '';
 }
