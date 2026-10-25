@@ -34,6 +34,7 @@
     easyeffects
     mpv
     drawing
+	pinta
 #portapapeles
     wl-clipboard 
     cliphist
