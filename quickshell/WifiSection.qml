@@ -51,7 +51,8 @@ ColumnLayout {
 		if (active) {
 			refreshIp();
 			selected = current?.name ?? networks[0]?.name ?? "";
-			list.positionViewAtBeginning();
+			// cuando la ventana ya es visible; si no, la lista ignora el reposicionado
+			Qt.callLater(list.positionViewAtBeginning);
 		} else {
 			expanded = "";
 			error = "";
@@ -73,7 +74,7 @@ ColumnLayout {
 	}
 
 	function secured(net) {
-		return net.security !== WifiSecurityType.Open && net.security !== WifiSecurityType.Owe;
+		return !!net && net.security !== WifiSecurityType.Open && net.security !== WifiSecurityType.Owe;
 	}
 
 	function activate(net) {
@@ -304,9 +305,9 @@ ColumnLayout {
 			required property var modelData
 			readonly property var net: modelData
 			readonly property bool locked: root.secured(net)
-			readonly property bool open: root.expanded === net.name
-			readonly property bool busy: net.stateChanging || net.state === ConnectionState.Connecting
-			readonly property bool isSelected: root.focused && root.selected === net.name
+			readonly property bool open: root.expanded === net?.name
+			readonly property bool busy: (net?.stateChanging || net?.state === ConnectionState.Connecting) ?? false
+			readonly property bool isSelected: root.focused && root.selected === net?.name
 
 			width: ListView.view.width
 			spacing: 4
@@ -319,9 +320,9 @@ ColumnLayout {
 						[ConnectionFailReason.WifiAuthTimeout]: "tiempo de espera agotado",
 						[ConnectionFailReason.WifiNetworkLost]: "se perdió la red"
 					}[reason] ?? "no se pudo conectar";
-					root.error = `${row.net.name}: ${why}`;
+					root.error = `${row.net?.name}: ${why}`;
 					if (row.locked && reason === ConnectionFailReason.NoSecrets)
-						root.expanded = row.net.name;
+						root.expanded = row.net?.name;
 				}
 			}
 
@@ -329,7 +330,7 @@ ColumnLayout {
 				Layout.fillWidth: true
 				implicitHeight: 40
 				radius: 12
-				color: row.net.connected ? Qt.alpha(Colors.accent, row.isSelected ? 0.22 : 0.14) : row.isSelected || row.open ? Colors.surface : "transparent"
+				color: row.net?.connected ? Qt.alpha(Colors.accent, row.isSelected ? 0.22 : 0.14) : row.isSelected || row.open ? Colors.surface : "transparent"
 				border.width: row.isSelected ? 2 : 0
 				border.color: Colors.accent
 
@@ -342,7 +343,7 @@ ColumnLayout {
 					onPositionChanged: mouse => {
 						if (!Pointer.moved(rowArea, mouse))
 							return;
-						root.selected = row.net.name;
+						root.selected = row.net?.name;
 						root.wantFocus();
 					}
 					onClicked: root.activate(row.net)
@@ -355,22 +356,22 @@ ColumnLayout {
 					spacing: 10
 
 					Text {
-						text: Icons.signal(row.net.signalStrength, row.locked)
-						color: row.net.connected ? Colors.accent : Colors.fg
+						text: Icons.signal(row.net?.signalStrength ?? 0, row.locked)
+						color: row.net?.connected ? Colors.accent : Colors.fg
 						font.family: Colors.font
 						font.pixelSize: 17
 					}
 					Text {
 						Layout.fillWidth: true
-						text: row.net.name
-						color: row.net.connected ? Colors.accent : Colors.fg
+						text: row.net?.name
+						color: row.net?.connected ? Colors.accent : Colors.fg
 						font.family: Colors.font
 						font.pixelSize: 13
-						font.bold: row.net.connected
+						font.bold: row.net?.connected
 						elide: Text.ElideRight
 					}
 					Text {
-						visible: row.net.known && !row.net.connected && !forgetBtn.visible
+						visible: row.net?.known && !row.net?.connected && !forgetBtn.visible
 						text: Icons.saved
 						color: Colors.muted
 						font.family: Colors.font
@@ -378,15 +379,15 @@ ColumnLayout {
 					}
 					Text {
 						visible: !forgetBtn.visible
-						text: row.busy ? "conectando…" : row.net.connected ? "conectado" : Math.round(row.net.signalStrength * 100) + "%"
-						color: row.net.connected || row.busy ? Colors.accent : Colors.muted
+						text: row.busy ? "conectando…" : row.net?.connected ? "conectado" : Math.round(row.net?.signalStrength * 100) + "%"
+						color: row.net?.connected || row.busy ? Colors.accent : Colors.muted
 						font.family: Colors.font
 						font.pixelSize: 11
 					}
 					// olvidar red guardada (raton encima o seleccionada)
 					IconButton {
 						id: forgetBtn
-						visible: row.net.known && (rowArea.containsMouse || hovered || row.isSelected)
+						visible: row.net?.known && (rowArea.containsMouse || hovered || row.isSelected)
 						icon: Icons.trash
 						size: 26
 						danger: true
@@ -446,7 +447,7 @@ ColumnLayout {
 							if (text === "")
 								return;
 							root.error = "";
-							row.net.connectWithPsk(text);
+							row.net?.connectWithPsk(text);
 							root.expanded = "";
 						}
 						Keys.onPressed: event => {

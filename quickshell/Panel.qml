@@ -11,8 +11,11 @@ PanelWindow {
 
 	property bool open: false
 	property real shown: open ? 1 : 0
-	// seccion con la seleccion del teclado: "wifi" | "notifs"
+	// seccion con la seleccion del teclado, en orden de Tab
+	readonly property var sections: ["wifi", "bt", "notifs"]
 	property string section: "wifi"
+	// hay un campo de texto abierto (contraseña o filtro del wifi)
+	readonly property bool typing: wifi.expanded !== "" || wifi.filtering
 
 	Behavior on shown {
 		NumberAnimation {
@@ -56,10 +59,11 @@ PanelWindow {
 		onCleared: panel.open = false
 	}
 
-	function switchSection() {
+	function switchSection(delta) {
 		wifi.expanded = "";
 		wifi.closeFilter();
-		section = section === "wifi" ? "notifs" : "wifi";
+		const i = sections.indexOf(section);
+		section = sections[(i + delta + sections.length) % sections.length];
 		keys.forceActiveFocus();
 	}
 
@@ -68,13 +72,17 @@ PanelWindow {
 		const k = event.key;
 		const ctrl = event.modifiers & Qt.ControlModifier;
 		const shift = event.modifiers & Qt.ShiftModifier;
-		const sec = section === "wifi" ? wifi : notifs;
+		const sec = section === "wifi" ? wifi : section === "bt" ? bt : notifs;
 
 		if (ctrl) {
-			if (k === Qt.Key_R)
+			if (k === Qt.Key_R && section === "bt")
+				bt.toggleScan();
+			else if (k === Qt.Key_R)
 				wifi.rescan();
 			else if (k === Qt.Key_W)
 				wifi.toggleWifi();
+			else if (k === Qt.Key_B)
+				bt.toggleBluetooth();
 			else if (k === Qt.Key_D)
 				Notifs.dnd = !Notifs.dnd;
 			else
@@ -82,7 +90,8 @@ PanelWindow {
 		} else if (k === Qt.Key_Escape) {
 			open = false;
 		} else if (k === Qt.Key_Tab || k === Qt.Key_Backtab) {
-			switchSection();
+			// en wayland Shift+Tab puede llegar como Tab con Shift
+			switchSection(k === Qt.Key_Backtab || shift ? -1 : 1);
 		} else if (k === Qt.Key_Down || k === Qt.Key_J) {
 			sec.move(1);
 		} else if (k === Qt.Key_Up || k === Qt.Key_K) {
@@ -100,6 +109,8 @@ PanelWindow {
 		} else if (k === Qt.Key_Delete) {
 			if (section === "wifi")
 				wifi.forgetSelected();
+			else if (section === "bt")
+				bt.forgetSelected();
 			else if (shift)
 				Notifs.clearAll();
 			else
@@ -115,6 +126,14 @@ PanelWindow {
 			return;
 		}
 		event.accepted = true;
+	}
+
+	component Separator: Rectangle {
+		Layout.fillWidth: true
+		Layout.leftMargin: 4
+		Layout.rightMargin: 4
+		implicitHeight: 1
+		color: Colors.overlay
 	}
 
 	Rectangle {
@@ -147,13 +166,21 @@ PanelWindow {
 				onReleased: keys.forceActiveFocus()
 			}
 
-			Rectangle {
+			Separator {}
+
+			BluetoothSection {
+				id: bt
 				Layout.fillWidth: true
-				Layout.leftMargin: 4
-				Layout.rightMargin: 4
-				implicitHeight: 1
-				color: Colors.overlay
+				active: panel.open
+				focused: panel.section === "bt"
+				onWantFocus: {
+					// no robar el teclado a un campo de texto abierto
+					if (!panel.typing)
+						panel.section = "bt";
+				}
 			}
+
+			Separator {}
 
 			NotifSection {
 				id: notifs
@@ -161,8 +188,7 @@ PanelWindow {
 				Layout.fillHeight: true
 				focused: panel.section === "notifs"
 				onWantFocus: {
-					// no robar el teclado a un campo de texto abierto
-					if (wifi.expanded === "" && !wifi.filtering)
+					if (!panel.typing)
 						panel.section = "notifs";
 				}
 				onActed: panel.open = false
@@ -192,7 +218,9 @@ PanelWindow {
 					if (wifi.expanded !== "")
 						return [k("⏎", "conectar"), k("^H", "ver contraseña"), k("Esc", "cancelar")].join(sep);
 					if (panel.section === "wifi")
-						return [k("↑↓", "mover"), k("⏎", "conectar"), k("Supr", "olvidar"), k("/", "buscar"), k("^R", "escanear"), k("^W", "wifi"), k("Tab", "notificaciones")].join(sep);
+						return [k("↑↓", "mover"), k("⏎", "conectar"), k("Supr", "olvidar"), k("/", "buscar"), k("^R", "escanear"), k("^W", "wifi"), k("Tab", "bluetooth")].join(sep);
+					if (panel.section === "bt")
+						return [k("↑↓", "mover"), k("⏎", "conectar"), k("Supr", "olvidar"), k("^R", "buscar nuevos"), k("^B", "bluetooth"), k("Tab", "notificaciones")].join(sep);
 					return [k("↑↓", "mover"), k("←→", "acciones"), k("⏎", "abrir"), k("Supr", "descartar"), k("⇧Supr", "limpiar"), k("^D", "no molestar"), k("Tab", "wifi")].join(sep);
 				}
 			}

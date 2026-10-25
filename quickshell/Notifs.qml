@@ -3,13 +3,15 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 import Quickshell
+import Quickshell.Io
 import Quickshell.Services.Notifications
 
 // Servidor de notificaciones (reemplaza a swaync)
 Singleton {
 	id: root
 
-	property bool dnd: false
+	// se guarda en ~/.local/state/quickshell/.../notifs.json y sobrevive a reinicios
+	property alias dnd: saved.dnd
 	property bool panelOpen: false
 
 	// mas antiguas primero (orden de llegada)
@@ -26,6 +28,21 @@ Singleton {
 		running: true
 		repeat: true
 		onTriggered: root.now = Date.now()
+	}
+
+	FileView {
+		path: Quickshell.statePath("notifs.json")
+		onAdapterUpdated: writeAdapter()
+		// primera vez: crear el fichero con los valores por defecto
+		onLoadFailed: error => {
+			if (error === FileViewError.FileNotFound)
+				writeAdapter();
+		}
+
+		JsonAdapter {
+			id: saved
+			property bool dnd: false
+		}
 	}
 
 	NotificationServer {
