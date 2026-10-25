@@ -1,0 +1,38 @@
+/* Portapapeles: mismo estilo que el launcher, pero compacto */
+@import "~/.config/rofi/launchers/type-1/style-5.rasi"
+
+configuration {
+    show-icons:     true;
+}
+window {
+    width:          480px;
+}
+mainbox {
+    padding:        12px;
+    spacing:        8px;
+}
+inputbar {
+    children:       [ "textbox-prompt-colon", "entry" ];
+}
+textbox-prompt-colon {
+    str:            "󰅌";
+}
+entry {
+    placeholder:    "Buscar en el portapapeles...";
+}
+listview {
+    lines:          8;
+    spacing:        2px;
+}
+element {
+    padding:        3px 6px;
+    spacing:        8px;
+    border-radius:  8px;
+}
+element-icon {
+    size:           32px;
+}
+textbox {
+    padding:        4px 8px;
+    horizontal-align: 0.5;
+}

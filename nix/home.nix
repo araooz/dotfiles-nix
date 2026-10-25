@@ -2,6 +2,8 @@
 { config, pkgs, inputs,  ... }:
 
 {
+  imports = [ ./theme.nix ]; # colores y fuente de todo el sistema
+
   home.username = "falo";
   home.homeDirectory = "/home/falo";
 
@@ -14,7 +16,7 @@
     XDG_SESSION_TYPE = "wayland";
     XDG_SESSION_DESKTOP = "Hyprland";
     
-    DEFAULT_BROWSER = "${inputs.zen-browser.packages."${pkgs.system}".default}/bin/zen";
+    DEFAULT_BROWSER = "${inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default}/bin/zen";
   };
 
 # PROGRAMAS
@@ -24,8 +26,9 @@
     pstree
     kitty
     fastfetch
+    libnotify   # notify-send
     btop
-    inputs.zen-browser.packages."${pkgs.system}".default
+    inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
 #multimedia
     bluetui
     pavucontrol playerctl pamixer
@@ -116,6 +119,7 @@
     mangohud          # Overlay de FPS, frametime, GPU/CPU usage
     prismlauncher
 #testeo
+	kdePackages.dolphin
   ];
 
 ## ----------------- TERMINAL -----------------------------
@@ -154,6 +158,33 @@
     '';
   };
   programs.bash.enable = true;
+# NOTIFICACIONES (estilo en theme.nix)
+  services.swaync = {
+    enable = true;
+    settings = {
+      positionX = "right";
+      positionY = "top";
+      layer = "overlay";
+      control-center-layer = "top";
+      control-center-margin-top = 10;
+      control-center-margin-bottom = 10;
+      control-center-margin-right = 10;
+      control-center-width = 420;
+      notification-window-width = 400;
+      timeout = 6;
+      timeout-low = 3;
+      timeout-critical = 0; # las criticas se quedan hasta cerrarlas
+      fit-to-screen = true;
+      hide-on-clear = true;
+      image-visibility = "when-available";
+      widgets = [ "title" "dnd" "notifications" ];
+      widget-config = {
+        title = { text = "Notificaciones"; clear-all-button = true; button-text = "Limpiar"; };
+        dnd = { text = "No molestar"; };
+      };
+    };
+  };
+
 # YAZI
 programs.yazi = {
   enable = true;
@@ -227,8 +258,8 @@ home.pointerCursor = {
     gtk.enable = true;
     # x11.enable = true;
     package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Classic";
-    size = 16;
+    name = "Bibata-Modern-Ice";
+    size = 24;
   };
 
 gtk.gtk4.theme = config.gtk.theme;
@@ -244,11 +275,11 @@ gtk = {
     enable = true;
     theme = {
         package = pkgs.colloid-gtk-theme.override {
-          themeVariants = [ "default" ];
+          themeVariants = [ "purple" ];
           colorVariants = [ "dark" ];
           tweaks = [ "black" ];
         };
-        name = "Colloid-Dark";
+        name = "Colloid-Purple-Dark"; # el nombre cambia segun themeVariants
     };
     iconTheme = {
         package = pkgs.papirus-icon-theme;

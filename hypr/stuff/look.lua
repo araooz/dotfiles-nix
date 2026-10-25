@@ -2,6 +2,12 @@
 ---- LOOK AND FEEL ----
 -----------------------
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
+-- colores generados por nix/theme.nix
+local ok, colors = pcall(require, "stuff.colors")
+if not ok then
+    colors = { accent = "e0afff" } -- respaldo si aun no se hizo rebuild
+end
+
 hl.config({
     general = {
         gaps_in          = 4,
@@ -10,8 +16,8 @@ hl.config({
 
         col              = {
             -- rgba(bbbb0088) #rgba(880808ee) rgba(080899ee) 45deg
-            active_border   = "rgba(7dcfffee)",
-            inactive_border = "rgba(7dcfff44)",
+            active_border   = "rgba(" .. colors.accent .. "ee)",
+            inactive_border = "rgba(" .. colors.accent .. "44)",
         },
 
         -- Set to true enable resizing windows by clicking and dragging on borders and gaps

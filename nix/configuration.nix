@@ -1,7 +1,7 @@
 # ----------------- configuration.nix ----------------- #
 { config, lib, pkgs, inputs, ... }:
 let
-  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in {
   imports =
     [ ./hardware-configuration.nix ];
@@ -55,6 +55,18 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     };
     systemd-boot.enable = false; 
   };
+
+# PLYMOUTH: animacion de arranque en vez de texto de consola
+  boot.plymouth = {
+    enable = true;
+    theme = "bgrt"; # fondo negro + logo del fabricante + spinner
+  };
+  # KMS temprano en la iGPU (la que maneja la pantalla del laptop) para que plymouth tenga pantalla desde el inicio
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  # arranque silencioso: sin mensajes del kernel encima de la animacion
+  boot.consoleLogLevel = 3;
+  boot.initrd.verbose = false;
+  boot.kernelParams = [ "quiet" "splash" "udev.log_level=3" "rd.systemd.show_status=auto" ];
 
 #---------------------------------------------|
   networking.hostName = "nixos-btw";         #|
@@ -246,7 +258,7 @@ programs.gamemode = {
 };
 
 ##    DOCKER
-virtualisation.docker.enableNvidia = true;
+hardware.nvidia-container-toolkit.enable = true; # antes virtualisation.docker.enableNvidia (deprecado)
 virtualisation.docker.enable = true;
 
 ##    VIRTUALIZACION

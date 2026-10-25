@@ -15,3 +15,11 @@
 
 nix/nix
 nvim/init.lua
+
+# generados por nix/theme.nix (symlinks al nix store)
+hypr/colors.conf
+hypr/stuff/colors.lua
+kitty/theme.conf
+rofi/theme.rasi
+waybar/theme.css
+nvim/lua/theme_colors.lua

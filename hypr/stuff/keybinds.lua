@@ -59,7 +59,7 @@ gesture({
 	fingers = 3,
 	direction = "down",
 	action = function()
-		hl.exec_cmd("hyprlock")
+		hl.exec_cmd("pidof hyprlock || hyprlock")
 	end,
 })
 gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
@@ -133,7 +133,7 @@ bind("PRINT", hl.dsp.exec_cmd('grim -g "$(slurp)" ~/images/capturas/$(date +%Y-%
 -- admin de tareas
 bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd("kitty -e btop"))
 -- bloqueo de pantalla
-bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
+bind(mainMod .. " + L", hl.dsp.exec_cmd("pidof hyprlock || hyprlock"))
 -- menu de apagado
 bind(mainMod .. "+ F1", hl.dsp.exec_cmd("/home/falo/.config/rofi/powermenu/type-2/powermenu.sh"))
 -- bluetooth
@@ -150,12 +150,7 @@ bind(
 )
 
 -- Atajo de teclado para abrir el historial del portapapeles
-bind(
-	"SUPER + SHIFT + C",
-	hl.dsp.exec_cmd(
-		'cliphist list | rofi -dmenu -display-columns 2 -p "busca papaish" -theme /home/falo/.config/rofi/launchers/type-1/style-5.rasi | cliphist decode | wl-copy'
-	)
-)
+bind("SUPER + SHIFT + C", hl.dsp.exec_cmd("/home/falo/.config/rofi/clipboard/clipboard.sh"))
 
 bind(" XF86Launch2 ", hl.dsp.exec_cmd("spotify"))
 bind(" XF86Launch2 ", hl.dsp.focus({ workspace = 17 }))

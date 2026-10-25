@@ -2,13 +2,13 @@
  Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
  * -------------------------------------------------------------------------- */
 
-@import "machiatto.css";
+/* colores y fuente generados por nix/theme.nix */
+@import "theme.css";
 
 * {
-    color: @mauve;
+    color: @accent;
     border: 0;
     padding: 0;
-    font-family: UbuntuMono Nerd Font Propo;
     font-size: 18px;
     font-weight: bold;
 }
@@ -30,19 +30,19 @@ window#waybar {
 }
 
 #workspaces * {
-    color: @mauve;
+    color: @accent;
 }
 
 #workspaces button {
-    color: @black;
+    color: @bg;
     border-radius: 50%;
-    background-color: @black;
+    background-color: @bg;
     padding: 4px 8px 4px 0px;
     margin: 0px;
 }
 
 #workspaces button:hover {
-    color: @mauve;
+    color: @accent;
     box-shadow: none;
     text-shadow: none;
     border: 0px;
@@ -50,15 +50,15 @@ window#waybar {
 }
 
 #workspaces button.active {
-    background-color: @mauve;
-    color: @black;
+    background-color: @accent;
+    color: @bg;
     border-radius: 50%;
     padding: 4px 8px 4px 0px;
     margin: 0 10px;
 }
 
 #workspaces button.active * {
-    color: @black;
+    color: @bg;
 }
 
 /* -----------------------------------------------------------------------------
@@ -66,17 +66,17 @@ window#waybar {
  * -------------------------------------------------------------------------- */
 
 #clock {
-    color: @mauve;
+    color: @accent;
     border-radius: 100px;
     margin: 8px 10px;
-    background-color: @black;
+    background-color: @bg;
     padding: 4px 8px 4px 10px;
 }
 
 #mpris {
-    color: @mauve;
+    color: @accent;
     border-radius: 100px;
-    background-color: @black;
+    background-color: @bg;
     padding: 4px 8px 4px 0px;
     margin: 4px 4px;
 }
@@ -91,8 +91,8 @@ window#waybar {
 #temperature,
 #memory,
 #battery {
-    color: @mauve;
-    background-color: @black;
+    color: @accent;
+    background-color: @bg;
     padding: 4px 20px 4px 0px;
     margin-top: 4px;
     margin-bottom: 4px;
@@ -119,21 +119,38 @@ window#waybar {
     margin-right: 4px;
 }
 
+/* notificaciones: pildora aparte, a la izquierda del grupo */
+#custom-notification {
+    background-color: @bg;
+    border-radius: 100px;
+    padding: 4px 14px 4px 10px;
+    margin: 4px 4px;
+}
+
+#custom-notification.notification {
+    color: @fg;
+}
+
+#custom-notification.dnd-none,
+#custom-notification.dnd-notification {
+    color: @muted;
+}
+
 /* -----------------------------------------------------------------------------
  * Module States & Statuses
  * -------------------------------------------------------------------------- */
 
 #pulseaudio.muted {
-    color: @surface2;
+    color: @muted;
 }
 
 #network.disabled,
 #network.disconnected {
-    color: @redasfuck;
+    color: @red;
 }
 
 #temperature.critical {
-    color: @redasfuck;
+    color: @red;
 }
 
 #battery.charging {
@@ -142,12 +159,12 @@ window#waybar {
 
 @keyframes blink {
     to {
-        color: @mauve;
+        color: @accent;
     }
 }
 
 #battery.critical:not(.charging) {
-    color: @redasfuck;
+    color: @red;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -156,7 +173,7 @@ window#waybar {
 }
 
 #mode {
-    color: @mauve;
+    color: @accent;
     border-radius: 10px;
     margin-right: 5px;
 }
@@ -173,12 +190,11 @@ tooltip {
 }
 
 tooltip * {
-    background-color: @black;
-    border: 2px solid @surface0;
+    background-color: @bg;
+    border: 2px solid @overlay;
     border-radius: 12px;
     padding: 10px;
-    color: @text;
-    font-family: UbuntuMono Nerd Font Mono;
+    color: @fg;
     font-size: 17px;
     letter-spacing: 1px;
 }
