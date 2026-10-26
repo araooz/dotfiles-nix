@@ -14,10 +14,13 @@ Rectangle {
 	// seleccion del teclado: la tarjeta y cual de sus botones (-1 = ninguno)
 	property bool selected: false
 	property int selectedAction: -1
-	readonly property bool critical: notif.urgency === NotificationUrgency.Critical
-	readonly property var defaultAction: notif.actions.find(a => a.identifier === "default") ?? null
-	readonly property var buttons: notif.actions.filter(a => a.identifier !== "default")
+	readonly property bool critical: notif?.urgency === NotificationUrgency.Critical
+	readonly property var defaultAction: (notif?.actions ?? []).find(a => a.identifier === "default") ?? null
+	readonly property var buttons: (notif?.actions ?? []).filter(a => a.identifier !== "default")
 	readonly property string imageSource: {
+		// al descartarla, la notificacion se destruye un instante antes que la tarjeta
+		if (!notif)
+			return "";
 		if (notif.image)
 			return notif.image;
 		const icon = notif.appIcon;
@@ -106,7 +109,7 @@ Rectangle {
 
 				Text {
 					Layout.fillWidth: true
-					text: card.notif.summary || card.notif.appName
+					text: card.notif?.summary || card.notif?.appName || ""
 					color: card.critical ? Colors.red : Colors.accent
 					font.family: Colors.font
 					font.pixelSize: 14
@@ -115,7 +118,7 @@ Rectangle {
 				}
 				Text {
 					visible: !closeBtn.visible
-					text: Notifs.ago(card.notif.id)
+					text: Notifs.ago(card.notif?.id)
 					color: Colors.muted
 					font.family: Colors.font
 					font.pixelSize: 11
@@ -141,7 +144,7 @@ Rectangle {
 						anchors.fill: parent
 						hoverEnabled: true
 						cursorShape: Qt.PointingHandCursor
-						onClicked: card.notif.dismiss()
+						onClicked: card.notif?.dismiss()
 					}
 				}
 			}
@@ -149,7 +152,7 @@ Rectangle {
 			Text {
 				Layout.fillWidth: true
 				visible: text !== ""
-				text: card.notif.body
+				text: card.notif?.body ?? ""
 				color: Colors.fg
 				font.family: Colors.font
 				font.pixelSize: 13
@@ -161,8 +164,8 @@ Rectangle {
 			}
 
 			Text {
-				visible: card.notif.appName !== "" && card.notif.summary !== ""
-				text: card.notif.appName
+				visible: !!card.notif?.appName && !!card.notif?.summary
+				text: card.notif?.appName ?? ""
 				color: Colors.muted
 				font.family: Colors.font
 				font.pixelSize: 11

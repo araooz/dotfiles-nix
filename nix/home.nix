@@ -160,6 +160,22 @@
   };
   programs.bash.enable = true;
 
+# PANEL LATERAL: quickshell (wifi, bluetooth, notificaciones), config en ~/.config/quickshell
+#   lo arranca hypr/stuff/auto.lua tras exportar el entorno de wayland;
+#   si se cae, systemd lo vuelve a levantar (si no, te quedas sin notificaciones)
+  systemd.user.services.quickshell = {
+    Unit = {
+      Description = "Quickshell: panel lateral (wifi, bluetooth, notificaciones)";
+      PartOf = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.quickshell}/bin/qs";
+      Restart = "on-failure";
+      RestartSec = 1;
+    };
+  };
+
 # YAZI
 programs.yazi = {
   enable = true;

@@ -219,15 +219,15 @@ ColumnLayout {
 				}
 				Text {
 					Layout.fillWidth: true
-					text: row.dev?.name
+					text: row.dev?.name ?? ""
 					color: row.dev?.connected ? Colors.accent : row.dev?.paired ? Colors.fg : Colors.muted
 					font.family: Colors.font
 					font.pixelSize: 13
-					font.bold: row.dev?.connected
+					font.bold: !!row.dev?.connected
 					elide: Text.ElideRight
 				}
 				Text {
-					visible: row.dev?.batteryAvailable && !forgetBtn.visible
+					visible: !!(row.dev?.batteryAvailable && !forgetBtn.visible)
 					text: Icons.battery(row.dev?.battery ?? 0) + " " + Math.round(row.dev?.battery * 100) + "%"
 					color: row.dev?.battery <= 0.15 ? Colors.red : Colors.muted
 					font.family: Colors.font
@@ -243,7 +243,7 @@ ColumnLayout {
 				// olvidar dispositivo emparejado (raton encima o seleccionado)
 				IconButton {
 					id: forgetBtn
-					visible: row.dev?.paired && (rowArea.containsMouse || hovered || row.isSelected)
+					visible: !!(row.dev?.paired && (rowArea.containsMouse || hovered || row.isSelected))
 					icon: Icons.trash
 					size: 26
 					danger: true

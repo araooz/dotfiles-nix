@@ -10,7 +10,7 @@ import Quickshell.Networking
 ColumnLayout {
 	id: root
 
-	// el panel esta abierto: escanear mientras tanto
+	// el panel esta abierto
 	property bool active: false
 	// esta seccion tiene la seleccion del teclado
 	property bool focused: false
@@ -40,11 +40,14 @@ ColumnLayout {
 
 	spacing: 10
 
+	// escanear solo con el panel abierto y sin conexion, o tras un ^R manual
+	readonly property bool shouldScan: active && wifiOn && (current === null || scanSpin.running)
+
 	Binding {
 		when: root.dev !== null
 		target: root.dev
 		property: "scannerEnabled"
-		value: root.active && root.wifiOn
+		value: root.shouldScan
 	}
 
 	onActiveChanged: {
@@ -113,13 +116,10 @@ ColumnLayout {
 	function forgetSelected() {
 		forget(selectedNet);
 	}
+	// escaneo manual: el escaner se enciende mientras dura scanSpin
 	function rescan() {
-		scanSpin.restart();
-		// reiniciar el escaner fuerza un escaneo nuevo
-		if (dev) {
-			dev.scannerEnabled = false;
-			dev.scannerEnabled = Qt.binding(() => root.active && root.wifiOn);
-		}
+		if (wifiOn)
+			scanSpin.restart();
 	}
 	function toggleWifi() {
 		Networking.wifiEnabled = !Networking.wifiEnabled;
@@ -144,7 +144,7 @@ ColumnLayout {
 	}
 	Timer {
 		id: scanSpin
-		interval: 2500
+		interval: 8000
 	}
 	Timer {
 		id: errorClear
@@ -289,7 +289,7 @@ ColumnLayout {
 	ListView {
 		id: list
 		Layout.fillWidth: true
-		Layout.preferredHeight: Math.min(contentHeight, 290)
+		Layout.preferredHeight: Math.min(contentHeight, 5 * 42) // 5 redes visibles, el resto con scroll
 		visible: root.wifiOn
 		clip: true
 		spacing: 2
@@ -363,15 +363,15 @@ ColumnLayout {
 					}
 					Text {
 						Layout.fillWidth: true
-						text: row.net?.name
+						text: row.net?.name ?? ""
 						color: row.net?.connected ? Colors.accent : Colors.fg
 						font.family: Colors.font
 						font.pixelSize: 13
-						font.bold: row.net?.connected
+						font.bold: !!row.net?.connected
 						elide: Text.ElideRight
 					}
 					Text {
-						visible: row.net?.known && !row.net?.connected && !forgetBtn.visible
+						visible: !!(row.net?.known && !row.net?.connected && !forgetBtn.visible)
 						text: Icons.saved
 						color: Colors.muted
 						font.family: Colors.font
@@ -387,7 +387,7 @@ ColumnLayout {
 					// olvidar red guardada (raton encima o seleccionada)
 					IconButton {
 						id: forgetBtn
-						visible: row.net?.known && (rowArea.containsMouse || hovered || row.isSelected)
+						visible: !!(row.net?.known && (rowArea.containsMouse || hovered || row.isSelected))
 						icon: Icons.trash
 						size: 26
 						danger: true

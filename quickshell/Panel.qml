@@ -79,16 +79,21 @@ PanelWindow {
 				bt.toggleScan();
 			else if (k === Qt.Key_R)
 				wifi.rescan();
-			else if (k === Qt.Key_W)
-				wifi.toggleWifi();
-			else if (k === Qt.Key_B)
-				bt.toggleBluetooth();
 			else if (k === Qt.Key_D)
 				Notifs.dnd = !Notifs.dnd;
 			else
 				return;
-		} else if (k === Qt.Key_Escape) {
+		} else if (k === Qt.Key_Escape || k === Qt.Key_Q) {
+			// los campos de texto se quedan la q, asi que ahi no cierra
 			open = false;
+		} else if (k === Qt.Key_O) {
+			// o: encender/apagar la seccion; en notificaciones, limpiarlas todas
+			if (section === "wifi")
+				wifi.toggleWifi();
+			else if (section === "bt")
+				bt.toggleBluetooth();
+			else
+				Notifs.clearAll();
 		} else if (k === Qt.Key_Tab || k === Qt.Key_Backtab) {
 			// en wayland Shift+Tab puede llegar como Tab con Shift
 			switchSection(k === Qt.Key_Backtab || shift ? -1 : 1);
@@ -111,8 +116,6 @@ PanelWindow {
 				wifi.forgetSelected();
 			else if (section === "bt")
 				bt.forgetSelected();
-			else if (shift)
-				Notifs.clearAll();
 			else
 				notifs.dismissSelected();
 		} else if (section === "notifs" && (k === Qt.Key_Left || k === Qt.Key_H)) {
@@ -218,10 +221,10 @@ PanelWindow {
 					if (wifi.expanded !== "")
 						return [k("⏎", "conectar"), k("^H", "ver contraseña"), k("Esc", "cancelar")].join(sep);
 					if (panel.section === "wifi")
-						return [k("↑↓", "mover"), k("⏎", "conectar"), k("Supr", "olvidar"), k("/", "buscar"), k("^R", "escanear"), k("^W", "wifi"), k("Tab", "bluetooth")].join(sep);
+						return [k("↑↓", "mover"), k("⏎", "conectar"), k("Supr", "olvidar"), k("/", "buscar"), k("^R", "escanear"), k("o", "on/off"), k("Tab", "bluetooth"), k("q", "cerrar")].join(sep);
 					if (panel.section === "bt")
-						return [k("↑↓", "mover"), k("⏎", "conectar"), k("Supr", "olvidar"), k("^R", "buscar nuevos"), k("^B", "bluetooth"), k("Tab", "notificaciones")].join(sep);
-					return [k("↑↓", "mover"), k("←→", "acciones"), k("⏎", "abrir"), k("Supr", "descartar"), k("⇧Supr", "limpiar"), k("^D", "no molestar"), k("Tab", "wifi")].join(sep);
+						return [k("↑↓", "mover"), k("⏎", "conectar"), k("Supr", "olvidar"), k("^R", "buscar nuevos"), k("o", "on/off"), k("Tab", "notificaciones"), k("q", "cerrar")].join(sep);
+					return [k("↑↓", "mover"), k("←→", "acciones"), k("⏎", "abrir/desplegar"), k("Supr", "descartar"), k("o", "limpiar todo"), k("^D", "no molestar"), k("Tab", "wifi"), k("q", "cerrar")].join(sep);
 				}
 			}
 		}

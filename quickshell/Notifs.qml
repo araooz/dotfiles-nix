@@ -4,6 +4,7 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import Quickshell
 import Quickshell.Io
+import Quickshell.Hyprland
 import Quickshell.Services.Notifications
 
 // Servidor de notificaciones (reemplaza a swaync)
@@ -13,6 +14,8 @@ Singleton {
 	// se guarda en ~/.local/state/quickshell/.../notifs.json y sobrevive a reinicios
 	property alias dnd: saved.dnd
 	property bool panelOpen: false
+	// pantalla completa (video, juego): sin popups salvo las criticas
+	readonly property bool fullscreen: Hyprland.focusedWorkspace?.hasFullscreen ?? false
 
 	// mas antiguas primero (orden de llegada)
 	readonly property var list: server.trackedNotifications.values
@@ -59,7 +62,8 @@ Singleton {
 			n.tracked = true;
 			root.times[n.id] = Date.now();
 			root.now = Date.now();
-			if (!root.dnd && !root.panelOpen)
+			const critical = n.urgency === NotificationUrgency.Critical;
+			if (!root.dnd && !root.panelOpen && (!root.fullscreen || critical))
 				root.popups = [n, ...root.popups.filter(p => p !== n)];
 			n.closed.connect(() => root.hidePopup(n));
 		}
@@ -73,8 +77,9 @@ Singleton {
 	function timeoutFor(n) {
 		if (n.urgency === NotificationUrgency.Critical)
 			return 0;
+		// la app puede pedir su duracion (viene en milisegundos); como mucho 10 s
 		if (n.expireTimeout > 0)
-			return n.expireTimeout;
+			return Math.min(n.expireTimeout / 1000, 10);
 		return n.urgency === NotificationUrgency.Low ? 3 : 6;
 	}
 

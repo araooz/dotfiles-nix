@@ -20,6 +20,8 @@ Singleton {
 	readonly property string bell: g(0xF009A)
 	readonly property string bellOff: g(0xF009B)
 	readonly property string check: g(0xF012C)
+	readonly property string chevronDown: g(0xF0140)
+	readonly property string chevronRight: g(0xF0142)
 
 	readonly property string bt: g(0xF00AF)
 	readonly property string btOff: g(0xF00B2)
