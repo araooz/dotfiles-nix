@@ -1,6 +1,18 @@
 # ----------------- home.nix ----------------- #
 { config, pkgs, inputs,  ... }:
 
+let
+  # Zen con el ffmpeg del sistema: su decodificador propio no soporta AAC,
+  # y sin AAC los videos de Instagram/Facebook suenan en silencio.
+  zen = pkgs.symlinkJoin {
+    name = "zen-browser-ffmpeg";
+    paths = [ inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/zen --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath [ pkgs.ffmpeg ]}
+    '';
+  };
+in
 {
   imports = [ ./theme.nix ]; # colores y fuente de todo el sistema
 
@@ -16,7 +28,7 @@
     XDG_SESSION_TYPE = "wayland";
     XDG_SESSION_DESKTOP = "Hyprland";
     
-    DEFAULT_BROWSER = "${inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default}/bin/zen";
+    DEFAULT_BROWSER = "${zen}/bin/zen";
   };
 
 # PROGRAMAS
@@ -29,7 +41,7 @@
     libnotify   # notify-send
     quickshell  # panel lateral (wifi + notificaciones)
     btop
-    inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
+    zen # zen-browser con ffmpeg (ver arriba)
 #multimedia
     bluetui
     pavucontrol playerctl pamixer
