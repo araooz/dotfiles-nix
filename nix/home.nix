@@ -152,8 +152,30 @@ in
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    autosuggestion.enable = true;
+    autosuggestion = {
+      enable = true;
+      strategy = [ "history" "completion" ];
+    };
     syntaxHighlighting.enable = true;
+    history = {
+      size = 50000;
+      save = 50000;
+      ignoreAllDups = true; # sin repetidos, para que las sugerencias sean mas utiles
+      ignoreSpace = true;   # comandos que empiezan con espacio no se guardan
+      share = true;         # historial compartido entre terminales abiertas
+    };
+    plugins = [{
+      name = "fzf-tab";
+      src = pkgs.zsh-fzf-tab;
+      file = "share/fzf-tab/fzf-tab.plugin.zsh";
+    }];
+    zsh-abbr = {
+      enable = true;
+      abbreviations = {
+        gc   = ''git commit -m "%"'';
+      };
+    };
+    sessionVariables.ABBR_SET_EXPANSION_CURSOR = 1;
     initContent = ''
       cppa() {
         if [ -z "$1" ]; then
@@ -172,7 +194,18 @@ in
 
       bindkey '^[[1;5D' backward-word
       bindkey '^[[1;5C' forward-word
+
+      # completions sin importar mayusculas, y con previews en el menu de fzf-tab
+      zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+      zstyle ':completion:*:descriptions' format '[%d]'
+      zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 --color=always $realpath'
+      zstyle ':fzf-tab:*' switch-group '<' '>'
     '';
+  };
+  # Ctrl+R: buscar en el historial con fzf | Ctrl+T: insertar archivo | Alt+C: cd a carpeta
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
   };
   programs.bash.enable = true;
 
