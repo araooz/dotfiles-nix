@@ -48,7 +48,7 @@ in
     imv gimp
     grim slurp 
     easyeffects
-    mpv
+    (mpv.override { scripts = [ mpvScripts.mpris ]; }) # mpris: playerctl/waybar lo controlan
     drawing
 	pinta
 #portapapeles
@@ -113,6 +113,7 @@ in
     ripdrag     # drag and drop desde terminal (usado por yazi)
 	valgrind
 	markitdown
+	yt-dlp
 #apps
     localsend
     zoom-us
@@ -133,6 +134,9 @@ in
     prismlauncher
 #testeo
 	kdePackages.dolphin
+
+# 
+	godot
   ];
 
 ## ----------------- TERMINAL -----------------------------
@@ -305,6 +309,14 @@ gtk = {
       "video/quicktime" = [ "mpv.desktop" ]; # para archivos .mov
       "video/x-matroska" = [ "mpv.desktop" ]; # para archivos .mkv
       "video/webm" = [ "mpv.desktop" ];
+      "audio/mpeg" = [ "mpv.desktop" ]; # .mp3
+      "audio/flac" = [ "mpv.desktop" ];
+      "audio/ogg" = [ "mpv.desktop" ];
+      "audio/opus" = [ "mpv.desktop" ];
+      "audio/wav" = [ "mpv.desktop" ];
+      "audio/x-wav" = [ "mpv.desktop" ];
+      "audio/mp4" = [ "mpv.desktop" ]; # .m4a
+      "audio/aac" = [ "mpv.desktop" ];
       "text/txt" = [ "nvim.desktop" ];
       "text/html" = [ "zen.desktop" ];
       "application/pdf" = [ "zen.desktop" ];
