@@ -169,9 +169,16 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     pulse.enable = true;
     jack.enable = true; 
   };
-#brillo
+# BRILLO
   services.udev.packages = [ pkgs.swayosd ];
-
+# BATERIA
+  services.tlp = {
+    enable = true;
+    settings = {
+      START_CHARGE_THRESH_BAT0 = 75; 
+      STOP_CHARGE_THRESH_BAT0 = 80; 
+    };
+  };
 
 ##     BLUETOOTH
   hardware.bluetooth.enable = true;
