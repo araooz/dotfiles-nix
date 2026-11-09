@@ -8,7 +8,9 @@ hl.on("hyprland.start", function()
 
 	-- panel lateral (wifi, bluetooth, notificaciones): servicio en nix/home.nix que se reinicia solo.
 	-- Se exporta el entorno en el mismo comando para que no arranque antes de tener WAYLAND_DISPLAY.
-	hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP && systemctl --user restart quickshell")
+	hl.exec_cmd(
+		"systemctl --user import-environment WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP && systemctl --user restart quickshell"
+	)
 
 	-- Activar graphical-session.target via NixOS fake target (los portales XDG dependen de esto)
 	hl.exec_cmd("systemctl --user start nixos-fake-graphical-session.target")
@@ -22,6 +24,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("zapzap")
 	hl.exec_cmd("zen")
+	hl.exec_cmd("hyprlock")
 
 	-- portapapeles
 	hl.exec_cmd("wl-paste --type text --watch cliphist store")

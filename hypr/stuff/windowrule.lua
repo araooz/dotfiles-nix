@@ -44,9 +44,12 @@ window_rule({
 	match = { class = "com.rtosta.zapzap" },
 	workspace = "20",
 	border_size = 0,
-	pseudo = true,
-	size = { 1750, 1000 },
-	rounding = 20,
+})
+window_rule({
+	name = "EXPECTADOOR",
+	match = { class = "EXPECTADOOR" },
+	workspace = "2",
+	border_size = 0,
 })
 window_rule({
 	name = "abrir en whatsapp",
@@ -76,7 +79,7 @@ window_rule({
 	name = "gtk",
 	match = { class = "xdg-desktop-portal-gtk" },
 	float = true,
-	move = { 15, 55 },
+	move = { 80, 69 },
 	size = { 550, 390 },
 	animation = "popin",
 })
