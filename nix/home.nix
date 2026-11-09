@@ -173,6 +173,13 @@ in
       enable = true;
       abbreviations = {
         gc   = ''git commit -m "%"'';
+     	gs = "git status";
+    	gd = "git diff HEAD .";
+		nixwasa = "sudo nixos-rebuild switch --flake /home/falo/.config/nix";
+    	carajoquieroespacio = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations old && nix-env --delete-generations old && sudo nix-collect-garbage -d && nix-store --optimize";
+		fmem = "fastfetch | grep 'Memory'  && fastfetch | grep 'Swap' && fastfetch | grep 'Disk'";
+    	files = "cat /home/falo/.config/nix/configuration.nix /home/falo/.config/nix/home.nix | wl-copy";
+    	lsd = "lsd --tree --depth=1";
       };
     };
     sessionVariables.ABBR_SET_EXPANSION_CURSOR = 1;
