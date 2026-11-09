@@ -12,16 +12,6 @@ let
       wrapProgram $out/bin/zen --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath [ pkgs.ffmpeg ]}
     '';
   };
-
-  # ZapZap sin el tema Qt->GTK global: el negro puro del tema GTK choca con su propio modo oscuro. Asi usa su estilo por defecto.
-  zapzap = pkgs.symlinkJoin {
-    name = "zapzap-sin-gtk";
-    paths = [ pkgs.zapzap ];
-    nativeBuildInputs = [ pkgs.makeWrapper ];
-    postBuild = ''
-      wrapProgram $out/bin/zapzap --unset QT_QPA_PLATFORMTHEME
-    '';
-  };
 in
 {
   imports = [ ./theme.nix ]; # colores y fuente de todo el sistema
@@ -379,6 +369,15 @@ gtk = {
   };
 #BRILLO
   services.swayosd.enable = true;
+#BATERIA
+  services.tlp = {
+    enable = true;
+    settings = {
+      START_CHARGE_THRESH_BAT0 = 75; 
+      STOP_CHARGE_THRESH_BAT0 = 80; 
+    };
+  };
+
 
 
 
